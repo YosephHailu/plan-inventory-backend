@@ -1,0 +1,159 @@
+mutation SIGNUP_MUTATION(
+        $about: String!,
+        $address: String!,
+        $email: String!,
+        $name: String!,
+        $password: String!,
+        $password_confirmation: String!,
+        $phone_number: String!,
+        $post_code: String!,
+        $role: UserRoleEnum!,
+        $username: String!
+        ) {
+    register(input: {
+        about: $about,
+        address: $address,
+        email: $email,
+        name: $name,
+        password: $password,
+        password_confirmation: $password_confirmation,
+        phone_number: $phone_number,
+        post_code: $post_code,
+        role: $role,
+        username: $username,
+    }) {
+        status
+    }
+}
+
+mutation VERIFY_USER_MUTATION($id: ID!) {
+  verifyUser(id: $id) {
+    id
+    name
+    verifiedBy {
+        id
+    }
+  }
+}
+
+mutation RESEND_EMAIL_VERIFICATION_MUTATION($email: String!){
+    resendEmailVerification(input: {
+        email: $email,
+         verification_url: {
+             url: "https://my-front-end.com/verify-email?id=__ID__&token=__HASH__&expires=__EXPIRES__&signature=__SIGNATURE__"
+        }
+    }) {
+        status
+    }
+}
+
+///countries table
+mutation CREATE_COUNTRY($name: String!, $description: String, $icon: String) {
+  createCountry(input: {
+    name: $name,
+    description: $description,
+    icon: $icon,
+  }) {
+    id
+  }
+}
+
+
+mutation UPDATE_COUNTRY($id:ID!, $name: String!, $description: String, $icon: String) {
+  updateCountry(input: {
+    id: $id,
+    name: $name,
+    description: $description,
+    icon: $icon,
+  }) {
+    published
+  }
+}
+
+
+///Cities table
+mutation CREATE_CITY($name: String!, $description: String, $icon: String, $country_id: ID!) {
+  createCity(input: {
+    country_id: $country_id,
+    name: $name,
+    description: $description,
+    icon: $icon,
+  }) {
+    name
+  }
+}
+
+
+mutation UPDATE_CITY($id: ID!, $name: String!, $description: String, $icon: String, $country_id: ID!) {
+  updateCity(input: {
+    id: $id,
+    country_id: $country_id,
+    name: $name,
+    description: $description,
+    icon: $icon,
+  }) {
+    name
+  }
+}
+
+///
+mutation CREATE_SERVICE_AREA($name: String!, $description: String, $icon: String, $country_id: ID!, $city_id: ID!) {
+  createServiceArea(input: {
+    country_id: $country_id,
+    city_id: $city_id,
+    name: $name,
+    description: $description,
+    icon: $icon,
+  }) {
+    name
+  }
+}
+
+mutation UPDATE_SERVICE_AREA($id: ID!, $name: String!, $description: String, $icon: String, $country_id: ID!, $city_id: ID!) {
+  updateServiceArea(input: {
+    id: $id,
+    country_id: $country_id,
+    city_id: $city_id,
+    name: $name,
+    description: $description,
+    icon: $icon,
+  }) {
+    name
+  }
+}
+
+mutation CREATE_CANDIDATE_MUTATION($about: String! $address: String! $comment: String! $designation_id: ID! $education: String! $email: String! $city: String! $birthdate: Date! $experience: String! $father_name: String! $first_name: String! $gender: GenderEnum! $languages: String! $last_name: String! $phone_number: String! $post_code: String! $residency_country_id: ID! $service_area_id: ID! $service_country_id: ID! $skills: String! $state: String! $user_id: ID! $zipcode: String!) {
+    createCandidate(input: {about: $about, address: $address, comment: $comment, designation_id: $designation_id, education: $education, city: $city, email: $email, birthdate: $birthdate, experience: $experience, father_name: $father_name, first_name: $first_name, gender: $gender, languages: $languages, last_name: $last_name, phone_number: $phone_number, post_code: $post_code, residency_country_id: $residency_country_id, service_area_id: $service_area_id, service_country_id: $service_country_id, skills: $skills, state: $state, user_id: $user_id, zipcode: $zipcode,
+  }) {
+    id
+  }
+}
+
+# Table: users
+
+# Column | Type | Description
+# ------- | -------- | --------
+# id | int | Primary key
+# username | varchar(255) | Unique username
+# email | varchar(255) | Email address
+# password | varchar(255) | Password
+
+# Table: plans
+
+# Column | Type | Description
+# ------- | -------- | --------
+# id | int | Primary key
+# name | varchar(255) | Name of the plan
+# description | varchar(255) | Description of the plan
+# price | decimal(10,2) | Monthly or yearly cost
+# features | varchar(255) | List of features included in the plan
+
+# Table: subscriptions
+
+# Column | Type | Description
+# ------- | -------- | --------
+# id | int | Primary key
+# user_id | int | Foreign key to users.id
+# plan_id | int | Foreign key to plans.id
+# start_date | date | Date subscription started
+# end_date | date | Date subscription ends
