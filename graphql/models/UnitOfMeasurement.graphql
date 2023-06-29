@@ -1,0 +1,30 @@
+extend type Query {
+    unitOfMeasurements(name: String @like): [UnitOfMeasurement] @all
+    unitOfMeasurement(id: ID! @eq): UnitOfMeasurement @find
+}
+
+extend type Mutation {
+    createUnitOfMeasurement(input: UnitOfMeasurementCreateInput! @spread): UnitOfMeasurement @create
+    updateUnitOfMeasurement(input: UnitOfMeasurementUpdateInput! @spread): UnitOfMeasurement @update
+    deleteUnitOfMeasurement(id: ID! @eq): UnitOfMeasurement @field(resolver: "UnitOfMeasurementMutation@delete")
+}
+
+input UnitOfMeasurementCreateInput {
+    name: String! @rules(apply: ["required"])
+    abbreviation: String! @rules(apply: ["required"])
+    description: String
+}
+
+input UnitOfMeasurementUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:unit_of_measurements,id"])
+    name: String! @rules(apply: ["required"])
+    abbreviation: String! @rules(apply: ["required"])
+    description: String
+}
+
+type UnitOfMeasurement {
+    id: String
+    name: String
+    description: String
+    abbreviation: String
+}

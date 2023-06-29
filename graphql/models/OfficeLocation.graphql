@@ -1,0 +1,30 @@
+extend type Query {
+    officeLocations(address: String @like): [OfficeLocation] @all
+    officeLocation(id: ID! @eq): OfficeLocation @find
+}
+
+extend type Mutation {
+    createOfficeLocation(input: OfficeLocationCreateInput! @spread): OfficeLocation @create
+    updateOfficeLocation(input: OfficeLocationUpdateInput! @spread): OfficeLocation @update
+    deleteOfficeLocation(id: ID! @eq): OfficeLocation @field(resolver: "OfficeLocationMutation@delete")
+}
+
+input OfficeLocationCreateInput {
+    address: String! @rules(apply: ["required"])
+    description: String
+    lat_lng: JSON,
+}
+
+input OfficeLocationUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:office_locations,id"])
+    address: String! @rules(apply: ["required"])
+    description: String
+    lat_lng: JSON,
+}
+
+type OfficeLocation {
+    id: String
+    address: String
+    description: String
+    lat_lng: JSON,
+}

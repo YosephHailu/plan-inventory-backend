@@ -1,0 +1,24 @@
+extend type Query {
+    lotNumbers(lot_number: String @like): [LotNumber] @all
+    lotNumber(id: ID! @eq): LotNumber @find
+}
+
+extend type Mutation {
+    createLotNumber(input: LotNumberCreateInput! @spread): LotNumber @create
+    updateLotNumber(input: LotNumberUpdateInput! @spread): LotNumber @update
+    deleteLotNumber(id: ID! @eq): LotNumber @field(resolver: "LotNumberMutation@delete")
+}
+
+input LotNumberCreateInput {
+    lot_number: String! @rules(apply: ["required"])
+}
+
+input LotNumberUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:lot_numbers,id"])
+    lot_number: String! @rules(apply: ["required"])
+}
+
+type LotNumber {
+    id: String
+    lot_number: String
+}

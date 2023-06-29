@@ -1,0 +1,27 @@
+extend type Query {
+    itemCategories(name: String @like): [ItemCategory] @all
+    itemCategory(id: ID! @eq): ItemCategory @find
+}
+
+extend type Mutation {
+    createItemCategory(input: ItemCategoryCreateInput! @spread): ItemCategory @create
+    updateItemCategory(input: ItemCategoryUpdateInput! @spread): ItemCategory @update
+    deleteItemCategory(id: ID! @eq): ItemCategory @field(resolver: "ItemCategoryMutation@delete")
+}
+
+input ItemCategoryCreateInput {
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+input ItemCategoryUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:item_categories,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type ItemCategory {
+    id: String
+    name: String
+    description: String
+}

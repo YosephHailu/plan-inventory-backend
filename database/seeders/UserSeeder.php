@@ -31,6 +31,5 @@ class UserSeeder extends Seeder
         ]);
 
         $user->roles()->sync(Role::pluck('id'));
-        
     }
 }
