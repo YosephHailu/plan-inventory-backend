@@ -1,0 +1,27 @@
+extend type Query {
+    donors(name: String @like): [Donor] @all
+    donor(id: ID! @eq): Donor @find
+}
+
+extend type Mutation {
+    createDonor(input: DonorCreateInput! @spread): Donor @create
+    updateDonor(input: DonorUpdateInput! @spread): Donor @update
+    deleteDonor(id: ID! @eq): Donor @delete
+}
+
+input DonorCreateInput {
+    name: String! @rules(apply: ["required", "unique:donors,name"])
+    description: String
+}
+
+input DonorUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:donors,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type Donor {
+    id: String
+    name: String
+    description: String
+}

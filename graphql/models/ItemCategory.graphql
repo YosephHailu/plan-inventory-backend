@@ -6,7 +6,7 @@ extend type Query {
 extend type Mutation {
     createItemCategory(input: ItemCategoryCreateInput! @spread): ItemCategory @create
     updateItemCategory(input: ItemCategoryUpdateInput! @spread): ItemCategory @update
-    deleteItemCategory(id: ID! @eq): ItemCategory @field(resolver: "ItemCategoryMutation@delete")
+    deleteItemCategory(id: ID! @eq): ItemCategory @delete
 }
 
 input ItemCategoryCreateInput {

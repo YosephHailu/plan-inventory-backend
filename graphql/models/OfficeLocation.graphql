@@ -6,7 +6,7 @@ extend type Query {
 extend type Mutation {
     createOfficeLocation(input: OfficeLocationCreateInput! @spread): OfficeLocation @create
     updateOfficeLocation(input: OfficeLocationUpdateInput! @spread): OfficeLocation @update
-    deleteOfficeLocation(id: ID! @eq): OfficeLocation @field(resolver: "OfficeLocationMutation@delete")
+    deleteOfficeLocation(id: ID! @eq): OfficeLocation @delete
 }
 
 input OfficeLocationCreateInput {
@@ -26,5 +26,10 @@ type OfficeLocation {
     id: String
     address: String
     description: String
-    lat_lng: JSON,
+    lat_lng: Location,
+}
+
+type Location {
+    lat: Float,
+    lng: Float,
 }

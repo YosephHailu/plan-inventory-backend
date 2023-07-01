@@ -6,19 +6,22 @@ extend type Query {
 extend type Mutation {
     createLotNumber(input: LotNumberCreateInput! @spread): LotNumber @create
     updateLotNumber(input: LotNumberUpdateInput! @spread): LotNumber @update
-    deleteLotNumber(id: ID! @eq): LotNumber @field(resolver: "LotNumberMutation@delete")
+    deleteLotNumber(id: ID! @eq): LotNumber @delete
 }
 
 input LotNumberCreateInput {
     lot_number: String! @rules(apply: ["required"])
+    description: String
 }
 
 input LotNumberUpdateInput {
     id: ID! @rules(apply: ["required", "exists:lot_numbers,id"])
     lot_number: String! @rules(apply: ["required"])
+    description: String
 }
 
 type LotNumber {
     id: String
     lot_number: String
+    description: String
 }

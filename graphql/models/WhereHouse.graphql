@@ -1,0 +1,30 @@
+extend type Query {
+    whereHouses(name: String @like): [WhereHouse] @all
+    whereHouse(id: ID! @eq): WhereHouse @find
+}
+
+extend type Mutation {
+    createWhereHouse(input: WhereHouseCreateInput! @spread): WhereHouse @create
+    updateWhereHouse(input: WhereHouseUpdateInput! @spread): WhereHouse @update
+    deleteWhereHouse(id: ID! @eq): WhereHouse @delete
+}
+
+input WhereHouseCreateInput {
+    name: String! @rules(apply: ["required", "unique:where_houses,name"])
+    address: String
+    description: String
+}
+
+input WhereHouseUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:where_houses,id"])
+    name: String! @rules(apply: ["required"])
+    address: String
+    description: String
+}
+
+type WhereHouse {
+    id: String
+    name: String
+    address: String
+    description: String
+}

@@ -1,0 +1,27 @@
+extend type Query {
+    departments(name: String @like): [Department] @all
+    department(id: ID! @eq): Department @find
+}
+
+extend type Mutation {
+    createDepartment(input: DepartmentCreateInput! @spread): Department @create
+    updateDepartment(input: DepartmentUpdateInput! @spread): Department @update
+    deleteDepartment(id: ID! @eq): Department @delete
+}
+
+input DepartmentCreateInput {
+    name: String! @rules(apply: ["required", "unique:departments,name"])
+    description: String
+}
+
+input DepartmentUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:departments,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type Department {
+    id: String
+    name: String
+    description: String
+}

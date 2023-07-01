@@ -1,0 +1,30 @@
+extend type Query {
+    stockTypes(name: String @like): [StockType] @all
+    stockType(id: ID! @eq): StockType @find
+}
+
+extend type Mutation {
+    createStockType(input: StockTypeCreateInput! @spread): StockType @create
+    updateStockType(input: StockTypeUpdateInput! @spread): StockType @update
+    deleteStockType(id: ID! @eq): StockType @delete
+}
+
+input StockTypeCreateInput {
+    name: String! @rules(apply: ["required", "unique:stock_types,name"])
+    address: String
+    description: String
+}
+
+input StockTypeUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:stock_types,id"])
+    name: String! @rules(apply: ["required"])
+    address: String
+    description: String
+}
+
+type StockType {
+    id: String
+    name: String
+    address: String
+    description: String
+}

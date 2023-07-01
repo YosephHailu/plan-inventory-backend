@@ -6,7 +6,7 @@ extend type Query {
 extend type Mutation {
     createUnitOfMeasurement(input: UnitOfMeasurementCreateInput! @spread): UnitOfMeasurement @create
     updateUnitOfMeasurement(input: UnitOfMeasurementUpdateInput! @spread): UnitOfMeasurement @update
-    deleteUnitOfMeasurement(id: ID! @eq): UnitOfMeasurement @field(resolver: "UnitOfMeasurementMutation@delete")
+    deleteUnitOfMeasurement(id: ID! @eq): UnitOfMeasurement @delete
 }
 
 input UnitOfMeasurementCreateInput {

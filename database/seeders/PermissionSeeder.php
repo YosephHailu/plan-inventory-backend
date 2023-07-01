@@ -22,9 +22,14 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'MeasurementUnit'], [ 'code' => 'MeasurementUnit', 'resource' => 'MeasurementUnit']);
         Permission::firstOrCreate(['name' => 'Report'], [ 'code' => 'Report', 'resource' => 'Report']);
         Permission::firstOrCreate(['name' => 'configuration'], [ 'code' => 'configuration', 'resource' => 'configuration']);
-
         Permission::firstOrCreate(['name' => 'ItemCategory'], [ 'code' => 'ItemCategory', 'resource' => 'ItemCategory']);
+        Permission::firstOrCreate(['name' => 'WhereHouse'], [ 'code' => 'WhereHouse', 'resource' => 'WhereHouse']);
         Permission::firstOrCreate(['name' => 'OfficeLocation'], [ 'code' => 'OfficeLocation', 'resource' => 'OfficeLocation']);
+        Permission::firstOrCreate(['name' => 'StockType'], [ 'code' => 'StockType', 'resource' => 'StockType']);
+        Permission::firstOrCreate(['name' => 'Department'], [ 'code' => 'Department', 'resource' => 'Department']);
+        Permission::firstOrCreate(['name' => 'Donor'], [ 'code' => 'Donor', 'resource' => 'Donor']);
+        Permission::firstOrCreate(['name' => 'LotNumber'], [ 'code' => 'LotNumber', 'resource' => 'LotNumber']);
+        Permission::firstOrCreate(['name' => 'Item'], [ 'code' => 'Item', 'resource' => 'Item']);
 
     }
 }

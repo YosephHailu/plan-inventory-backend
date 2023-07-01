@@ -1,0 +1,51 @@
+extend type Query {
+    items(name: String @like): [Item] @paginate
+    item(id: ID! @eq): Item @find
+}
+
+extend type Mutation {
+    createItem(input: ItemCreateInput! @spread): Item @field(resolver: "ItemMutation@store")
+    updateItem(input: ItemUpdateInput! @spread): Item @update
+    deleteItem(id: ID! @eq): Item @delete
+}
+
+input ItemCreateInput {
+    name: String!
+    description: String
+    expire_date: Date
+    unit_of_measurement_id: ID
+    item_category_id: ID
+    office_location_id: ID
+    where_house_id: ID
+    stock_type_id: ID
+    department_id: ID
+    donor_id: ID
+}
+
+input ItemUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:items,id"])
+    name: String!
+    description: String
+    expire_date: Date
+    unit_of_measurement_id: ID
+    item_category_id: ID
+    office_location_id: ID
+    where_house_id: ID
+    stock_type_id: ID
+    department_id: ID
+    donor_id: ID
+}
+
+type Item {
+    id: ID!
+    name: String!
+    description: String
+    expire_date: Date
+    unit_of_measurement_id: ID
+    itemCategory: ItemCategory
+    officeLocation: OfficeLocation
+    whereHouse: WhereHouse
+    stockType: StockType
+    department: Department
+    donor: Donor
+}

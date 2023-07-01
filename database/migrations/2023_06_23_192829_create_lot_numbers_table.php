@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('lot_numbers', function (Blueprint $table) {
             $table->id();
             $table->string('lot_number')->unique();
+            $table->longText('description')->nullable();
+            
             $table->timestamps();
         });
     }
