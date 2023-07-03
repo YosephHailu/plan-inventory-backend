@@ -20,6 +20,7 @@ input ItemCreateInput {
     stock_type_id: ID
     department_id: ID
     donor_id: ID
+    lot_number_id: ID
 }
 
 input ItemUpdateInput {
@@ -34,6 +35,7 @@ input ItemUpdateInput {
     stock_type_id: ID
     department_id: ID
     donor_id: ID
+    lot_number_id: ID
 }
 
 type Item {
