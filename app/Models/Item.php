@@ -23,6 +23,7 @@ class Item extends Model
         'stock_type_id',
         'department_id',
         'donor_id',
+        'lot_number_id',
         'created_by_id'
     ];
    
@@ -94,4 +95,15 @@ class Item extends Model
     {
         return $this->belongsTo(UnitOfMeasurement::class);
     }
+    
+    /**
+     * Get the lotNumber that owns the Item
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function lotNumber(): BelongsTo
+    {
+        return $this->belongsTo(LotNumber::class);
+    }
+    
 }

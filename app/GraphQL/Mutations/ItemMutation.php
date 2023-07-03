@@ -28,14 +28,16 @@ final class ItemMutation
             "where_house_id",
             "stock_type_id",
             "department_id",
-            "donor_id"
+            "donor_id",
+            "lot_number_id"
         ]);
 
-        $data['stock_card_number'] = 'stock_card_number';
+        $lastItem = Item::query()->orderBy('created_at', 'desc')->first();
+        $data['stock_card_number'] = "ITM-".sprintf('%03d', ($lastItem->id ?? 0) + 1);
         $data['created_by_id'] = Auth::Id();
 
         $item = Item::create($data->toArray());
-
+        
         return $item;
     }
 

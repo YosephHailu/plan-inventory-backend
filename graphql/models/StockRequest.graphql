@@ -1,0 +1,44 @@
+extend type Query {
+    stockRequests(name: String @like): [StockRequest] @paginate
+    stockRequest(id: ID! @eq): StockRequest @find
+}
+
+extend type Mutation {
+    createStockRequest(input: StockRequestCreateInput! @spread): StockRequest @field(resolver: "StockRequestMutation@store")
+    updateStockRequest(input: StockRequestUpdateInput! @spread): StockRequest @update
+    deleteStockRequest(id: ID! @eq): StockRequest @delete
+}
+
+input StockRequestCreateInput {
+    reference_no: String
+    requested_date: Date
+    requester_name: String
+    contact_detail: String
+    office_location_id: ID!
+    where_house_id: ID!
+    department_id: ID!
+}
+
+input StockRequestUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:stock_requests,id"])
+    reference_no: String
+    requested_date: Date
+    requester_name: String
+    contact_detail: String
+    office_location_id: ID!
+    where_house_id: ID!
+    department_id: ID!
+    checked_by_id: ID!
+    approved_by_id: ID!
+}
+
+type StockRequest {
+    id: ID!
+    reference_no: String
+    requested_date: Date
+    requester_name: String
+    contact_detail: String
+    officeLocation: OfficeLocation
+    whereHouse: WhereHouse
+    department: Department
+}

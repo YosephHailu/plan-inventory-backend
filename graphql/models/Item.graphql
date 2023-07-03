@@ -40,9 +40,10 @@ input ItemUpdateInput {
 
 type Item {
     id: ID!
-    name: String!
+    name: String
     description: String
     expire_date: Date
+    stock_card_number: String
     unit_of_measurement_id: ID
     itemCategory: ItemCategory
     officeLocation: OfficeLocation
@@ -50,4 +51,6 @@ type Item {
     stockType: StockType
     department: Department
     donor: Donor
+    unitOfMeasurement: UnitOfMeasurement
+    lotNumber: LotNumber
 }
