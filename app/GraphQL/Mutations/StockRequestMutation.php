@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Models\StockRequest;
+use Illuminate\Support\Facades\Log;
 
 final class StockRequestMutation
 {
@@ -17,6 +18,8 @@ final class StockRequestMutation
 
     public function store($rootValue, array $args)
     {
+        Log::debug($args);
+        
         $data = collect($args)->only([
             'reference_no',
             'requested_date',

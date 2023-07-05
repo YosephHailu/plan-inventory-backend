@@ -1,0 +1,37 @@
+extend type Query {
+    stockRequestItems(name: String @like): [StockRequestItem] @paginate
+    stockRequestItem(id: ID! @eq): StockRequestItem @find
+}
+
+extend type Mutation {
+    createStockRequestItem(input: StockRequestItemCreateInput! @spread): StockRequestItem @create
+    updateStockRequestItem(input: StockRequestItemUpdateInput! @spread): StockRequestItem @update
+    deleteStockRequestItem(id: ID! @eq): StockRequestItem @delete
+}
+
+input StockRequestItemCreateInput {
+    designation_contact: String
+    quantity: String
+    description: String
+    contact_detail: String
+    item_id: ID!
+}
+
+input StockRequestItemUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:stock_request_items,id"])
+    designation_contact: String
+    quantity: String
+    description: String
+    contact_detail: String
+    item_id: ID!
+}
+
+type StockRequestItem {
+    id: ID
+    designation_contact: String
+    quantity: String
+    description: String
+    contact_detail: String
+    item: Item
+    stockRequest: StockRequest
+}

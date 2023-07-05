@@ -17,6 +17,7 @@ input StockRequestCreateInput {
     office_location_id: ID!
     where_house_id: ID!
     department_id: ID!
+    stockRequestItems: [StockRequestItemCreateInput]
 }
 
 input StockRequestUpdateInput {

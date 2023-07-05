@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('contact_detail')->nullable();
 
             $table->foreignId('item_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('stock_request_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();
         });
     }
