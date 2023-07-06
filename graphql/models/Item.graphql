@@ -4,7 +4,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    createItem(input: ItemCreateInput! @spread): Item @field(resolver: "ItemMutation@store")
+    createItem(input: ItemCreateInput! @spread): Item @guard @field(resolver: "ItemMutation@store")
     updateItem(input: ItemUpdateInput! @spread): Item @update
     deleteItem(id: ID! @eq): Item @delete
 }
@@ -12,6 +12,7 @@ extend type Mutation {
 input ItemCreateInput {
     name: String!
     description: String
+    beginning_balance: Float
     expire_date: Date
     unit_of_measurement_id: ID
     item_category_id: ID

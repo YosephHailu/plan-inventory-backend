@@ -13,9 +13,11 @@ class Item extends Model
     protected $fillable = [
         'stock_card_number',
         'name',
+        'balance',
         'description',
         'expire_date',
         'stock_available',
+        'beginning_balance',
         'unit_of_measurement_id',
         'item_category_id',
         'office_location_id',

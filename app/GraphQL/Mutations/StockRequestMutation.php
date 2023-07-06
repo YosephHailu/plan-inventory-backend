@@ -2,7 +2,10 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Item;
 use App\Models\StockRequest;
+use App\Models\StockRequestItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 final class StockRequestMutation
@@ -32,8 +35,18 @@ final class StockRequestMutation
             'approved_by_id'
         ]);
 
+        DB::beginTransaction();
         $stockRequest = StockRequest::create($data->toArray());
         
+        foreach($args['stockRequestItems'] as $stockRequestItem) {
+            $stockRequestItem['stock_request_id'] = $stockRequest->id;
+            $stockRequestItem = StockRequestItem::create($stockRequestItem);
+            // $item = Item::find($stockRequestItem->item_id);
+            // $item->balance += $stockRequestItem->amount;
+            // $item->save();
+        }
+        DB::commit();
+
         return $stockRequest;
     }
 
