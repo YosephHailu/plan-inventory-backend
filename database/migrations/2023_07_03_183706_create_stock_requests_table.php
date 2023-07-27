@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->string('requester_name')->nullable();
             $table->longText('contact_detail')->nullable();
+            
+            $table->string('status')->default('PENDING');
 
             $table->foreignId('office_location_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('where_house_id')->constrained()->onUpdate('restrict')->onDelete('restrict');

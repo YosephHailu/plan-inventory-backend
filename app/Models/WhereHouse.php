@@ -9,5 +9,5 @@ class WhereHouse extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['address', 'name', 'description'];
+    protected $fillable = ['address', 'name', 'description', 'capacity'];
 }

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->double('beginning_balance', 10);
             $table->double('balance', 10);
-            $table->string('name');
             $table->longText('item_code')->nullable();
             $table->longText('description')->nullable();
             $table->date('expire_date')->nullable();

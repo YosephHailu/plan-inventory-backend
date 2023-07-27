@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('address')->nullable();
             $table->longText('description')->nullable();
+            $table->string('capacity')->nullable();
+
             $table->timestamps();
         });
     }

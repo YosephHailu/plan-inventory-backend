@@ -5,6 +5,8 @@ namespace App\GraphQL\Mutations;
 use App\Models\Item;
 use App\Models\StockRequest;
 use App\Models\StockRequestItem;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -50,4 +52,41 @@ final class StockRequestMutation
         return $stockRequest;
     }
 
+    public function check($rootValue, array $args)
+    {
+        DB::beginTransaction();
+        $stockRequest = StockRequest::find($args['id']);
+        $stockRequest->status = "CHECKED";
+        $stockRequest->save();
+
+        foreach($args['input'] as $stockRequestItemId) {
+            $stockRequestItem = StockRequestItem::find($stockRequestItemId);
+            $stockRequestItem->checked_at = Carbon::now();
+            $stockRequestItem->checked_by_id = Auth::Id();
+            $stockRequestItem->checked = true;
+            $stockRequestItem->save();
+        }
+
+        DB::commit();
+        return $stockRequest;
+    }
+
+    public function approve($rootValue, array $args)
+    {
+        DB::beginTransaction();
+        $stockRequest = StockRequest::find($args['id']);
+        $stockRequest->status = "APPROVED";
+        $stockRequest->save();
+
+        foreach($args['input'] as $stockRequestItemId) {
+            $stockRequestItem = StockRequestItem::find($stockRequestItemId);
+            $stockRequestItem->approved_at = Carbon::now();
+            $stockRequestItem->approved_by_id = Auth::Id();
+            $stockRequestItem->approved = true;
+            $stockRequestItem->save();
+        }
+
+        DB::commit();
+        return $stockRequest;
+    }
 }

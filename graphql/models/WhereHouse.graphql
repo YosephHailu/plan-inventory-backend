@@ -12,13 +12,15 @@ extend type Mutation {
 input WhereHouseCreateInput {
     name: String! @rules(apply: ["required", "unique:where_houses,name"])
     address: String
+    capacity: String
     description: String
 }
 
 input WhereHouseUpdateInput {
-    id: ID! @rules(apply: ["required", "exists:where_houses,id"])
+    id: ID! 
     name: String! @rules(apply: ["required"])
     address: String
+    capacity: String
     description: String
 }
 
@@ -26,5 +28,6 @@ type WhereHouse {
     id: String
     name: String
     address: String
+    capacity: String
     description: String
 }

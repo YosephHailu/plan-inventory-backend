@@ -1,11 +1,14 @@
 extend type Query {
-    stockRequests(name: String @like): [StockRequest] @paginate
+    stockRequests(name: String @like, status: StatusEnum @eq): [StockRequest] @paginate
     stockRequest(id: ID! @eq): StockRequest @find
 }
 
 extend type Mutation {
     createStockRequest(input: StockRequestCreateInput! @spread): StockRequest @field(resolver: "StockRequestMutation@store")
     updateStockRequest(input: StockRequestUpdateInput! @spread): StockRequest @update
+    checkStockRequest(id: ID! @eq, input: [ID]!): StockRequest @field(resolver: "StockRequestMutation@check")
+    approveStockRequest(id: ID! @eq, input: [ID]!): StockRequest @field(resolver: "StockRequestMutation@approve")
+
     deleteStockRequest(id: ID! @eq): StockRequest @delete
 }
 
@@ -42,4 +45,16 @@ type StockRequest {
     officeLocation: OfficeLocation
     whereHouse: WhereHouse
     department: Department
+    status: StatusEnum
+    stockRequestItems: [StockRequestItem]
+}
+
+enum StatusEnum {
+    DRAFT @enum(value: "DRAFT")
+    ISSUED @enum(value: "ISSUED")
+    PENDING @enum(value: "PENDING")
+    CHECKED @enum(value: "CHECKED")
+    APPROVED @enum(value: "APPROVED")
+    REJECTED @enum(value: "REJECTED")
+    COMPLETED @enum(value: "COMPLETED")
 }

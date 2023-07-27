@@ -18,6 +18,16 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->longText('contact_detail')->nullable();
 
+            $table->foreignId('checked_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('checked_at')->nullable();
+            $table->boolean('checked')->default(false);
+            $table->longText('check_remark')->nullable();
+            
+            $table->foreignId('approved_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('approved_at')->nullable();
+            $table->boolean('approved')->default(false);
+            $table->longText('approve_remark')->nullable();
+
             $table->foreignId('item_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('stock_request_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();

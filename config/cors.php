@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'http://185.217.94.15:8080*', '*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'http://185.217.94.15:8080*', '*', 'graphql', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 

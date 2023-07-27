@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StockRequest extends Model
 {
@@ -20,7 +21,8 @@ class StockRequest extends Model
         'department_id',
         'checked_by_id',
         'approved_by_id',
-        'rejected_by_id'
+        'rejected_by_id',
+        'status'
     ];
 
     /**
@@ -81,5 +83,15 @@ class StockRequest extends Model
     public function officeLocation(): BelongsTo
     {
         return $this->belongsTo(OfficeLocation::class);
+    }
+
+    /**
+     * Get all of the stockRequestItems for the StockRequest
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stockRequestItems(): HasMany
+    {
+        return $this->hasMany(StockRequestItem::class);
     }
 }
