@@ -1,0 +1,44 @@
+extend type Query {
+    goodReceives(name: String @like, status: StatusEnum @eq): [GoodReceive] @paginate
+    goodReceive(id: ID! @eq): GoodReceive @find
+}
+
+extend type Mutation {
+    createGoodReceive(input: GoodReceiveCreateInput! @spread): GoodReceive @field(resolver: "GoodReceiveMutation@store")
+    updateGoodReceive(input: GoodReceiveUpdateInput! @spread): GoodReceive @update
+    deleteGoodReceive(id: ID! @eq): GoodReceive @delete
+}
+
+input GoodReceiveCreateInput {
+    received_date: Date!
+    remark: String
+    received_by: String!
+    goodReceiveItems: [GoodReceiveItemCreateInput]
+}
+
+input GoodReceiveUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:good_receives,id"])
+    received_date: String!
+    remark: String
+    received_by: String!
+    goodReceiveItems: [GoodReceiveItemCreateInput]
+}
+
+type GoodReceive {
+    id: ID!
+    remark: String
+    received_by: String
+    received_date: String
+    reference_number: String
+    goodReceiveItems: [GoodReceiveItem]
+}
+
+enum StatusEnum {
+    DRAFT @enum(value: "DRAFT")
+    ISSUED @enum(value: "ISSUED")
+    PENDING @enum(value: "PENDING")
+    CHECKED @enum(value: "CHECKED")
+    APPROVED @enum(value: "APPROVED")
+    REJECTED @enum(value: "REJECTED")
+    COMPLETED @enum(value: "COMPLETED")
+}

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class StockRequest extends Model
 {
@@ -93,5 +94,15 @@ class StockRequest extends Model
     public function stockRequestItems(): HasMany
     {
         return $this->hasMany(StockRequestItem::class);
+    }
+
+    /**
+     * Get the stockIssue associated with the StockRequest
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function stockIssue(): HasOne
+    {
+        return $this->hasOne(StockIssue::class);
     }
 }

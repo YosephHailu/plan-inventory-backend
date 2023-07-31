@@ -1,0 +1,56 @@
+extend type Query {
+    stockIssues(name: String @like, status: StatusEnum @eq): [StockIssue] @paginate
+    stockIssue(id: ID! @eq): StockIssue @find
+}
+
+extend type Mutation {
+    createStockIssue(input: StockIssueCreateInput! @spread): StockIssue @field(resolver: "StockIssueMutation@store")
+    updateStockIssue(input: StockIssueUpdateInput! @spread): StockIssue @update
+    deleteStockIssue(id: ID! @eq): StockIssue @delete
+}
+
+input StockIssueCreateInput {
+    transport_mode: String
+    date: Date
+    transported_by: String
+    rate_of_charge: String
+    remark: String
+    from: String
+    to: String
+    stock_request_id: ID! @rules(apply: ["required", "exists:stock_requests,id"])
+}
+
+input StockIssueUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:stock_issues,id"])
+    transport_mode: String
+    date: Date
+    transported_by: String
+    rate_of_charge: String
+    remark: String
+    from: String
+    to: String
+    stock_request_id: ID! @rules(apply: ["required", "exists:stock_requests,id"])
+}
+
+type StockIssue {
+    id: ID
+    transport_mode: String
+    date: Date
+    transported_by: String
+    rate_of_charge: String
+    remark: String
+    from: String
+    to: String
+    stockRequest: StockRequest
+    # stockIssueItems: [StockIssueItem]
+}
+
+enum StatusEnum {
+    DRAFT @enum(value: "DRAFT")
+    ISSUED @enum(value: "ISSUED")
+    PENDING @enum(value: "PENDING")
+    CHECKED @enum(value: "CHECKED")
+    APPROVED @enum(value: "APPROVED")
+    REJECTED @enum(value: "REJECTED")
+    COMPLETED @enum(value: "COMPLETED")
+}

@@ -1,0 +1,31 @@
+extend type Query {
+    goodReceiveItems(name: String @like): [GoodReceiveItem] @paginate
+    goodReceiveItem(id: ID! @eq): GoodReceiveItem @find
+}
+
+extend type Mutation {
+    createGoodReceiveItem(input: GoodReceiveItemCreateInput! @spread): GoodReceiveItem @create
+    updateGoodReceiveItem(input: GoodReceiveItemUpdateInput! @spread): GoodReceiveItem @update
+    deleteGoodReceiveItem(id: ID! @eq): GoodReceiveItem @delete
+}
+
+input GoodReceiveItemCreateInput {
+    received_quantity: Float,
+    description: String,
+    item_id: ID!
+}
+
+input GoodReceiveItemUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:good_receive_items,id"])
+    received_quantity: Float,
+    description: String,
+    item_id: ID!
+}
+
+type GoodReceiveItem {
+    id: ID
+    received_quantity: Float,
+    description: String,
+    item: Item
+    goodReceive: GoodReceive
+}
