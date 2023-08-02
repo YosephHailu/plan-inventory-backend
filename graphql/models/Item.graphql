@@ -23,6 +23,7 @@ input ItemCreateInput {
     donor_id: ID
     lot_number_id: ID
 
+    remark: String
     bin_card_location: String
     batch_number: String
     invoice_no: String
@@ -39,6 +40,7 @@ input ItemUpdateInput {
     id: ID! @rules(apply: ["required", "exists:items,id"])
     name: String!
     description: String
+    remark: String
     expire_date: Date
     unit_of_measurement_id: ID
     item_category_id: ID
@@ -49,6 +51,7 @@ input ItemUpdateInput {
     donor_id: ID
     lot_number_id: ID
 
+    remark: String
     bin_card_location: String
     batch_number: String
     invoice_no: String
@@ -65,6 +68,7 @@ type Item {
     id: ID!
     name: String
     description: String
+    remark: String
     expire_date: Date
     stock_card_number: String
     unit_of_measurement_id: ID

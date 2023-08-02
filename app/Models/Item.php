@@ -37,6 +37,7 @@ class Item extends Model
         'note',
         'unit_price',
         'total_price',
+        'remark',
     ];
    
     /**

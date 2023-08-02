@@ -30,7 +30,18 @@ final class ItemMutation
             "department_id",
             "beginning_balance",
             "donor_id",
-            "lot_number_id"
+            "lot_number_id",
+            "remark",
+            "bin_card_location",
+            "batch_number",
+            "invoice_no",
+            "purchase_order_no",
+            "waybill_number",
+            "vendor_name",
+            "vendor_id",
+            "note",
+            "unit_price",
+            "total_price",
         ]);
 
         $lastItem = Item::query()->orderBy('created_at', 'desc')->first();
@@ -55,7 +66,19 @@ final class ItemMutation
             "where_house_id",
             "stock_type_id",
             "department_id",
-            "donor_id"
+            "lot_number_id",
+            "donor_id",
+            "remark",
+            "bin_card_location",
+            "batch_number",
+            "invoice_no",
+            "purchase_order_no",
+            "waybill_number",
+            "vendor_name",
+            "vendor_id",
+            "note",
+            "unit_price",
+            "total_price",
         ]);
 
         $item = Item::find($args['id']);

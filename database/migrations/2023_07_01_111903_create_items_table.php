@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('balance', 10);
             $table->longText('item_code')->nullable();
             $table->longText('description')->nullable();
+            $table->longText('remark')->nullable();
             $table->date('expire_date')->nullable();
             $table->boolean('stock_available')->default(true);
 
