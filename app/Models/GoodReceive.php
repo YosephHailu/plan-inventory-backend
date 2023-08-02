@@ -18,6 +18,13 @@ class GoodReceive extends Model
         'received_by',
         'status',
         'created_by_id',
+
+        'vendor_name',
+        'vendor_id',
+        'purchase_order_no',
+        'invoice_no',
+        'project',
+        'where_house_id',
     ];
 
     /**

@@ -10,9 +10,11 @@ extend type Mutation {
 }
 
 input GoodReceiveItemCreateInput {
+    ordered_quantity: Float,
     received_quantity: Float,
     description: String,
     item_id: ID!
+    condition_id: ID!
 }
 
 input GoodReceiveItemUpdateInput {

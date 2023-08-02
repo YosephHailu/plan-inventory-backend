@@ -29,6 +29,12 @@ final class GoodReceiveMutation
             'received_date',
             'remark',
             'received_by',
+            'vendor_name',
+            'vendor_id',
+            'purchase_order_no',
+            'invoice_no',
+            'project',
+            'where_house_id'
         ]);
 
         DB::beginTransaction();
@@ -37,9 +43,11 @@ final class GoodReceiveMutation
         $stockRequest = GoodReceive::create($data->toArray());
         
         foreach($args['goodReceiveItems'] as $goodReceiveItem) {
+            $item = Item::find($goodReceiveItem['item_id']);
             $goodReceiveItem['good_receive_id'] = $stockRequest->id;
+            $goodReceiveItem['balance_due'] = $item->balance ?? 0;
+
             $goodReceiveItem = GoodReceiveItem::create($goodReceiveItem);
-            $item = Item::find($goodReceiveItem->item_id);
             $item->balance += $goodReceiveItem->received_quantity;
             $item->save();
         }

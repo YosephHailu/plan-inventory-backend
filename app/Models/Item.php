@@ -26,7 +26,17 @@ class Item extends Model
         'department_id',
         'donor_id',
         'lot_number_id',
-        'created_by_id'
+        'created_by_id',
+        'bin_card_location',
+        'batch_number',
+        'invoice_no',
+        'purchase_order_no',
+        'waybill_number',
+        'vendor_name',
+        'vendor_id',
+        'note',
+        'unit_price',
+        'total_price',
     ];
    
     /**

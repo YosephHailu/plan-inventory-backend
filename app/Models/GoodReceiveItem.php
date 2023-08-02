@@ -11,9 +11,12 @@ class GoodReceiveItem extends Model
     use HasFactory;
 
     protected $fillable = [
+        'ordered_quantity',
         'received_quantity',
         'description',
         'item_id',
+        'condition_id',
+        'balance_due',
         'good_receive_id',
     ];
 

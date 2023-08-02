@@ -13,6 +13,13 @@ input GoodReceiveCreateInput {
     received_date: Date!
     remark: String
     received_by: String!
+
+    vendor_name: String
+    vendor_id: String
+    purchase_order_no: String
+    invoice_no: String
+    project: String
+    where_house_id: ID
     goodReceiveItems: [GoodReceiveItemCreateInput]
 }
 

@@ -22,6 +22,17 @@ input ItemCreateInput {
     department_id: ID
     donor_id: ID
     lot_number_id: ID
+
+    bin_card_location: String
+    batch_number: String
+    invoice_no: String
+    purchase_order_no: String
+    waybill_number: Float
+    vendor_name: String
+    vendor_id: String
+    note: String
+    unit_price: Float
+    total_price: Float
 }
 
 input ItemUpdateInput {
@@ -37,6 +48,17 @@ input ItemUpdateInput {
     department_id: ID
     donor_id: ID
     lot_number_id: ID
+
+    bin_card_location: String
+    batch_number: String
+    invoice_no: String
+    purchase_order_no: String
+    waybill_number: Float
+    vendor_name: String
+    vendor_id: String
+    note: String
+    unit_price: Float
+    total_price: Float
 }
 
 type Item {

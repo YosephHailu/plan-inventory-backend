@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('good_receive_items', function (Blueprint $table) {
             $table->id();
+            $table->double('ordered_quantity', 10);
             $table->double('received_quantity', 10);
+            $table->double('balance_due', 10);
+
             $table->longText('description')->nullable();
 
+            
             $table->foreignId('item_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('good_receive_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('condition_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();
         });
     }

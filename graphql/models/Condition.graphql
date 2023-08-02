@@ -1,0 +1,27 @@
+extend type Query {
+    conditions(name: String @like): [Condition] @all
+    condition(id: ID! @eq): Condition @find
+}
+
+extend type Mutation {
+    createCondition(input: ConditionCreateInput! @spread): Condition @create
+    updateCondition(input: ConditionUpdateInput! @spread): Condition @update
+    deleteCondition(id: ID! @eq): Condition @delete
+}
+
+input ConditionCreateInput {
+    name: String! @rules(apply: ["required", "unique:conditions,name"])
+    description: String
+}
+
+input ConditionUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:conditions,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type Condition {
+    id: String
+    name: String
+    description: String
+}
