@@ -5,6 +5,7 @@ namespace App\GraphQL\Mutations;
 use App\Models\GoodReceive;
 use App\Models\GoodReceiveItem;
 use App\Models\Item;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -40,11 +41,11 @@ final class GoodReceiveMutation
         DB::beginTransaction();
         $data['reference_number'] = Str::random(5);
         $data['created_by_id'] = Auth::Id();
-        $stockRequest = GoodReceive::create($data->toArray());
+        $goodReceive = GoodReceive::create($data->toArray());
         
         foreach($args['goodReceiveItems'] as $goodReceiveItem) {
             $item = Item::find($goodReceiveItem['item_id']);
-            $goodReceiveItem['good_receive_id'] = $stockRequest->id;
+            $goodReceiveItem['good_receive_id'] = $goodReceive->id;
             $goodReceiveItem['balance_due'] = $item->balance ?? 0;
 
             $goodReceiveItem = GoodReceiveItem::create($goodReceiveItem);
@@ -53,7 +54,47 @@ final class GoodReceiveMutation
         }
         DB::commit();
 
-        return $stockRequest;
+        return $goodReceive;
+    }
+
+    public function check($rootValue, array $args)
+    {
+        DB::beginTransaction();
+        $goodReceive = GoodReceive::find($args['id']);
+        $goodReceive->status = "CHECKED";
+        $goodReceive->save();
+
+        foreach($args['input'] as $_goodReceiveItem) {
+            $goodReceiveItem = GoodReceiveItem::find($_goodReceiveItem['id']);
+            $goodReceiveItem->checked_quantity = $_goodReceiveItem['checked_quantity'];
+            $goodReceiveItem->checked_at = Carbon::now();
+            $goodReceiveItem->checked_by_id = Auth::Id();
+            $goodReceiveItem->checked = true;
+            $goodReceiveItem->save();
+        }
+
+        DB::commit();
+        return $goodReceive;
+    }
+
+    public function approve($rootValue, array $args)
+    {
+        DB::beginTransaction();
+        $goodReceive = GoodReceive::find($args['id']);
+        $goodReceive->status = "APPROVED";
+        $goodReceive->save();
+
+        foreach($args['input'] as $_goodReceiveItem) {
+            $goodReceiveItem = GoodReceiveItem::find($_goodReceiveItem['id']);
+            $goodReceiveItem->approved_quantity = $_goodReceiveItem['approved_quantity'];
+            $goodReceiveItem->approved_at = Carbon::now();
+            $goodReceiveItem->approved_by_id = Auth::Id();
+            $goodReceiveItem->approved = true;
+            $goodReceiveItem->save();
+        }
+
+        DB::commit();
+        return $goodReceive;
     }
 
 }

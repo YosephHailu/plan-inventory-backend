@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->longText('description')->nullable();
+            $table->string('fad_number')->nullable();
+
             $table->timestamps();
         });
     }

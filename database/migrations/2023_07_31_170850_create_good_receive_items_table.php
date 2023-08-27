@@ -19,6 +19,20 @@ return new class extends Migration
 
             $table->longText('description')->nullable();
 
+            $table->foreignId('checked_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('checked_at')->nullable();
+            $table->boolean('checked')->default(false);
+            $table->double('checked_quantity', 10)->nullable();
+            
+            $table->foreignId('approved_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('approved_at')->nullable();
+            $table->boolean('approved')->default(false);
+            $table->double('approved_quantity', 10)->nullable();
+            
+            $table->foreignId('rejected_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('rejected_at')->nullable();
+            $table->boolean('rejected')->default(false);
+            $table->longText('rejection_reason')->nullable();
             
             $table->foreignId('item_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('good_receive_id')->constrained()->onUpdate('restrict')->onDelete('restrict');

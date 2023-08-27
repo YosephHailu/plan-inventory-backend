@@ -11,17 +11,20 @@ extend type Mutation {
 
 input DonorCreateInput {
     name: String! @rules(apply: ["required", "unique:donors,name"])
+    fad_number: String
     description: String
 }
 
 input DonorUpdateInput {
     id: ID! @rules(apply: ["required", "exists:donors,id"])
     name: String! @rules(apply: ["required"])
+    fad_number: String
     description: String
 }
 
 type Donor {
     id: String
     name: String
+    fad_number: String
     description: String
 }

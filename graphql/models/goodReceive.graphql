@@ -7,6 +7,19 @@ extend type Mutation {
     createGoodReceive(input: GoodReceiveCreateInput! @spread): GoodReceive @field(resolver: "GoodReceiveMutation@store")
     updateGoodReceive(input: GoodReceiveUpdateInput! @spread): GoodReceive @update
     deleteGoodReceive(id: ID! @eq): GoodReceive @delete
+    checkGoodReceive(id: ID! @eq, input: [GoodReceiveCheckInput]!): GoodReceive @field(resolver: "GoodReceiveMutation@check")
+    approveGoodReceive(id: ID! @eq, input: [GoodReceiveApproveInput]!): GoodReceive @field(resolver: "GoodReceiveMutation@approve")
+
+}
+
+input GoodReceiveCheckInput {
+    checked_quantity: Float!
+    id: ID @rules(apply: ["required", "exists:good_receive_items,id"])
+}
+
+input GoodReceiveApproveInput {
+    approved_quantity: Float!
+    id: ID @rules(apply: ["required", "exists:good_receive_items,id"])
 }
 
 input GoodReceiveCreateInput {
@@ -35,6 +48,7 @@ type GoodReceive {
     id: ID!
     remark: String
     received_by: String
+    status: StatusEnum
     received_date: String
     reference_number: String
     goodReceiveItems: [GoodReceiveItem]

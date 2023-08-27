@@ -27,6 +27,8 @@ input GoodReceiveItemUpdateInput {
 type GoodReceiveItem {
     id: ID
     received_quantity: Float,
+    checked_quantity: Float
+    approved_quantity: Float
     description: String,
     item: Item
     goodReceive: GoodReceive
