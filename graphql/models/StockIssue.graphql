@@ -13,10 +13,11 @@ input StockIssueCreateInput {
     transport_mode: String
     date: Date
     transported_by: String
-    rate_of_charge: String
+    rate_of_charge: Float
     remark: String
     from: String
     to: String
+    waybill: Boolean
     stock_request_id: ID! @rules(apply: ["required", "exists:stock_requests,id"])
 }
 
@@ -25,10 +26,11 @@ input StockIssueUpdateInput {
     transport_mode: String
     date: Date
     transported_by: String
-    rate_of_charge: String
+    rate_of_charge: Float
     remark: String
     from: String
     to: String
+    waybill: Boolean
     stock_request_id: ID! @rules(apply: ["required", "exists:stock_requests,id"])
 }
 
@@ -37,10 +39,11 @@ type StockIssue {
     transport_mode: String
     date: Date
     transported_by: String
-    rate_of_charge: String
+    rate_of_charge: Float
     remark: String
     from: String
     to: String
+    waybill: Boolean
     stockRequest: StockRequest
     # stockIssueItems: [StockIssueItem]
 }

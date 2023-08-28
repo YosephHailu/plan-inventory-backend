@@ -33,6 +33,8 @@ return new class extends Migration
             $table->boolean('canceled')->default(false);
             $table->longText('cancellation_reason')->nullable();
             
+            $table->boolean('waybill')->default(false);
+
             $table->timestamps();
         });
     }

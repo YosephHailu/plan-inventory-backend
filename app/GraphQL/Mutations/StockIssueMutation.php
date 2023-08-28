@@ -34,6 +34,7 @@ final class StockIssueMutation
             'remark',
             'from',
             'to',
+            'waybill',
             'stock_request_id',
         ]);
 

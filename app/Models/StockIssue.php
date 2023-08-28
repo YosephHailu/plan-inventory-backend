@@ -20,6 +20,7 @@ class StockIssue extends Model
         'to',
         'remark',
         'status',
+        'waybill',
         'stock_request_id',
         'created_by_id'
     ];
