@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Item extends Model
 {
@@ -118,5 +119,24 @@ class Item extends Model
     {
         return $this->belongsTo(LotNumber::class);
     }
+
+    /**
+     * Get all of the goodReceiveItems for the Item
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function goodReceiveItems(): HasMany
+    {
+        return $this->hasMany(GoodReceiveItem::class);
+    }
     
+    /**
+     * Get all of the stockIssueItems for the Item
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stockIssueItems(): HasMany
+    {
+        return $this->hasMany(StockIssueItem::class);
+    }
 }

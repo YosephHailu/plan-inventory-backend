@@ -1,12 +1,22 @@
 extend type Query {
     items(name: String @like): [Item] @paginate
     item(id: ID! @eq): Item @find
+    itemBinCard(id: ID!): [BinCard] @field(resolver: "ItemQuery@binCard")
 }
 
 extend type Mutation {
     createItem(input: ItemCreateInput! @spread): Item @guard @field(resolver: "ItemMutation@store")
     updateItem(input: ItemUpdateInput! @spread): Item @update
     deleteItem(id: ID! @eq): Item @delete
+}
+
+type BinCard {
+    issuance_number: String
+    issued_quantity: Float
+    reference_number: String
+    approved_quantity: Float
+    processed_by: String
+    processed_at: String
 }
 
 input ItemCreateInput {
