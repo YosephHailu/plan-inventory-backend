@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('asset_type');
             $table->string('item_name');
             $table->date('acquisition_date');
-            $table->string('searial_no')->nullable();
+            $table->string('serial_no')->nullable();
             $table->longText('description');
             $table->longText('accessories')->nullable();
             $table->double('acquisition_cost', 10);

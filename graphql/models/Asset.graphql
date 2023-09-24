@@ -1,0 +1,83 @@
+extend type Query {
+    assets(name: String @like): [Asset] @paginate
+    asset(id: ID! @eq): Asset @find
+}
+
+extend type Mutation {
+    createAsset(input: AssetCreateInput! @spread): Asset @guard @field(resolver: "AssetMutation@store")
+    updateAsset(input: AssetUpdateInput! @spread): Asset @update
+    deleteAsset(id: ID! @eq): Asset @delete
+}
+
+input AssetCreateInput {
+    asset_type: AssetTypeEnum!
+    item_name: String!
+    acquisition_date: Date!
+    serial_no: String
+    description: String!
+    accessories: String
+    acquisition_cost: Float
+    purchase_order_no: String
+    gsrn_no: String!
+    receipt_date: Date!
+    depreciation_date: Date!
+    po_no: String!
+    cost_center: String
+    document_no: String!
+    currency_id: ID!
+    acquisition_type_id: ID
+    program_area_id: ID!
+    donor_id: ID
+}
+
+input AssetUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:assets,id"])
+    asset_type: AssetTypeEnum!
+    item_name: String!
+    acquisition_date: Date!
+    serial_no: String
+    description: String!
+    accessories: String
+    acquisition_cost: Float
+    purchase_order_no: String
+    gsrn_no: String!
+    receipt_date: Date!
+    depreciation_date: Date!
+    po_no: String!
+    cost_center: String
+    document_no: String!
+    currency_id: ID!
+    acquisition_type_id: ID
+    program_area_id: ID!
+    donor_id: ID
+}
+
+type Asset {
+    id: ID!
+    tag_number: String
+    asset_type: AssetTypeEnum
+    item_name: String
+    acquisition_date: Date
+    serial_no: String
+    description: String
+    accessories: String
+    acquisition_cost: Float
+    purchase_order_no: String
+    gsrn_no: String
+    receipt_date: Date
+    depreciation_date: Date
+    po_no: String
+    cost_center: String
+    document_no: String
+    currency: Currency
+    acquisitionType: AcquisitionType
+    programArea: ProgramArea
+    donor: Donor
+}
+
+enum AssetTypeEnum {
+    CAPITAL @enum(value: "Capital")
+    LOW_VALUE @enum(value: "Low Value")
+    GRANT_FUND @enum(value: "Grant Fund")
+    FURNITURE_FITTING_FIXTURE @enum(value: "Furniture, Fittings, And Fixtures")
+}
