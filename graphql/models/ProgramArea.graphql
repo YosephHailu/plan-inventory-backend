@@ -1,0 +1,30 @@
+extend type Query {
+    programAreas(name: String @like): [ProgramArea] @all
+    programArea(id: ID! @eq): ProgramArea @find
+}
+
+extend type Mutation {
+    createProgramArea(input: ProgramAreaCreateInput! @spread): ProgramArea @create
+    updateProgramArea(input: ProgramAreaUpdateInput! @spread): ProgramArea @update
+    deleteProgramArea(id: ID! @eq): ProgramArea @delete
+}
+
+input ProgramAreaCreateInput {
+    name: String! @rules(apply: ["required", "unique:program_areas,name"])
+    description: String
+    four_digit_code: String! @rules(apply: ["required", "unique:acquisition_types,name"])
+}
+
+input ProgramAreaUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:program_areas,id"])
+    name: String! @rules(apply: ["required"])
+    four_digit_code: String! @rules(apply: ["required"])
+    description: String
+}
+
+type ProgramArea {
+    id: String
+    name: String
+    description: String
+    four_digit_code: String
+}

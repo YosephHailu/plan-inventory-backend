@@ -27,9 +27,12 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'OfficeLocation'], [ 'code' => 'OfficeLocation', 'resource' => 'OfficeLocation']);
         Permission::firstOrCreate(['name' => 'StockType'], [ 'code' => 'StockType', 'resource' => 'StockType']);
         Permission::firstOrCreate(['name' => 'Department'], [ 'code' => 'Department', 'resource' => 'Department']);
+        Permission::firstOrCreate(['name' => 'ProgramArea'], [ 'code' => 'ProgramArea', 'resource' => 'ProgramArea']);
+        Permission::firstOrCreate(['name' => 'AcquisitionType'], [ 'code' => 'AcquisitionType', 'resource' => 'AcquisitionType']);
         Permission::firstOrCreate(['name' => 'Donor'], [ 'code' => 'Donor', 'resource' => 'Donor']);
         Permission::firstOrCreate(['name' => 'LotNumber'], [ 'code' => 'LotNumber', 'resource' => 'LotNumber']);
         Permission::firstOrCreate(['name' => 'Condition'], [ 'code' => 'Condition', 'resource' => 'Condition']);
+        Permission::firstOrCreate(['name' => 'Currency'], [ 'code' => 'Currency', 'resource' => 'Currency']);
         Permission::firstOrCreate(['name' => 'Item'], [ 'code' => 'Item', 'resource' => 'Item']);
         Permission::firstOrCreate(['name' => 'StockRequest'], [ 'code' => 'StockRequest', 'resource' => 'StockRequest']);
         Permission::firstOrCreate(['name' => 'StockRequestItem'], [ 'code' => 'StockRequestItem', 'resource' => 'StockRequestItem']);

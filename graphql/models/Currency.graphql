@@ -1,0 +1,30 @@
+extend type Query {
+    currencies(name: String @like): [Currency] @all
+    currency(id: ID! @eq): Currency @find
+}
+
+extend type Mutation {
+    createCurrency(input: CurrencyCreateInput! @spread): Currency @create
+    updateCurrency(input: CurrencyUpdateInput! @spread): Currency @update
+    deleteCurrency(id: ID! @eq): Currency @delete
+}
+
+input CurrencyCreateInput {
+    name: String! @rules(apply: ["required", "unique:currencies,name"])
+    code: String! @rules(apply: ["required", "unique:currencies,code"])
+    description: String
+}
+
+input CurrencyUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:currencies,id"])
+    name: String! @rules(apply: ["required"])
+    code: String! @rules(apply: ["required"])
+    description: String
+}
+
+type Currency {
+    id: String
+    name: String
+    code: String
+    description: String
+}

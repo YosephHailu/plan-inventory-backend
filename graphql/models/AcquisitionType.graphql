@@ -1,0 +1,27 @@
+extend type Query {
+    acquisitionTypes(name: String @like): [AcquisitionType] @all
+    acquisitionType(id: ID! @eq): AcquisitionType @find
+}
+
+extend type Mutation {
+    createAcquisitionType(input: AcquisitionTypeCreateInput! @spread): AcquisitionType @create
+    updateAcquisitionType(input: AcquisitionTypeUpdateInput! @spread): AcquisitionType @update
+    deleteAcquisitionType(id: ID! @eq): AcquisitionType @delete
+}
+
+input AcquisitionTypeCreateInput {
+    name: String! @rules(apply: ["required", "unique:acquisition_types,name"])
+    description: String
+}
+
+input AcquisitionTypeUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:acquisition_types,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type AcquisitionType {
+    id: String
+    name: String
+    description: String
+}
