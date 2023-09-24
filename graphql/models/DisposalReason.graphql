@@ -1,0 +1,27 @@
+extend type Query {
+    disposalReasons(name: String @like): [DisposalReason] @all
+    disposalReason(id: ID! @eq): DisposalReason @find
+}
+
+extend type Mutation {
+    createDisposalReason(input: DisposalReasonCreateInput! @spread): DisposalReason @create
+    updateDisposalReason(input: DisposalReasonUpdateInput! @spread): DisposalReason @update
+    deleteDisposalReason(id: ID! @eq): DisposalReason @delete
+}
+
+input DisposalReasonCreateInput {
+    name: String! @rules(apply: ["required", "unique:disposal_reasons,name"])
+    description: String
+}
+
+input DisposalReasonUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:disposal_reasons,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type DisposalReason {
+    id: String
+    name: String
+    description: String
+}

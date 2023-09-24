@@ -33,6 +33,9 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'LotNumber'], [ 'code' => 'LotNumber', 'resource' => 'LotNumber']);
         Permission::firstOrCreate(['name' => 'Condition'], [ 'code' => 'Condition', 'resource' => 'Condition']);
         Permission::firstOrCreate(['name' => 'Currency'], [ 'code' => 'Currency', 'resource' => 'Currency']);
+        Permission::firstOrCreate(['name' => 'DisposalType'], [ 'code' => 'DisposalType', 'resource' => 'DisposalType']);
+        Permission::firstOrCreate(['name' => 'DisposalReason'], [ 'code' => 'DisposalReason', 'resource' => 'DisposalReason']);
+        Permission::firstOrCreate(['name' => 'AssetDisposal'], [ 'code' => 'AssetDisposal', 'resource' => 'AssetDisposal']);
         Permission::firstOrCreate(['name' => 'Asset'], [ 'code' => 'Asset', 'resource' => 'Asset']);
         Permission::firstOrCreate(['name' => 'Item'], [ 'code' => 'Item', 'resource' => 'Item']);
         Permission::firstOrCreate(['name' => 'StockRequest'], [ 'code' => 'StockRequest', 'resource' => 'StockRequest']);

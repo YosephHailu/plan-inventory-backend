@@ -36,6 +36,10 @@ return new class extends Migration
 
             $table->foreignId('created_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
 
+            $table->foreignId('disposed_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('disposed_at')->nullable();
+            $table->boolean('disposed')->default(false);
+            
             $table->timestamps();
         });
     }

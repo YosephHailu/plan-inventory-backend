@@ -1,0 +1,27 @@
+extend type Query {
+    disposalTypes(name: String @like): [DisposalType] @all
+    disposalType(id: ID! @eq): DisposalType @find
+}
+
+extend type Mutation {
+    createDisposalType(input: DisposalTypeCreateInput! @spread): DisposalType @create
+    updateDisposalType(input: DisposalTypeUpdateInput! @spread): DisposalType @update
+    deleteDisposalType(id: ID! @eq): DisposalType @delete
+}
+
+input DisposalTypeCreateInput {
+    name: String! @rules(apply: ["required", "unique:disposal_types,name"])
+    description: String
+}
+
+input DisposalTypeUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:disposal_types,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type DisposalType {
+    id: String
+    name: String
+    description: String
+}
