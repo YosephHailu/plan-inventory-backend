@@ -1,0 +1,32 @@
+extend type Query {
+    assetCustodians(name: String @like): [AssetCustodian] @all
+    assetCustodian(id: ID! @eq): AssetCustodian @find
+}
+
+extend type Mutation {
+    createAssetCustodian(input: AssetCustodianCreateInput! @spread): AssetCustodian @guard @field(resolver: "AssetCustodianMutation@store")
+    updateAssetCustodian(input: AssetCustodianUpdateInput! @spread): AssetCustodian @update
+    deleteAssetCustodian(id: ID! @eq): AssetCustodian @delete
+}
+
+input AssetCustodianCreateInput {
+    remark: String
+    asset_id: ID!
+    staff_id: ID!
+}
+
+input AssetCustodianUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:asset_custodians,id"])
+    remark: String
+    asset_id: ID!
+    staff_id: ID!
+}
+
+type AssetCustodian {
+    id: String
+    remark: String
+    asset: Asset
+    staff: AssetCustodian
+    assigned_at: DateTime
+    assignedBy: User
+}

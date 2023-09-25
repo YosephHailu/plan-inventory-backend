@@ -1,0 +1,27 @@
+extend type Query {
+    staffs(name: String @like): [Staff] @all
+    staff(id: ID! @eq): Staff @find
+}
+
+extend type Mutation {
+    createStaff(input: StaffCreateInput! @spread): Staff @create
+    updateStaff(input: StaffUpdateInput! @spread): Staff @update
+    deleteStaff(id: ID! @eq): Staff @delete
+}
+
+input StaffCreateInput {
+    name: String! @rules(apply: ["required", "unique:staff,name"])
+    role: String!
+}
+
+input StaffUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:staff,id"])
+    name: String! @rules(apply: ["required"])
+    role: String!
+}
+
+type Staff {
+    id: String
+    name: String
+    role: String
+}

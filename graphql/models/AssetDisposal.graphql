@@ -1,0 +1,47 @@
+extend type Query {
+    assetDisposals(name: String @like): [AssetDisposal] @paginate
+    assetDisposal(id: ID! @eq): AssetDisposal @find
+}
+
+extend type Mutation {
+    createAssetDisposal(input: AssetDisposalCreateInput! @spread): AssetDisposal @guard @field(resolver: "AssetDisposalMutation@store")
+    updateAssetDisposal(input: AssetDisposalUpdateInput! @spread): AssetDisposal @update
+    deleteAssetDisposal(id: ID! @eq): AssetDisposal @delete
+}
+
+input AssetDisposalCreateInput {
+    date: Date
+    transfer_to: String!
+    accumulated_depreciation: String!
+    replacement_cost: String!
+    remark: String!
+    currency_id: ID! @rules(apply: ["required", "exists:currencies,id"])
+    disposal_type_id: ID! @rules(apply: ["required", "exists:disposal_types,id"])
+    disposal_reason_id: ID! @rules(apply: ["required", "exists:disposal_reasons,id"])
+    asset_id: ID! @rules(apply: ["required", "exists:assets,id"])
+}
+
+input AssetDisposalUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:asset_disposals,id"])
+    date: Date
+    transfer_to: String!
+    accumulated_depreciation: String!
+    replacement_cost: String!
+    remark: String!
+    currency_id: ID! @rules(apply: ["required", "exists:currencies,id"])
+    disposal_type_id: ID! @rules(apply: ["required", "exists:disposal_types,id"])
+    disposal_reason_id: ID! @rules(apply: ["required", "exists:disposal_reasons,id"])
+    asset_id: ID! @rules(apply: ["required", "exists:assets,id"])
+}
+
+type AssetDisposal {
+    id: ID!
+    date: Date
+    transfer_to: String
+    accumulated_depreciation: String
+    replacement_cost: String
+    remark: String
+    currency: Currency
+    disposalType: DisposalType
+    disposalReason: DisposalReason
+}

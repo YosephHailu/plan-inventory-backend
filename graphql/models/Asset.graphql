@@ -1,5 +1,5 @@
 extend type Query {
-    assets(name: String @like): [Asset] @paginate
+    assets(name: String @like): [Asset] @orderBy(column: "created_at", direction: DESC) @paginate
     asset(id: ID! @eq): Asset @find
 }
 
@@ -73,6 +73,9 @@ type Asset {
     acquisitionType: AcquisitionType
     programArea: ProgramArea
     donor: Donor
+    disposed: Boolean
+    disposed_at: DateTime
+    disposedBy: User
 }
 
 enum AssetTypeEnum {

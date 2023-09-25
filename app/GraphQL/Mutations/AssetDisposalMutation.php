@@ -2,7 +2,9 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Asset;
 use App\Models\AssetDisposal;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 final class AssetDisposalMutation
@@ -34,9 +36,15 @@ final class AssetDisposalMutation
 
         $data['created_by_id'] = Auth::Id();
 
-        $asset = AssetDisposal::create($data->toArray());
+        $assetDisposal = AssetDisposal::create($data->toArray());
+
+        $asset = Asset::find($args['asset_id']);
+        $asset->disposed_by_id = Auth::Id();
+        $asset->disposed_at = Carbon::now();
+        $asset->disposed = true;
+        $asset->save();
         
-        return $asset;
+        return $assetDisposal;
     }
 
 }

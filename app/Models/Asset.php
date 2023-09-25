@@ -44,6 +44,15 @@ class Asset extends Model
     }
 
     /**
+     * Get the checkedBy that owns the StockRequest
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function disposedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'disposed_by_id', 'id');
+    }
+    /**
      * Get the donor that owns the Asset
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
