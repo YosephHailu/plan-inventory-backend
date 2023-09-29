@@ -1,0 +1,34 @@
+extend type Query {
+    assetPhysicalChecks(condition_id: ID @eq, asset_id: ID @eq): [AssetPhysicalCheck] 
+        @orderBy(column: "created_at", direction: DESC) @paginate
+    assetPhysicalCheck(id: ID! @eq): AssetPhysicalCheck @find
+}
+
+extend type Mutation {
+    createAssetPhysicalCheck(input: AssetPhysicalCheckCreateInput! @spread): AssetPhysicalCheck @guard @field(resolver: "AssetPhysicalCheckMutation@store")
+    updateAssetPhysicalCheck(input: AssetPhysicalCheckUpdateInput! @spread): AssetPhysicalCheck @update
+    deleteAssetPhysicalCheck(id: ID! @eq): AssetPhysicalCheck @delete
+}
+
+input AssetPhysicalCheckCreateInput {
+    remark: String!
+    checked_at: Date!
+    asset_id: ID!
+    condition_id: ID!
+}
+
+input AssetPhysicalCheckUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:asset_physical_checks,id"])
+    remark: String!
+    asset_id: ID!
+    condition_id: ID!
+}
+
+type AssetPhysicalCheck {
+    id: ID
+    created_at: Date
+    remark: String
+    asset: Asset
+    condition: Condition
+    checkedBy: User
+}

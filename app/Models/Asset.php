@@ -40,6 +40,13 @@ class Asset extends Model
         return $query->where('item_name', 'like', "%$value%")
             ->orWhere('tag_number', 'like', "%$value%");
     }
+
+    function ScopeStaff(Builder $query, $value) {
+        return $query->whereHas('assetCustodians', function($q) use($value) {
+            return $q->where('staff_id', $value);
+        });
+    }
+
     /**
      * Get the checkedBy that owns the StockRequest
      *
@@ -107,5 +114,15 @@ class Asset extends Model
     public function assetCustodians(): HasMany
     {
         return $this->hasMany(AssetCustodian::class);
+    }
+
+    /**
+     * Get all of the assetPhysicalChecks for the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assetPhysicalChecks(): HasMany
+    {
+        return $this->hasMany(AssetPhysicalCheck::class);
     }
 }
