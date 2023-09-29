@@ -26,7 +26,7 @@ type AssetCustodian {
     id: String
     remark: String
     asset: Asset
-    staff: AssetCustodian
+    staff: Staff
     assigned_at: DateTime
     assignedBy: User
 }

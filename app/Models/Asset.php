@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Builder;
 
 class Asset extends Model
 {
@@ -33,6 +36,10 @@ class Asset extends Model
         'created_by_id'
     ];
     
+    function ScopeSearch(Builder $query, $value) {
+        return $query->where('item_name', 'like', "%$value%")
+            ->orWhere('tag_number', 'like', "%$value%");
+    }
     /**
      * Get the checkedBy that owns the StockRequest
      *
@@ -80,5 +87,25 @@ class Asset extends Model
     public function acquisitionType(): BelongsTo
     {
         return $this->belongsTo(AcquisitionType::class);
+    }
+
+    /**
+     * Get the assetCustodian associated with the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function assetCustodian(): HasOne
+    {
+        return $this->hasOne(AssetCustodian::class, 'asset_id', 'id');
+    }
+
+    /**
+     * Get all of the assetCustodians for the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assetCustodians(): HasMany
+    {
+        return $this->hasMany(AssetCustodian::class);
     }
 }

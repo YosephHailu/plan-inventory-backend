@@ -17,6 +17,10 @@ return new class extends Migration
             $table->timestamp('assigned_at');
             $table->foreignId('assigned_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
 
+            $table->foreignId('returned_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->date('returned_at')->nullable();
+            $table->boolean('returned')->default(false);
+            
             $table->foreignId('asset_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('staff_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();
