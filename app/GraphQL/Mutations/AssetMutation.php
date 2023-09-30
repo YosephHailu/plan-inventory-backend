@@ -42,7 +42,7 @@ final class AssetMutation
 
         $lastAsset = Asset::query()->orderBy('created_at', 'desc')->first();
         $programArea = ProgramArea::find($args['program_area_id']);
-        $data['tag_number'] = $programArea->four_digit_code . "-" . sprintf('%03d', ($lastAsset->id ?? 0) + 1);
+        $data['tag_number'] = "ETH1-" . $programArea->four_digit_code . "-" . sprintf('%03d', ($lastAsset->id ?? 0) + 1);
         $data['created_by_id'] = Auth::Id();
 
         $asset = Asset::create($data->toArray());

@@ -11,7 +11,7 @@ extend type Mutation {
 }
 
 input AssetPhysicalCheckCreateInput {
-    remark: String!
+    remark: String
     checked_at: Date!
     asset_id: ID!
     condition_id: ID!
@@ -19,7 +19,7 @@ input AssetPhysicalCheckCreateInput {
 
 input AssetPhysicalCheckUpdateInput {
     id: ID! @rules(apply: ["required", "exists:asset_physical_checks,id"])
-    remark: String!
+    remark: String
     asset_id: ID!
     condition_id: ID!
 }
@@ -27,6 +27,7 @@ input AssetPhysicalCheckUpdateInput {
 type AssetPhysicalCheck {
     id: ID
     created_at: Date
+    checked_at: Date
     remark: String
     asset: Asset
     condition: Condition

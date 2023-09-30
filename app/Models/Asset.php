@@ -47,6 +47,18 @@ class Asset extends Model
         });
     }
 
+    function ScopeCondition(Builder $query, $value) {
+        return $query->whereHas('assetPhysicalCheck', function($q) use($value) {
+            return $q->where('condition_id', $value);
+        });
+    }
+
+    function ScopeAvailable(Builder $query, $value) {
+        return $query->whereNull('disposed')->whereDoesntHave('assetCustodians', function($q) use($value) {
+            return $q->where('returned', false);
+        });
+    }
+
     /**
      * Get the checkedBy that owns the StockRequest
      *
@@ -124,5 +136,15 @@ class Asset extends Model
     public function assetPhysicalChecks(): HasMany
     {
         return $this->hasMany(AssetPhysicalCheck::class);
+    }
+
+    /**
+     * Get the assetPhysicalCheck associated with the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function assetPhysicalCheck(): HasOne
+    {
+        return $this->hasOne(AssetPhysicalCheck::class)->latest();
     }
 }
