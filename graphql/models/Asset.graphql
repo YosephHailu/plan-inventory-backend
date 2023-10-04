@@ -55,7 +55,7 @@ input AssetUpdateInput {
 }
 
 type Asset {
-    id: ID!
+    id: ID
     tag_number: String
     asset_type: AssetTypeEnum
     item_name: String

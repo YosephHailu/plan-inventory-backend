@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Asset;
 use App\Models\AssetCustodian;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -32,5 +33,19 @@ final class AssetCustodianMutation
         $assetDisposal = AssetCustodian::create($data->toArray());
         
         return $assetDisposal;
+    }
+
+    public function returnAsset($rootValue, array $args)
+    {
+        $assetCustodian = Asset::find($args['id'])->assetCustodian();
+
+        $data = collect();
+        $data['returned_by_id'] = Auth::Id();
+        $data['returned_at'] = Carbon::now();
+        $data['returned'] = true;
+
+        $assetCustodian->update($data->toArray());
+        
+        return Asset::find($args['id']);
     }
 }
