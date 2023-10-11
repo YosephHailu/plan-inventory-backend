@@ -13,8 +13,12 @@ input GoodReceiveItemCreateInput {
     ordered_quantity: Float,
     received_quantity: Float,
     description: String,
+    condition: String
+    expiry_date: Date
+    comment: String
+    donor_id: ID,
     item_id: ID!
-    condition_id: ID!
+    condition_id: ID
 }
 
 input GoodReceiveItemUpdateInput {
@@ -32,4 +36,8 @@ type GoodReceiveItem {
     description: String,
     item: Item
     goodReceive: GoodReceive
+    donor: Donor
+    expiry_date: Date
+    comment: String
+    condition: String
 }

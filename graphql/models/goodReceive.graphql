@@ -32,6 +32,7 @@ input GoodReceiveCreateInput {
     purchase_order_no: String
     invoice_no: String
     project: String
+    loading_number: String
     where_house_id: ID
     goodReceiveItems: [GoodReceiveItemCreateInput]
 }

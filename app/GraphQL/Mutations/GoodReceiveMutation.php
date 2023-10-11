@@ -35,7 +35,8 @@ final class GoodReceiveMutation
             'purchase_order_no',
             'invoice_no',
             'project',
-            'where_house_id'
+            'where_house_id',
+            'loading_number'
         ]);
 
         DB::beginTransaction();

@@ -25,6 +25,7 @@ class GoodReceive extends Model
         'invoice_no',
         'project',
         'where_house_id',
+        'loading_number',
     ];
 
     /**

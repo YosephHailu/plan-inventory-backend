@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('purchase_order_no')->nullable();
             $table->string('invoice_no')->nullable();
             $table->string('project')->nullable();
+            $table->string('loading_number')->nullable();
 
             $table->foreignId('created_by_id')->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->foreignId('where_house_id')->constrained()->onUpdate('restrict')->onDelete('restrict');

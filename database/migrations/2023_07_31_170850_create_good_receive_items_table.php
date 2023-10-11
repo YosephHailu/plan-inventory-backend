@@ -12,12 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('good_receive_items', function (Blueprint $table) {
-            $table->id();
+            $table->id()->startingValue(10000);
             $table->double('ordered_quantity', 10);
             $table->double('received_quantity', 10);
             $table->double('balance_due', 10);
+            $table->string('description');
+            $table->string('condition')->nullable();
+            $table->date('expiry_date')->nullable();
 
-            $table->longText('description')->nullable();
+            $table->longText('comment')->nullable();
+
+            $table->foreignId('donor_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
 
             $table->foreignId('checked_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('checked_at')->nullable();

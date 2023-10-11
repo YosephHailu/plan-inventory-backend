@@ -18,6 +18,11 @@ class GoodReceiveItem extends Model
         'condition_id',
         'balance_due',
         'good_receive_id',
+        'description',
+        'condition',
+        'expiry_date',
+        'comment',
+        'donor_id'
     ];
 
     /**
@@ -38,5 +43,15 @@ class GoodReceiveItem extends Model
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
+    }
+
+    /**
+     * Get the donor that owns the GoodReceiveItem
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function donor(): BelongsTo
+    {
+        return $this->belongsTo(Donor::class);
     }
 }
