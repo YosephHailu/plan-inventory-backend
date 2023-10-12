@@ -17,6 +17,7 @@ return new class extends Migration
             $table->double('quantity', 10)->nullable();
             $table->longText('description')->nullable();
             $table->longText('contact_detail')->nullable();
+            $table->longText('destination_contact')->nullable();
 
             $table->foreignId('checked_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('checked_at')->nullable();
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->boolean('approved')->default(false);
             $table->longText('approve_remark')->nullable();
 
-            $table->foreignId('item_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('good_receive_item_id');
             $table->foreignId('stock_request_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();
         });

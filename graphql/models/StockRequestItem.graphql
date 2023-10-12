@@ -14,7 +14,8 @@ input StockRequestItemCreateInput {
     quantity: String
     description: String
     contact_detail: String
-    item_id: ID!
+    destination_contact: String
+    good_receive_item_id: ID!
 }
 
 input StockRequestItemUpdateInput {
@@ -23,7 +24,8 @@ input StockRequestItemUpdateInput {
     quantity: String
     description: String
     contact_detail: String
-    item_id: ID!
+    destination_contact: String
+    good_receive_item_id: ID!
 }
 
 type StockRequestItem {
@@ -32,6 +34,7 @@ type StockRequestItem {
     quantity: String
     description: String
     contact_detail: String
-    item: Item
+    destination_contact: String
+    goodReceiveItem: GoodReceiveItem
     stockRequest: StockRequest
 }

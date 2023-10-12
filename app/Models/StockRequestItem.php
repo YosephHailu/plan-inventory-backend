@@ -15,8 +15,9 @@ class StockRequestItem extends Model
         'quantity',
         'description',
         'contact_detail',
-        'item_id',
-        'stock_request_id'
+        'good_receive_item_id',
+        'stock_request_id',
+        'destination_contact'
     ];
 
     /**
@@ -30,12 +31,12 @@ class StockRequestItem extends Model
     }
 
     /**
-     * Get the item that owns the StockRequestItem
+     * Get the goodReceiveItem that owns the StockRequestItem
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function item(): BelongsTo
+    public function goodReceiveItem(): BelongsTo
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(GoodReceiveItem::class);
     }
 }
