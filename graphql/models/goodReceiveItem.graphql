@@ -10,6 +10,7 @@ extend type Mutation {
 }
 
 input GoodReceiveItemCreateInput {
+    unit_price: Float!,
     ordered_quantity: Float,
     received_quantity: Float,
     description: String,
@@ -19,23 +20,34 @@ input GoodReceiveItemCreateInput {
     donor_id: ID,
     item_id: ID!
     condition_id: ID
+    unit_of_measurement_id: ID!
 }
 
 input GoodReceiveItemUpdateInput {
     id: ID! @rules(apply: ["required", "exists:good_receive_items,id"])
+    unit_price: Float!,
+    ordered_quantity: Float,
     received_quantity: Float,
     description: String,
+    condition: String
+    expiry_date: Date
+    comment: String
+    donor_id: ID,
     item_id: ID!
+    condition_id: ID
+    unit_of_measurement_id: ID!
 }
 
 type GoodReceiveItem {
     id: ID
+    unit_price: Float,
     received_quantity: Float,
     checked_quantity: Float
     approved_quantity: Float
     description: String,
     item: Item
     goodReceive: GoodReceive
+    unitOfMeasurement: UnitOfMeasurement
     donor: Donor
     expiry_date: Date
     comment: String

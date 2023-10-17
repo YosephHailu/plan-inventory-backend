@@ -22,7 +22,9 @@ class GoodReceiveItem extends Model
         'condition',
         'expiry_date',
         'comment',
-        'donor_id'
+        'donor_id',
+        'unit_of_measurement_id',
+        'unit_price'
     ];
 
     /**
@@ -54,4 +56,15 @@ class GoodReceiveItem extends Model
     {
         return $this->belongsTo(Donor::class);
     }
+
+    /**
+     * Get the unitOfMeasurement that owns the Item
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function unitOfMeasurement(): BelongsTo
+    {
+        return $this->belongsTo(UnitOfMeasurement::class);
+    }
+    
 }

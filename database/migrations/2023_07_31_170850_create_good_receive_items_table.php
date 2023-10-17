@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('good_receive_items', function (Blueprint $table) {
             $table->id()->startingValue(10000);
+            $table->double('unit_price', 10);
             $table->double('ordered_quantity', 10);
             $table->double('received_quantity', 10);
             $table->double('balance_due', 10);
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->longText('comment')->nullable();
 
             $table->foreignId('donor_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('unit_of_measurement_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
 
             $table->foreignId('checked_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('checked_at')->nullable();

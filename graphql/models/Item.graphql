@@ -22,72 +22,16 @@ type BinCard {
 input ItemCreateInput {
     name: String!
     description: String
-    beginning_balance: Float
-    expire_date: Date
-    unit_of_measurement_id: ID
-    item_category_id: ID
-    office_location_id: ID
-    where_house_id: ID
-    stock_type_id: ID
-    department_id: ID
-    donor_id: ID
-    lot_number_id: ID
-
-    remark: String
-    bin_card_location: String
-    batch_number: String
-    invoice_no: String
-    purchase_order_no: String
-    waybill_number: Float
-    vendor_name: String
-    vendor_id: String
-    note: String
-    unit_price: Float
-    total_price: Float
 }
 
 input ItemUpdateInput {
     id: ID! @rules(apply: ["required", "exists:items,id"])
     name: String!
     description: String
-    remark: String
-    expire_date: Date
-    unit_of_measurement_id: ID
-    item_category_id: ID
-    office_location_id: ID
-    where_house_id: ID
-    stock_type_id: ID
-    department_id: ID
-    donor_id: ID
-    lot_number_id: ID
-
-    remark: String
-    bin_card_location: String
-    batch_number: String
-    invoice_no: String
-    purchase_order_no: String
-    waybill_number: Float
-    vendor_name: String
-    vendor_id: String
-    note: String
-    unit_price: Float
-    total_price: Float
 }
 
 type Item {
     id: ID!
     name: String
     description: String
-    remark: String
-    expire_date: Date
-    stock_card_number: String
-    unit_of_measurement_id: ID
-    itemCategory: ItemCategory
-    officeLocation: OfficeLocation
-    whereHouse: WhereHouse
-    stockType: StockType
-    department: Department
-    donor: Donor
-    unitOfMeasurement: UnitOfMeasurement
-    lotNumber: LotNumber
 }
