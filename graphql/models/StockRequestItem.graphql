@@ -11,7 +11,7 @@ extend type Mutation {
 
 input StockRequestItemCreateInput {
     designation_contact: String
-    quantity: String
+    quantity: Float!
     description: String
     contact_detail: String
     destination_contact: String
@@ -21,7 +21,7 @@ input StockRequestItemCreateInput {
 input StockRequestItemUpdateInput {
     id: ID! @rules(apply: ["required", "exists:stock_request_items,id"])
     designation_contact: String
-    quantity: String
+    quantity: Float!
     description: String
     contact_detail: String
     destination_contact: String
