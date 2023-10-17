@@ -53,8 +53,14 @@ class Asset extends Model
         });
     }
 
+    function getAvailableAttribute() {
+        return $this->whereNotNull('disposed')->whereDoesntHave('assetCustodians', function($q) {
+            return $q->where('returned', false)->where('approved', true);
+        })->exists();
+    }
+
     function ScopeAvailable(Builder $query, $value) {
-        return $query->whereNull('disposed')->whereDoesntHave('assetCustodians', function($q) use($value) {
+        return $query->whereNull('disposed')->whereDoesntHave('assetCustodians', function($q) {
             return $q->where('returned', false);
         });
     }

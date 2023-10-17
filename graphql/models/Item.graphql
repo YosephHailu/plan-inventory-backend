@@ -22,16 +22,19 @@ type BinCard {
 input ItemCreateInput {
     name: String!
     description: String
+    item_code: String
 }
 
 input ItemUpdateInput {
     id: ID! @rules(apply: ["required", "exists:items,id"])
     name: String!
     description: String
+    item_code: String
 }
 
 type Item {
     id: ID!
     name: String
     description: String
+    item_code: String
 }

@@ -75,6 +75,7 @@ type Asset {
     acquisitionType: AcquisitionType
     programArea: ProgramArea
     donor: Donor
+    available: Boolean
     disposed: Boolean
     disposed_at: DateTime
     disposedBy: User

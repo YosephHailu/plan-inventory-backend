@@ -48,4 +48,18 @@ final class AssetCustodianMutation
         
         return Asset::find($args['id']);
     }
+
+    public function approveAssetCustodian($rootValue, array $args)
+    {
+        $assetCustodian = AssetCustodian::find($args['id']);
+
+        $data = collect();
+        $data['approved_by_id'] = Auth::Id();
+        $data['approved_at'] = Carbon::now();
+        $data['approved'] = true;
+
+        $assetCustodian->update($data->toArray());
+        
+        return $assetCustodian;
+    }
 }

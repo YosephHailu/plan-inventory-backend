@@ -21,33 +21,10 @@ final class ItemMutation
         $data = collect($args)->only([
             "name",
             "description",
-            "expire_date",
-            "unit_of_measurement_id",
-            "item_category_id",
-            "office_location_id",
-            "where_house_id",
-            "stock_type_id",
-            "department_id",
-            "beginning_balance",
-            "donor_id",
-            "lot_number_id",
-            "remark",
-            "bin_card_location",
-            "batch_number",
-            "invoice_no",
-            "purchase_order_no",
-            "waybill_number",
-            "vendor_name",
-            "vendor_id",
-            "note",
-            "unit_price",
-            "total_price",
+            "item_code"
         ]);
 
-        $lastItem = Item::query()->orderBy('created_at', 'desc')->first();
-        $data['stock_card_number'] = "ITM-".sprintf('%03d', ($lastItem->id ?? 0) + 1);
         $data['created_by_id'] = Auth::Id();
-        $data['balance'] = $args['beginning_balance'];
 
         $item = Item::create($data->toArray());
         
@@ -59,26 +36,7 @@ final class ItemMutation
         $data = collect($args)->only([
             "name",
             "description",
-            "expire_date",
-            "unit_of_measurement_id",
-            "item_category_id",
-            "office_location_id",
-            "where_house_id",
-            "stock_type_id",
-            "department_id",
-            "lot_number_id",
-            "donor_id",
-            "remark",
-            "bin_card_location",
-            "batch_number",
-            "invoice_no",
-            "purchase_order_no",
-            "waybill_number",
-            "vendor_name",
-            "vendor_id",
-            "note",
-            "unit_price",
-            "total_price",
+            "item_code"
         ]);
 
         $item = Item::find($args['id']);

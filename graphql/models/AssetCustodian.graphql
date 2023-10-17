@@ -6,6 +6,7 @@ extend type Query {
 extend type Mutation {
     createAssetCustodian(input: AssetCustodianCreateInput! @spread): AssetCustodian @guard @field(resolver: "AssetCustodianMutation@store")
     returnAsset(id: ID!): Asset @guard @field(resolver: "AssetCustodianMutation@returnAsset")
+    approveAssetCustodian(id: ID!): AssetCustodian @guard @field(resolver: "AssetCustodianMutation@approveAssetCustodian")
     updateAssetCustodian(input: AssetCustodianUpdateInput! @spread): AssetCustodian @update
     deleteAssetCustodian(id: ID! @eq): AssetCustodian @delete
 }
@@ -31,4 +32,5 @@ type AssetCustodian {
     assigned_at: DateTime
     assignedBy: User
     returned: Boolean
+    approved: Boolean
 }

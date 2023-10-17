@@ -18,7 +18,10 @@ class AssetCustodian extends Model
         'staff_id',
         'returned',
         'returned_at',
-        'returned_by_id'
+        'returned_by_id',
+        'approved',
+        'approved_at',
+        'approved_by_id'
     ];
 
     /**
