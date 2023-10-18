@@ -1,0 +1,30 @@
+extend type Query {
+    projects(name: String @like): [Project] @all
+    project(id: ID! @eq): Project @find
+}
+
+extend type Mutation {
+    createProject(input: ProjectCreateInput! @spread): Project @create
+    updateProject(input: ProjectUpdateInput! @spread): Project @update
+    deleteProject(id: ID! @eq): Project @delete
+}
+
+input ProjectCreateInput {
+    name: String! @rules(apply: ["required", "unique:projects,name"])
+    description: String
+    outline_no: String
+}
+
+input ProjectUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:projects,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+    outline_no: String
+}
+
+type Project {
+    id: String
+    name: String
+    description: String
+    outline_no: String
+}

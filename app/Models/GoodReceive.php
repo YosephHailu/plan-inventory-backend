@@ -18,6 +18,8 @@ class GoodReceive extends Model
         'received_by',
         'status',
         'created_by_id',
+        'batch_number',
+        'item_category_id',
 
         'vendor_name',
         'vendor_id',
@@ -26,6 +28,7 @@ class GoodReceive extends Model
         'project',
         'where_house_id',
         'loading_number',
+        'project_id'
     ];
 
     /**
@@ -48,4 +51,25 @@ class GoodReceive extends Model
     {
         return $this->hasMany(GoodReceiveItem::class);
     }
+
+    /**
+     * Get the project that owns the GoodReceive
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function projectObject(): BelongsTo
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+    /**
+     * Get the itemCategory that owns the GoodReceive
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function itemCategory(): BelongsTo
+    {
+        return $this->belongsTo(ItemCategory::class);
+    }
+
 }

@@ -18,6 +18,7 @@ class GoodReceiveItem extends Model
         'condition_id',
         'balance_due',
         'good_receive_id',
+        'stock_type_id',
         'description',
         'condition',
         'expiry_date',
@@ -67,4 +68,13 @@ class GoodReceiveItem extends Model
         return $this->belongsTo(UnitOfMeasurement::class);
     }
     
+    /**
+     * Get the stockType that owns the GoodReceive
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function stockType(): BelongsTo
+    {
+        return $this->belongsTo(StockType::class);
+    }
 }

@@ -23,6 +23,7 @@ return new class extends Migration
 
             $table->longText('comment')->nullable();
 
+            $table->foreignId('stock_type_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('donor_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('unit_of_measurement_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
 

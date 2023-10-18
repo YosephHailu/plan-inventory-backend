@@ -1,5 +1,5 @@
 extend type Query {
-    goodReceives(name: String @like, status: StatusEnum @eq): [GoodReceive] @paginate
+    goodReceives(name: String @like, status: StatusEnum @eq): [GoodReceive] @orderBy(column: "created_at", direction: DESC)  @paginate
     goodReceive(id: ID! @eq): GoodReceive @find
 }
 
@@ -34,6 +34,7 @@ input GoodReceiveCreateInput {
     project: String
     loading_number: String
     where_house_id: ID
+    project_id: ID
     goodReceiveItems: [GoodReceiveItemCreateInput]
 }
 
@@ -47,11 +48,20 @@ input GoodReceiveUpdateInput {
 
 type GoodReceive {
     id: ID!
+    vendor_name: String
+    vendor_id: String
+    purchase_order_no: String
+    invoice_no: String
+    project: String
+    loading_number: String
     remark: String
     received_by: String
     status: StatusEnum
     received_date: String
     reference_number: String
+    projectObject: Project
+    itemCategory: ItemCategory
+    batch_number: String
     goodReceiveItems: [GoodReceiveItem]
 }
 

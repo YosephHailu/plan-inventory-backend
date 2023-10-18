@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('received_by');
             $table->string('status')->default('PENDING');
 
+            $table->string('batch_number')->nullable();
             $table->string('vendor_name')->nullable();
             $table->string('vendor_id')->nullable();
             $table->string('purchase_order_no')->nullable();
@@ -28,7 +29,8 @@ return new class extends Migration
 
             $table->foreignId('created_by_id')->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->foreignId('where_house_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
-            // $table->foreignId('project_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('project_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('item_category_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();
         });
     }

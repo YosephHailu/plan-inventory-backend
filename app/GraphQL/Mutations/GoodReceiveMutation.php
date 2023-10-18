@@ -36,6 +36,7 @@ final class GoodReceiveMutation
             'invoice_no',
             'project',
             'where_house_id',
+            'project_id',
             'loading_number'
         ]);
 
@@ -47,11 +48,9 @@ final class GoodReceiveMutation
         foreach($args['goodReceiveItems'] as $goodReceiveItem) {
             $item = Item::find($goodReceiveItem['item_id']);
             $goodReceiveItem['good_receive_id'] = $goodReceive->id;
-            $goodReceiveItem['balance_due'] = $item->balance ?? 0;
+            $goodReceiveItem['balance_due'] = $goodReceiveItem['ordered_quantity'] - $goodReceiveItem['received_quantity'];
 
             $goodReceiveItem = GoodReceiveItem::create($goodReceiveItem);
-            $item->balance += $goodReceiveItem->received_quantity;
-            $item->save();
         }
         DB::commit();
 
