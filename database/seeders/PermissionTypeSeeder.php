@@ -29,5 +29,8 @@ class PermissionTypeSeeder extends Seeder
         PermissionType::firstOrCreate(['action' => "Complete"]);	
         PermissionType::firstOrCreate(['action' => "Enable"]);	
         PermissionType::firstOrCreate(['action' => "Disable"]);
+        PermissionType::firstOrCreate(['action' => "Assign"]);
+        PermissionType::firstOrCreate(['action' => "Unassign"]);
+        PermissionType::firstOrCreate(['action' => "Dispose"]);
     }
 }

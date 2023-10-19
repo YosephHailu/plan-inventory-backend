@@ -1,5 +1,5 @@
 extend type Query {
-    goodReceiveItems(name: String @like): [GoodReceiveItem] @paginate
+    goodReceiveItems(name: String @like, approved: Boolean @eq, checked: Boolean @eq, rejected: Boolean @eq): [GoodReceiveItem] @paginate
     goodReceiveItem(id: ID! @eq): GoodReceiveItem @find
 }
 

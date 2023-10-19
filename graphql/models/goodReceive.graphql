@@ -33,7 +33,9 @@ input GoodReceiveCreateInput {
     invoice_no: String
     project: String
     loading_number: String
+    batch_number: String
     where_house_id: ID
+    item_category_id: ID
     project_id: ID
     goodReceiveItems: [GoodReceiveItemCreateInput]
 }
@@ -42,6 +44,7 @@ input GoodReceiveUpdateInput {
     id: ID! @rules(apply: ["required", "exists:good_receives,id"])
     received_date: String!
     remark: String
+    batch_number: String
     received_by: String!
     goodReceiveItems: [GoodReceiveItemCreateInput]
 }

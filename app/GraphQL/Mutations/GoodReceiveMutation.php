@@ -36,6 +36,8 @@ final class GoodReceiveMutation
             'invoice_no',
             'project',
             'where_house_id',
+            'item_category_id',
+            'batch_number',
             'project_id',
             'loading_number'
         ]);

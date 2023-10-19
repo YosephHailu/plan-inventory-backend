@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('good_receives', function (Blueprint $table) {
-            $table->id();
+            $table->id()->startingValue(10000);
             $table->string('reference_number')->unique();
             $table->date('received_date');
             $table->longText('remark')->nullable();
