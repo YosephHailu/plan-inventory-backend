@@ -5,12 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 
 class AssetPhysicalCheck extends Model
 {
     use HasFactory;
 
     protected $fillable =['remark', 'checked_by_id', 'checked_at', 'asset_id', 'condition_id'];
+
+    function ScopeSearch(Builder $query, $value) {
+        return $query->whereHas('asset', function($q) use($value) {
+            return $q->where('item_name', 'like', "%$value%")
+                ->orWhere('tag_number', 'like', "%$value%");
+        })->orWHere('id', "$value");
+    }
 
     /**
      * Get the asset that owns the AssetPhysicalCheck

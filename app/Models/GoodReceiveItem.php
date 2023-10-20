@@ -24,6 +24,7 @@ class GoodReceiveItem extends Model
         'expiry_date',
         'comment',
         'donor_id',
+        'project_id',
         'unit_of_measurement_id',
         'unit_price'
     ];
@@ -77,4 +78,15 @@ class GoodReceiveItem extends Model
     {
         return $this->belongsTo(StockType::class);
     }
+
+    /**
+     * Get the project that owns the GoodReceive
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
 }

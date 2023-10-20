@@ -135,6 +135,16 @@ class Asset extends Model
     }
 
     /**
+     * Get the assetDisposal associated with the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function assetDisposal(): HasOne
+    {
+        return $this->hasOne(AssetDisposal::class);
+    }
+
+    /**
      * Get all of the assetPhysicalChecks for the Asset
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

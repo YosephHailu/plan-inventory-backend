@@ -1,5 +1,5 @@
 extend type Query {
-    assetPhysicalChecks(condition_id: ID @eq, asset_id: ID @eq): [AssetPhysicalCheck] 
+    assetPhysicalChecks(condition_id: ID @eq, asset_id: ID @eq, search: String @scope): [AssetPhysicalCheck] 
         @orderBy(column: "created_at", direction: DESC) @paginate
     assetPhysicalCheck(id: ID! @eq): AssetPhysicalCheck @find
 }

@@ -80,6 +80,7 @@ type Asset {
     disposed_at: DateTime
     disposedBy: User
     assetCustodian: AssetCustodian
+    assetDisposal: AssetDisposal
     assetCustodians: [AssetCustodian]
     assetPhysicalChecks: [AssetPhysicalCheck]
     assetPhysicalCheck: AssetPhysicalCheck

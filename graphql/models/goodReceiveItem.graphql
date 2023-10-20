@@ -20,6 +20,7 @@ input GoodReceiveItemCreateInput {
     donor_id: ID,
     item_id: ID!
     condition_id: ID
+    project_id: ID
     stock_type_id: ID
     unit_of_measurement_id: ID!
 }
@@ -36,6 +37,7 @@ input GoodReceiveItemUpdateInput {
     donor_id: ID,
     item_id: ID!
     condition_id: ID
+    project_id: ID
     stock_type_id: ID
     unit_of_measurement_id: ID!
 }
@@ -54,5 +56,6 @@ type GoodReceiveItem {
     expiry_date: Date
     comment: String
     condition: String
+    project: Project
     stockType: StockType
 }

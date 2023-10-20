@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('stock_type_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('donor_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('unit_of_measurement_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('project_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
 
             $table->foreignId('checked_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('checked_at')->nullable();
