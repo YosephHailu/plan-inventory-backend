@@ -1,23 +1,32 @@
 extend type Query {
-    goodReceiveItems(name: String @like, approved: Boolean @eq, checked: Boolean @eq, rejected: Boolean @eq): [GoodReceiveItem] @paginate
+    goodReceiveItems(
+        search: String @scope
+        approved: Boolean @eq
+        checked: Boolean @eq
+        rejected: Boolean @eq
+    ): [GoodReceiveItem] @paginate
     goodReceiveItem(id: ID! @eq): GoodReceiveItem @find
 }
 
 extend type Mutation {
-    createGoodReceiveItem(input: GoodReceiveItemCreateInput! @spread): GoodReceiveItem @create
-    updateGoodReceiveItem(input: GoodReceiveItemUpdateInput! @spread): GoodReceiveItem @update
+    createGoodReceiveItem(
+        input: GoodReceiveItemCreateInput! @spread
+    ): GoodReceiveItem @create
+    updateGoodReceiveItem(
+        input: GoodReceiveItemUpdateInput! @spread
+    ): GoodReceiveItem @update
     deleteGoodReceiveItem(id: ID! @eq): GoodReceiveItem @delete
 }
 
 input GoodReceiveItemCreateInput {
-    unit_price: Float!,
-    ordered_quantity: Float,
-    received_quantity: Float,
-    description: String,
+    unit_price: Float!
+    ordered_quantity: Float
+    received_quantity: Float
+    description: String
     condition: String
     expiry_date: Date
     comment: String
-    donor_id: ID,
+    donor_id: ID
     item_id: ID!
     condition_id: ID
     project_id: ID
@@ -27,14 +36,14 @@ input GoodReceiveItemCreateInput {
 
 input GoodReceiveItemUpdateInput {
     id: ID! @rules(apply: ["required", "exists:good_receive_items,id"])
-    unit_price: Float!,
-    ordered_quantity: Float,
-    received_quantity: Float,
-    description: String,
+    unit_price: Float!
+    ordered_quantity: Float
+    received_quantity: Float
+    description: String
     condition: String
     expiry_date: Date
     comment: String
-    donor_id: ID,
+    donor_id: ID
     item_id: ID!
     condition_id: ID
     project_id: ID
@@ -44,11 +53,11 @@ input GoodReceiveItemUpdateInput {
 
 type GoodReceiveItem {
     id: ID
-    unit_price: Float,
-    received_quantity: Float,
+    unit_price: Float
+    received_quantity: Float
     checked_quantity: Float
     approved_quantity: Float
-    description: String,
+    description: String
     item: Item
     goodReceive: GoodReceive
     unitOfMeasurement: UnitOfMeasurement
