@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Constants\ItemList;
 use App\Constants\StaffData;
+use App\Models\Item;
 use App\Models\Staff;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,6 +19,11 @@ class StaffSeeder extends Seeder
         //
         foreach(StaffData::STAFFS as $staff) {
             Staff::firstOrCreate($staff);
+        }
+
+        foreach(ItemList::ITEMS as $item) {
+            $item['created_by_id'] = 1;
+            Item::firstOrCreate($item);
         }
     }
 }
