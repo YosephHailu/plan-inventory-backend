@@ -9,7 +9,6 @@ extend type Mutation {
     deleteGoodReceive(id: ID! @eq): GoodReceive @delete
     checkGoodReceive(id: ID! @eq, input: [GoodReceiveCheckInput]!): GoodReceive @field(resolver: "GoodReceiveMutation@check")
     approveGoodReceive(id: ID! @eq, input: [GoodReceiveApproveInput]!): GoodReceive @field(resolver: "GoodReceiveMutation@approve")
-
 }
 
 input GoodReceiveCheckInput {

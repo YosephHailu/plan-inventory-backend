@@ -26,7 +26,7 @@ return new class extends Migration
             $table->boolean('approved')->default(false);
             $table->longText('approve_remark')->nullable();
 
-            $table->foreignId('item_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('good_receive_item_id');
             $table->foreignId('stock_issue_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('stock_request_item_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->timestamps();

@@ -55,7 +55,7 @@ final class StockIssueMutation
                 'stock_request_item_id' => $stockRequestItem->id,
                 'stock_issue_id' => $stockIssue->id,
                 'quantity' => $stockRequestItem->quantity,
-                'item_id' => $stockRequestItem->item_id
+                'good_receive_item_id' => $stockRequestItem->good_receive_item_id
             ]);
         }
         DB::commit();

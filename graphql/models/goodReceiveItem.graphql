@@ -4,8 +4,23 @@ extend type Query {
         approved: Boolean @eq
         checked: Boolean @eq
         rejected: Boolean @eq
+        programarea: ID @scope
+        wherehouse: ID @scope
+        itemcategory: ID @scope
+        donor_id: ID @eq
+        item_id: ID @eq
+        condition_id: ID @eq
+        project_id: ID @eq
+        stock_type_id: ID @eq
+        item_id: ID @eq
     ): [GoodReceiveItem] @paginate
     goodReceiveItem(id: ID! @eq): GoodReceiveItem @find
+    itemBinCard(id: ID!): [BinCard] @field(resolver: "ItemQuery@binCard")
+}
+
+type BinCard {
+    stockIssue: StockIssue
+    goodReceiveItem: GoodReceiveItem
 }
 
 extend type Mutation {

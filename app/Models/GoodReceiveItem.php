@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 class GoodReceiveItem extends Model
 {
@@ -30,12 +31,18 @@ class GoodReceiveItem extends Model
         'unit_price'
     ];
 
+    function ScopeWherehouse(Builder $query, $value) {
+        return $query->whereHas('goodReceive', function($q) use($value) {
+            return $q->where('where_house_id', $value);
+        });
+    }
+
     function ScopeSearch(Builder $query, $value) {
         return $query->WhereHas('item', function($q) use($value) {
             return $q->where('name', 'like', "%$value%");
         })->orWhereHas('goodReceive', function($q) use($value) {
             return $q->where('loading_number', 'like', "%$value%");
-        })->orWhere('id', $value);
+        })->orWhere('id', $value)->orWhere('description', 'like', "%$value%");
     }
 
     /**
