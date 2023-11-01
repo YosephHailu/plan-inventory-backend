@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Queries;
 
+use App\Models\GoodReceiveItem;
 use App\Models\Item;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -19,28 +20,11 @@ final class ItemQuery
 
     public function binCard($_, array $args)
     {
-        $binCardLogs = collect([]);
-        $item = Item::find($args['id']);
-        foreach($item->stockIssueItems as $issuanceItem) {
-            $binCardLogs->push([
-                "issuance_number" => $issuanceItem->stockIssue->issuance_number,
-                "issued_quantity" => $issuanceItem->quantity,
-                "processed_by" => $issuanceItem->stockIssue->to,
-                "processed_at" => Carbon::parse($issuanceItem->stockIssue->created_at)->format('M, d, Y'),
-            ]);
-        }
-        foreach($item->goodReceiveItems as $receivedItem) {
-            Log::debug($receivedItem);
-            $binCardLogs->push([
-                "reference_number" => $receivedItem->goodReceive->reference_number,
-                "approved_quantity" => $receivedItem->approved_quantity,
-                "processed_by" => $receivedItem->goodReceive->received_by,
-                "processed_at" => Carbon::parse($receivedItem->goodReceive->created_at)->format('M, d, Y'),
-            ]);
-        }
-
-        Log::debug($binCardLogs);
-
-        return $binCardLogs->sortBy('processed_at');
+        $goodReceiveItem = GoodReceiveItem::find($args['id']);
+        Log::debug($goodReceiveItem);
+        return [
+            'stockRequestItems' => $goodReceiveItem->stockRequestItems()->where('approved', true)->whereHas('stockIssueItems')->get(),
+            'goodReceiveItem' => $goodReceiveItem,
+        ];
     }
 }

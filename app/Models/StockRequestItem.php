@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StockRequestItem extends Model
 {
@@ -38,5 +39,15 @@ class StockRequestItem extends Model
     public function goodReceiveItem(): BelongsTo
     {
         return $this->belongsTo(GoodReceiveItem::class);
+    }
+
+    /**
+     * Get the stockIssueItems for the StockRequestItem
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stockIssueItems(): HasMany
+    {
+        return $this->hasMany(StockIssueItem::class);
     }
 }

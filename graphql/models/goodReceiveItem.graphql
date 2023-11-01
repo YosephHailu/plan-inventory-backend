@@ -15,11 +15,11 @@ extend type Query {
         item_id: ID @eq
     ): [GoodReceiveItem] @paginate
     goodReceiveItem(id: ID! @eq): GoodReceiveItem @find
-    itemBinCard(id: ID!): [BinCard] @field(resolver: "ItemQuery@binCard")
+    itemBinCard(id: ID!): BinCard @field(resolver: "ItemQuery@binCard")
 }
 
 type BinCard {
-    stockIssue: StockIssue
+    stockRequestItems: [StockRequestItem]
     goodReceiveItem: GoodReceiveItem
 }
 
@@ -78,6 +78,7 @@ type GoodReceiveItem {
     unitOfMeasurement: UnitOfMeasurement
     donor: Donor
     expiry_date: Date
+    created_at: Date
     comment: String
     condition: String
     project: Project
