@@ -52,6 +52,7 @@ type StockIssueItem {
     id: ID
     quantity: Float
     description: String
+    stockIssue: StockIssue
 }
 
 enum StatusEnum {

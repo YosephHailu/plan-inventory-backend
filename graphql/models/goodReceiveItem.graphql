@@ -17,7 +17,7 @@ extend type Query {
         @orderBy(column: "created_at", direction: DESC)
         @paginate
     goodReceiveItem(id: ID! @eq): GoodReceiveItem @find
-    itemBinCard(id: ID!): BinCard @field(resolver: "ItemQuery@binCard")
+    itemBinCard(id: ID!, date_from: Date, date_to: Date): BinCard @field(resolver: "ItemQuery@binCard")
 }
 
 type BinCard {

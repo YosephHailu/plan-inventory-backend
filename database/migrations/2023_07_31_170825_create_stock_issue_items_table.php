@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stock_issue_items', function (Blueprint $table) {
-            $table->id();
+            $table->id()->startingValue(10000);
             $table->double('quantity', 10)->nullable();
             $table->longText('description')->nullable();
 

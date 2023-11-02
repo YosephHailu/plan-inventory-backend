@@ -22,12 +22,20 @@ final class ItemQuery
     public function binCard($_, array $args)
     {
         $goodReceiveItem = GoodReceiveItem::find($args['id']);
-        Log::debug($goodReceiveItem);
+        $stockIssueItems = StockIssueItem::whereHas('stockRequestItem', function($query) use ($goodReceiveItem) {
+            $query->where('good_receive_item_id', $goodReceiveItem->id);
+        });
+
+        if( ($args['date_from'] ?? false) && ($args['date_to'] ?? false) ) {
+            $stockIssueItems->whereBetween('created_at', [
+                Carbon::parse($args['date_from'])->startOfDay(),
+                Carbon::parse($args['date_to'])->endOfDay()
+            ]);
+        }
+
         return [
-            'stockIssueItems' => StockIssueItem::whereHas('stockRequestItem', function($query) use ($goodReceiveItem) {
-                $query->where('id', $goodReceiveItem->id);
-            })->get(),
-            'goodReceiveItem' => $goodReceiveItem,
+            'stockIssueItems' => $stockIssueItems->get()->sortByDesc('created_at'),
+            'goodReceiveItem' => $goodReceiveItem
         ];
     }
 }
