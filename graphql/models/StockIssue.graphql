@@ -48,6 +48,12 @@ type StockIssue {
     # stockIssueItems: [StockIssueItem]
 }
 
+type StockIssueItem {
+    id: ID
+    quantity: Float
+    description: String
+}
+
 enum StatusEnum {
     DRAFT @enum(value: "DRAFT")
     ISSUED @enum(value: "ISSUED")

@@ -4,6 +4,7 @@ namespace App\GraphQL\Queries;
 
 use App\Models\GoodReceiveItem;
 use App\Models\Item;
+use App\Models\StockIssueItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -23,7 +24,9 @@ final class ItemQuery
         $goodReceiveItem = GoodReceiveItem::find($args['id']);
         Log::debug($goodReceiveItem);
         return [
-            'stockRequestItems' => $goodReceiveItem->stockRequestItems()->where('approved', true)->whereHas('stockIssueItems')->get(),
+            'stockIssueItems' => StockIssueItem::whereHas('stockRequestItem', function($query) use ($goodReceiveItem) {
+                $query->where('id', $goodReceiveItem->id);
+            })->get(),
             'goodReceiveItem' => $goodReceiveItem,
         ];
     }

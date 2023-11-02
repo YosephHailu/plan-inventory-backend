@@ -16,7 +16,6 @@ class StockIssueItem extends Model
         'checked_by_id',
         'stock_issue_id',
         'stock_request_item_id',
-        'good_receive_item_id'
     ];
 
     /**
@@ -39,13 +38,4 @@ class StockIssueItem extends Model
         return $this->belongsTo(StockRequestItem::class);
     }
 
-    /**
-     * Get the goodReceiveItem that owns the StockIssueItem
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function goodReceiveItem(): BelongsTo
-    {
-        return $this->belongsTo(GoodReceiveItem::class);
-    }   
 }
