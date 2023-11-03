@@ -76,6 +76,7 @@ type GoodReceiveItem {
     checked_quantity: Float
     approved_quantity: Float
     balance_due: Float
+    issued_quantity: Float
     description: String
     item: Item
     goodReceive: GoodReceive

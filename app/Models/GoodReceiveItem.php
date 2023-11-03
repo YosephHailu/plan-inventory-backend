@@ -59,6 +59,13 @@ class GoodReceiveItem extends Model
         })->orWhere('id', $value)->orWhere('description', 'like', "%$value%");
     }
 
+    public function getIssuedQuantityAttribute()
+    {
+        return StockIssueItem::whereHas('stockRequestItem', function($q) {
+            return $q->where('good_receive_item_id', $this->id);
+        })->sum('quantity');
+    }
+
     /**
      * Get the goodReceive that owns the GoodReceiveItem
      *
