@@ -7,6 +7,7 @@ extend type Query {
         programarea: ID @scope
         wherehouse: ID @scope
         itemcategory: ID @scope
+        dates: JSON @scope
         donor_id: ID @eq
         item_id: ID @eq
         condition_id: ID @eq
@@ -74,6 +75,7 @@ type GoodReceiveItem {
     received_quantity: Float
     checked_quantity: Float
     approved_quantity: Float
+    balance_due: Float
     description: String
     item: Item
     goodReceive: GoodReceive

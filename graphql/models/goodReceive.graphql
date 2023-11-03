@@ -1,14 +1,22 @@
 extend type Query {
-    goodReceives(name: String @like, status: StatusEnum @eq): [GoodReceive] @orderBy(column: "created_at", direction: DESC)  @paginate
+    goodReceives(name: String @like, status: StatusEnum @eq): [GoodReceive]
+        @orderBy(column: "created_at", direction: DESC)
+        @paginate
     goodReceive(id: ID! @eq): GoodReceive @find
 }
 
 extend type Mutation {
-    createGoodReceive(input: GoodReceiveCreateInput! @spread): GoodReceive @field(resolver: "GoodReceiveMutation@store")
-    updateGoodReceive(input: GoodReceiveUpdateInput! @spread): GoodReceive @update
+    createGoodReceive(input: GoodReceiveCreateInput! @spread): GoodReceive
+        @field(resolver: "GoodReceiveMutation@store")
+    updateGoodReceive(input: GoodReceiveUpdateInput! @spread): GoodReceive
+        @update
     deleteGoodReceive(id: ID! @eq): GoodReceive @delete
-    checkGoodReceive(id: ID! @eq, input: [GoodReceiveCheckInput]!): GoodReceive @field(resolver: "GoodReceiveMutation@check")
-    approveGoodReceive(id: ID! @eq, input: [GoodReceiveApproveInput]!): GoodReceive @field(resolver: "GoodReceiveMutation@approve")
+    checkGoodReceive(id: ID! @eq, input: [GoodReceiveCheckInput]!): GoodReceive
+        @field(resolver: "GoodReceiveMutation@check")
+    approveGoodReceive(
+        id: ID! @eq
+        input: [GoodReceiveApproveInput]!
+    ): GoodReceive @field(resolver: "GoodReceiveMutation@approve")
 }
 
 input GoodReceiveCheckInput {

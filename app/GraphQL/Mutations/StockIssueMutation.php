@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\GoodReceiveItem;
 use App\Models\StockIssue;
 use App\Models\StockIssueItem;
 use App\Models\StockRequest;
@@ -51,11 +52,15 @@ final class StockIssueMutation
         
         foreach($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {
             $stockRequestItem['stock_request_id'] = $stockRequest->id;
-            $stockRequestItem = StockIssueItem::create([
+            StockIssueItem::create([
                 'stock_request_item_id' => $stockRequestItem->id,
                 'stock_issue_id' => $stockIssue->id,
                 'quantity' => $stockRequestItem->quantity
             ]);
+
+            $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
+            $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due - $stockRequestItem->quantity);
+            $goodReceiveItem->save();
         }
         DB::commit();
 

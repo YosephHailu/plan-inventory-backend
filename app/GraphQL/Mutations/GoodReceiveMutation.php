@@ -50,7 +50,7 @@ final class GoodReceiveMutation
         foreach($args['goodReceiveItems'] as $goodReceiveItem) {
             $item = Item::find($goodReceiveItem['item_id']);
             $goodReceiveItem['good_receive_id'] = $goodReceive->id;
-            $goodReceiveItem['balance_due'] = $goodReceiveItem['ordered_quantity'] - $goodReceiveItem['received_quantity'];
+            $goodReceiveItem['balance_due'] = $goodReceiveItem['received_quantity'];
 
             $goodReceiveItem = GoodReceiveItem::create($goodReceiveItem);
         }

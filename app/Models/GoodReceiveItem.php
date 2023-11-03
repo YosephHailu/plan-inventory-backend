@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,6 +32,18 @@ class GoodReceiveItem extends Model
         'unit_of_measurement_id',
         'unit_price'
     ];
+
+    function ScopeDates(Builder $query, $value) {
+        if(($value[0] ?? false) && ($value[1] ?? false)) {
+            return $query->whereHas('stockRequestItems', function($query) use ($value) {
+                return $query->whereHas('stockIssueItems', function($query) use ($value) {
+                    return $query->whereBetween('created_at', [Carbon::parse($value[0]), Carbon::parse($value[1])]);
+                });
+            })->orWhereBetween('created_at', [Carbon::parse($value[0]), Carbon::parse($value[1])]);
+        } else {
+            return $query;
+        }
+    }
 
     function ScopeWherehouse(Builder $query, $value) {
         return $query->whereHas('goodReceive', function($q) use($value) {
