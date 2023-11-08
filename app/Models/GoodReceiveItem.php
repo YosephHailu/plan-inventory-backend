@@ -51,6 +51,12 @@ class GoodReceiveItem extends Model
         });
     }
 
+    function ScopeOnHand(Builder $query, $value) {
+        return $query->whereHas('goodReceive', function($q) use($value) {
+            return $q->where('where_house_id', $value);
+        });
+    }
+
     function ScopeSearch(Builder $query, $value) {
         return $query->WhereHas('item', function($q) use($value) {
             return $q->where('name', 'like', "%$value%");

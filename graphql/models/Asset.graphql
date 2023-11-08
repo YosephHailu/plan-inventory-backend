@@ -25,7 +25,7 @@ input AssetCreateInput {
     depreciation_date: Date!
     po_no: String!
     cost_center: String
-    document_no: String!
+    document_no: String
     currency_id: ID!
     acquisition_type_id: ID
     program_area_id: ID!
@@ -47,7 +47,7 @@ input AssetUpdateInput {
     depreciation_date: Date!
     po_no: String!
     cost_center: String
-    document_no: String!
+    document_no: String
     currency_id: ID!
     acquisition_type_id: ID
     program_area_id: ID!

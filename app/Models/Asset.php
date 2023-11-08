@@ -163,4 +163,14 @@ class Asset extends Model
     {
         return $this->hasOne(AssetPhysicalCheck::class)->latest();
     }
+
+    /**
+     * Get the currency that owns the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class);
+    }
 }
