@@ -27,7 +27,7 @@ return new class extends Migration
             $table->date('depreciation_date');
             $table->string('po_no');
             $table->string('cost_center')->nullable();
-            $table->string('document_no');
+            $table->string('document_no')->nullable();
 
             $table->foreignId('currency_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('acquisition_type_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');

@@ -7,6 +7,7 @@ extend type Query {
         programarea: ID @scope
         wherehouse: ID @scope
         itemcategory: ID @scope
+        onhand: Boolean @scope
         dates: JSON @scope
         donor_id: ID @eq
         item_id: ID @eq
@@ -14,6 +15,7 @@ extend type Query {
         project_id: ID @eq
         stock_type_id: ID @eq
         item_id: ID @eq
+        balance: Float 
     ): [GoodReceiveItem]
         @orderBy(column: "created_at", direction: DESC)
         @paginate
@@ -76,6 +78,7 @@ type GoodReceiveItem {
     checked_quantity: Float
     approved_quantity: Float
     balance_due: Float
+    issued_quantity: Float
     description: String
     item: Item
     goodReceive: GoodReceive
