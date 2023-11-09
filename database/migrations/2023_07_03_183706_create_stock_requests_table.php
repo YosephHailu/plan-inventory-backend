@@ -25,6 +25,8 @@ return new class extends Migration
             $table->foreignId('where_house_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('department_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
 
+            $table->foreignId('created_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+
             $table->foreignId('checked_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('checked_at')->nullable();
             $table->boolean('checked')->default(false);

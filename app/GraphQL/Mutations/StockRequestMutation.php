@@ -23,8 +23,6 @@ final class StockRequestMutation
 
     public function store($rootValue, array $args)
     {
-        Log::debug($args);
-        
         $data = collect($args)->only([
             'reference_no',
             'requested_date',
@@ -38,6 +36,7 @@ final class StockRequestMutation
         ]);
 
         DB::beginTransaction();
+        $data['created_by_id'] = Auth::Id();
         $stockRequest = StockRequest::create($data->toArray());
         
         foreach($args['stockRequestItems'] as $stockRequestItem) {
@@ -86,6 +85,19 @@ final class StockRequestMutation
             $stockRequestItem->save();
         }
 
+        DB::commit();
+        return $stockRequest;
+    }
+
+    public function reject($rootValue, array $args)
+    {
+        DB::beginTransaction();
+        $stockRequest = StockRequest::find($args['id']);
+        $stockRequest->status = "REJECTED";
+        $stockRequest->rejected_at = Carbon::now();
+        $stockRequest->rejected_by_id = Auth::Id();
+        $stockRequest->rejected = true;
+        $stockRequest->save();
         DB::commit();
         return $stockRequest;
     }

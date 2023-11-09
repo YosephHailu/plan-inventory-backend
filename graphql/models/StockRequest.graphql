@@ -1,6 +1,7 @@
 extend type Query {
     stockRequests(name: String @like, status: StatusEnum @eq): [StockRequest] @orderBy(column: "created_at", direction: DESC) @paginate
     stockRequest(id: ID! @eq): StockRequest @find
+    myStockRequests: [StockRequest] @field(resolver: "StockRequestQuery@myStockRequests") @guard
 }
 
 extend type Mutation {
@@ -8,6 +9,7 @@ extend type Mutation {
     updateStockRequest(input: StockRequestUpdateInput! @spread): StockRequest @update
     checkStockRequest(id: ID! @eq, input: [ID]!): StockRequest @field(resolver: "StockRequestMutation@check")
     approveStockRequest(id: ID! @eq, input: [ID]!): StockRequest @field(resolver: "StockRequestMutation@approve")
+    rejectStockRequest(id: ID! @eq): StockRequest @field(resolver: "StockRequestMutation@reject")
 
     deleteStockRequest(id: ID! @eq): StockRequest @delete
 }

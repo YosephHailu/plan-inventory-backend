@@ -23,6 +23,7 @@ class StockRequest extends Model
         'checked_by_id',
         'approved_by_id',
         'rejected_by_id',
+        'created_by_id',
         'status'
     ];
 

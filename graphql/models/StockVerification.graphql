@@ -1,0 +1,33 @@
+extend type Query {
+    stockVerifications(name: String @like, status: StatusEnum @eq): [StockVerification] @paginate
+    stockVerification(id: ID! @eq): StockVerification @find
+}
+
+extend type Mutation {
+    createStockVerification(input: StockVerificationCreateInput! @spread): StockVerification @field(resolver: "StockVerificationMutation@store")
+    updateStockVerification(input: StockVerificationUpdateInput! @spread): StockVerification @update
+    deleteStockVerification(id: ID! @eq): StockVerification @delete
+}
+
+input StockVerificationCreateInput {
+    quantity: Float!,
+    remarks: String,
+    good_receive_item_id: ID!,
+    condition_id: ID
+}
+
+input StockVerificationUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:stock_verifications,id"])
+    quantity: Float!,
+    remarks: String,
+    good_receive_item_id: ID!,
+    condition_id: ID
+}
+
+type StockVerification {
+    id: ID
+    quantity: Float!,
+    remarks: String,
+    goodReceiveItem: goodReceiveItem
+    condition: Condition
+}

@@ -87,4 +87,6 @@ type GoodReceiveItem {
     condition: String
     project: Project
     stockType: StockType
+    stockVerifications: [StockVerification]
+    stockVerification: StockVerification
 }

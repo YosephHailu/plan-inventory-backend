@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 
 class GoodReceiveItem extends Model
@@ -127,5 +128,25 @@ class GoodReceiveItem extends Model
     public function stockRequestItems(): HasMany
     {
         return $this->hasMany(StockRequestItem::class);
+    }
+
+    /**
+     * Get all of the stockVerifications for the GoodReceiveItem
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stockVerifications(): HasMany
+    {
+        return $this->hasMany(StockVerification::class);
+    }
+
+    /**
+     * Get the stockVerification associated with the GoodReceiveItem
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function stockVerification(): HasOne
+    {
+        return $this->hasOne(StockVerification::class)->latest();
     }
 }
