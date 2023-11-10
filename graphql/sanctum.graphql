@@ -8,6 +8,8 @@ type User {
     is_locked: Boolean
     last_seen: Date
     createdBy: User
+    whereHouse: WhereHouse
+    project: Project
     roles: [Role]
 }
 
@@ -81,6 +83,8 @@ input RegisterInput {
     password: String! @rules(apply: ["required", "confirmed", "min:8"])
     password_confirmation: String!
     roles: [ID!]
+    where_house_id: ID
+    project_id: ID
 }
 
 """

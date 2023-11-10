@@ -37,6 +37,8 @@ final class StockIssueMutation
             'to',
             'waybill',
             'stock_request_id',
+            'from_where_house_id',
+            'to_where_house_id'
         ]);
 
         $data['issuance_number'] = Str::upper(Str::random(5));

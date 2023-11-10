@@ -39,6 +39,8 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
         'is_locked',
         'email_verified_at',
         'role',
+        'project_id',
+        'where_house_id'
     ];
 
     /**
@@ -97,5 +99,25 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
     public function stockRequests(): HasMany
     {
         return $this->hasMany(StockRequest::class);
+    }
+
+    /**
+     * Get the project that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * Get the whereHouse that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function whereHouse(): BelongsTo
+    {
+        return $this->belongsTo(WhereHouse::class);
     }
 }

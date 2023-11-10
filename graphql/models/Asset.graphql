@@ -1,12 +1,22 @@
 extend type Query {
-    assets(search: String @scope, program_area_id: ID @eq, donor_id: ID @eq, condition: ID @scope, available: Boolean @scope,
-        disposed: Boolean @neq,
-        acquisition_type_id: ID @eq, staff: ID @scope): [Asset] @orderBy(column: "created_at", direction: DESC) @paginate
+    assets(
+        search: String @scope
+        program_area_id: ID @eq
+        donor_id: ID @eq
+        condition: ID @scope
+        available: Boolean @scope
+        disposed: Boolean @neq
+        acquisition_type_id: ID @eq
+        staff: ID @scope
+        project_id: ID @eq
+    ): [Asset] @orderBy(column: "created_at", direction: DESC) @paginate
     asset(id: ID! @eq): Asset @find
 }
 
 extend type Mutation {
-    createAsset(input: AssetCreateInput! @spread): Asset @guard @field(resolver: "AssetMutation@store")
+    createAsset(input: AssetCreateInput! @spread): Asset
+        @guard
+        @field(resolver: "AssetMutation@store")
     updateAsset(input: AssetUpdateInput! @spread): Asset @update
     deleteAsset(id: ID! @eq): Asset @delete
 }
@@ -16,6 +26,15 @@ input AssetCreateInput {
     item_name: String!
     acquisition_date: Date!
     serial_no: String
+        @rules(
+            apply: ["required", "unique:assets,serial_no"]
+            messages: [
+                {
+                    rule: "unique"
+                    message: "The serial number has already been taken."
+                }
+            ]
+        )
     description: String!
     accessories: String
     acquisition_cost: Float
@@ -23,13 +42,14 @@ input AssetCreateInput {
     gsrn_no: String!
     receipt_date: Date!
     depreciation_date: Date!
-    po_no: String!
+    po_no: String
     cost_center: String
     document_no: String
     currency_id: ID!
     acquisition_type_id: ID
     program_area_id: ID!
     donor_id: ID
+    project_id: ID
 }
 
 input AssetUpdateInput {
@@ -45,13 +65,14 @@ input AssetUpdateInput {
     gsrn_no: String!
     receipt_date: Date!
     depreciation_date: Date!
-    po_no: String!
+    po_no: String
     cost_center: String
     document_no: String
     currency_id: ID!
     acquisition_type_id: ID
     program_area_id: ID!
     donor_id: ID
+    project_id: ID
 }
 
 type Asset {
@@ -81,6 +102,7 @@ type Asset {
     disposedBy: User
     assetCustodian: AssetCustodian
     assetDisposal: AssetDisposal
+    project: Project
     assetCustodians: [AssetCustodian]
     assetPhysicalChecks: [AssetPhysicalCheck]
     assetPhysicalCheck: AssetPhysicalCheck

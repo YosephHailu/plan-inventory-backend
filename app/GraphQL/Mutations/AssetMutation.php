@@ -38,6 +38,7 @@ final class AssetMutation
             'acquisition_type_id',
             'program_area_id',
             'donor_id',
+            'project_id'
         ]);
 
         $lastAsset = Asset::query()->orderBy('created_at', 'desc')->first();
@@ -71,6 +72,7 @@ final class AssetMutation
             'acquisition_type_id',
             'program_area_id',
             'donor_id',
+            'project_id'
         ]);
 
         $asset = Asset::find($args['id']);

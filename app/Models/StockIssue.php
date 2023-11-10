@@ -22,7 +22,9 @@ class StockIssue extends Model
         'status',
         'waybill',
         'stock_request_id',
-        'created_by_id'
+        'created_by_id',
+        'from_where_house_id',
+        'to_where_house_id'
     ];
 
     /**
@@ -43,5 +45,25 @@ class StockIssue extends Model
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the fromWhereHouse that owns the StockIssue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function fromWhereHouse(): BelongsTo
+    {
+        return $this->belongsTo(WhereHouse::class, 'from_where_house_id');
+    }
+
+    /**
+     * Get the toWhereHouse that owns the StockIssue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function toWhereHouse(): BelongsTo
+    {
+        return $this->belongsTo(WhereHouse::class, 'to_where_house_id');
     }
 }

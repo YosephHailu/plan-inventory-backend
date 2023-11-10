@@ -1,5 +1,6 @@
 extend type Query {
     roles(name: String @like): [Role] @orderBy(column: "created_at", direction: DESC) @paginate
+    all_roles(name: String @like): [Role] @orderBy(column: "created_at", direction: DESC) @all
     role(id: ID! @eq): Role @find
 }
 

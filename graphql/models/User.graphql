@@ -1,5 +1,5 @@
 extend type Query {
-    users(name: String @like): [User] @paginate
+    users(name: String @like): [User] @orderBy(column: "created_at", direction: DESC)  @paginate
     me: User @auth
     user(id: String! @eq @rules(apply: ["exists:users,id"])): User! @find
 }

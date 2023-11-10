@@ -27,6 +27,9 @@ return new class extends Migration
             $table->timestamp('suspended_at')->nullable();
             $table->foreignId('suspended_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
 
+            $table->foreignId('where_house_id')->nullable()->constrained('where_house', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreignId('project_id')->nullable()->constrained('projects', 'id')->onUpdate('cascade')->onDelete('restrict');
+
             $table->rememberToken();
             $table->timestamps();
         });

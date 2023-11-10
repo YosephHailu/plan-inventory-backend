@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('gsrn_no');
             $table->date('receipt_date');
             $table->date('depreciation_date');
-            $table->string('po_no');
+            $table->string('po_no')->nullable();
             $table->string('cost_center')->nullable();
             $table->string('document_no')->nullable();
 
@@ -35,6 +35,7 @@ return new class extends Migration
             $table->foreignId('donor_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
 
             $table->foreignId('created_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreignId('project_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
 
             $table->foreignId('disposed_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('disposed_at')->nullable();

@@ -25,6 +25,9 @@ return new class extends Migration
 
             $table->string('status')->default('PENDING');
 
+            $table->foreignId('from_where_house_id')->nullable()->constrained('where_houses', 'id')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreignId('to_where_house_id')->nullable()->constrained('where_houses', 'id')->onUpdate('restrict')->onDelete('restrict');
+
             $table->foreignId('stock_request_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
             $table->foreignId('created_by_id')->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
 

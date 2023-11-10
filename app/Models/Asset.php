@@ -33,7 +33,8 @@ class Asset extends Model
         'acquisition_type_id',
         'program_area_id',
         'donor_id',
-        'created_by_id'
+        'created_by_id',
+        'project_id'
     ];
     
     function ScopeSearch(Builder $query, $value) {
@@ -63,6 +64,10 @@ class Asset extends Model
         return $query->where('disposed', '!=', true)->whereDoesntHave('assetCustodians', function($q) {
             return $q->where('returned', false);
         });
+    }
+
+    function ScopeProject_Id(Builder $query, $value) {
+        return $query->where('project_id', $value);
     }
 
     /**
@@ -172,5 +177,15 @@ class Asset extends Model
     public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    /**
+     * Get the project that owns the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class);
     }
 }
