@@ -72,4 +72,14 @@ class GoodReceive extends Model
         return $this->belongsTo(ItemCategory::class);
     }
 
+    /**
+     * Get the whereHouse that owns the GoodReceive
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function whereHouse(): BelongsTo
+    {
+        return $this->belongsTo(WhereHouse::class);
+    }
+
 }

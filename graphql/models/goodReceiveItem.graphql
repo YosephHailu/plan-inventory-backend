@@ -15,7 +15,7 @@ extend type Query {
         project_id: ID @eq
         stock_type_id: ID @eq
         item_id: ID @eq
-        balance: Float 
+        balance: Float
     ): [GoodReceiveItem]
         @orderBy(column: "created_at", direction: DESC)
         @paginate

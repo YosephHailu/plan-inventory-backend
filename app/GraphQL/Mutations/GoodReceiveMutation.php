@@ -45,6 +45,7 @@ final class GoodReceiveMutation
         DB::beginTransaction();
         $data['reference_number'] = Str::random(5);
         $data['created_by_id'] = Auth::Id();
+        $data['where_house_id'] = Auth::user()->where_house_id ?? $data['where_house_id'];
         $goodReceive = GoodReceive::create($data->toArray());
         
         foreach($args['goodReceiveItems'] as $goodReceiveItem) {
