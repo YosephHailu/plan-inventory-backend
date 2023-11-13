@@ -28,6 +28,6 @@ type StockVerification {
     id: ID
     quantity: Float!,
     remarks: String,
-    goodReceiveItem: goodReceiveItem
+    goodReceiveItem: GoodReceiveItem
     condition: Condition
 }
