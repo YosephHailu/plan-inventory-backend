@@ -120,18 +120,16 @@ class RegistrationMutation
 
     public function update(mixed $_, array $args)
     {
-        if(User::where([['id', '!=', $args['id']], ['phone_number', $args['phone_number']]])->exists()) {
-            throw new Exception("PHONE_NUMBER_ALREADY_EXISTS!");
+        if(User::where([['id', '!=', $args['id']], ['email', $args['email']]])->exists()) {
+            throw new Exception("EMAIL_ALREADY_EXISTS!");
         }
 
         $data = collect($args)->only([    
             'name',
-            'password',
-            'phone_number',
-            'post_code',
-            'address',
-            'about',
-            'last_password_change_date'
+            'email',
+            'username',
+            'where_house_id',
+            'project_id'
         ]);
 
         $user = User::find($args['id']);

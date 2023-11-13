@@ -24,7 +24,13 @@ input UserRoleInput {
 input UserUpdateInput {
     id: ID! @rules(apply: ["required", "exists:users,id"])
     name: String! @rules(apply: ["required", "string"])
+    email: String! @rules(apply: ["required", "email"])
     password: String! @rules(apply: ["required", "confirmed", "min:8"])
     password_confirmation: String!
     roles: [ID!]
+    where_house_id: ID
+    project_id: ID
+    is_active: Boolean
+    is_locked: Boolean
+
 }

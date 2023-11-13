@@ -37,6 +37,7 @@ final class StockRequestMutation
 
         DB::beginTransaction();
         $data['created_by_id'] = Auth::Id();
+        $data['where_house_id'] = Auth::user()->where_house_id ?? $data['where_house_id'];
         $stockRequest = StockRequest::create($data->toArray());
         
         foreach($args['stockRequestItems'] as $stockRequestItem) {

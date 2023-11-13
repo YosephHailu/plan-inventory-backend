@@ -1,5 +1,5 @@
 extend type Query {
-    whereHouses(name: String @like): [WhereHouse] @all
+    whereHouses(name: String @like, id: ID @eq): [WhereHouse] @all
     whereHouse(id: ID! @eq): WhereHouse @find
 }
 
