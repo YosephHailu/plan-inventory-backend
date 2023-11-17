@@ -1,0 +1,27 @@
+extend type Query {
+    costCenters(name: String @like): [CostCenter] @all
+    costCenter(id: ID! @eq): CostCenter @find
+}
+
+extend type Mutation {
+    createCostCenter(input: CostCenterCreateInput! @spread): CostCenter @create
+    updateCostCenter(input: CostCenterUpdateInput! @spread): CostCenter @update
+    deleteCostCenter(id: ID! @eq): CostCenter @delete
+}
+
+input CostCenterCreateInput {
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+input CostCenterUpdateInput {
+    id: ID! @rules(apply: ["required", "exists:cost_centers,id"])
+    name: String! @rules(apply: ["required"])
+    description: String
+}
+
+type CostCenter {
+    id: String
+    name: String
+    description: String
+}

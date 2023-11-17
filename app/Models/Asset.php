@@ -34,7 +34,8 @@ class Asset extends Model
         'program_area_id',
         'donor_id',
         'created_by_id',
-        'project_id'
+        'project_id',
+        'cost_center_id'
     ];
     
     function ScopeSearch(Builder $query, $value) {
@@ -187,5 +188,15 @@ class Asset extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * Get the costCenter that owns the Asset
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function costCenter(): BelongsTo
+    {
+        return $this->belongsTo(CostCenter::class);
     }
 }

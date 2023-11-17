@@ -50,6 +50,7 @@ input AssetCreateInput {
     program_area_id: ID!
     donor_id: ID
     project_id: ID
+    cost_center_id: ID
 }
 
 input AssetUpdateInput {
@@ -73,6 +74,7 @@ input AssetUpdateInput {
     program_area_id: ID!
     donor_id: ID
     project_id: ID
+    cost_center_id: ID
 }
 
 type Asset {
@@ -103,6 +105,7 @@ type Asset {
     assetCustodian: AssetCustodian
     assetDisposal: AssetDisposal
     project: Project
+    costCenter: CostCenter
     assetCustodians: [AssetCustodian]
     assetPhysicalChecks: [AssetPhysicalCheck]
     assetPhysicalCheck: AssetPhysicalCheck
