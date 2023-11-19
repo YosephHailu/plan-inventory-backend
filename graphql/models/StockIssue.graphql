@@ -52,6 +52,7 @@ type StockIssue {
     fromWhereHouse: WhereHouse
     toWhereHouse: WhereHouse
     created_at: Date
+    createdBy: User
     # stockIssueItems: [StockIssueItem]
 }
 

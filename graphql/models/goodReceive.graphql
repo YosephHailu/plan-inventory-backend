@@ -74,6 +74,7 @@ type GoodReceive {
     batch_number: String
     whereHouse: WhereHouse
     goodReceiveItems: [GoodReceiveItem]
+    createdBy: User
 }
 
 enum StatusEnum {
