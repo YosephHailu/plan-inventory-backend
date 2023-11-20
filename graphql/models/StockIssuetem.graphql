@@ -1,0 +1,8 @@
+type StockIssueItem {
+    id: ID
+    quantity: String
+    description: String
+    stockIssue: StockIssue
+    stockRequestItem: StockRequestItem
+    approvedBy: User
+}

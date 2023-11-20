@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StockIssue extends Model
 {
@@ -65,5 +66,15 @@ class StockIssue extends Model
     public function toWhereHouse(): BelongsTo
     {
         return $this->belongsTo(WhereHouse::class, 'to_where_house_id');
+    }
+
+    /**
+     * Get all of the stockIssueItems for the StockIssue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stockIssueItems(): HasMany
+    {
+        return $this->hasMany(StockIssueItem::class);
     }
 }

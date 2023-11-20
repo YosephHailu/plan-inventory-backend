@@ -1,12 +1,18 @@
 extend type Query {
-    stockIssues(name: String @like, status: StatusEnum @eq): [StockIssue] @paginate
+    stockIssues(name: String @like, status: StatusEnum @eq, waybill: Boolean @eq): [StockIssue] @paginate
     stockIssue(id: ID! @eq): StockIssue @find
 }
 
 extend type Mutation {
     createStockIssue(input: StockIssueCreateInput! @spread): StockIssue @field(resolver: "StockIssueMutation@store")
+    approveStockIssue(id: ID!, input: [StockIssueApproveInput]!): StockIssue @field(resolver: "StockIssueMutation@approve")
     updateStockIssue(input: StockIssueUpdateInput! @spread): StockIssue @update
     deleteStockIssue(id: ID! @eq): StockIssue @delete
+}
+
+input StockIssueApproveInput {
+    id: ID!
+    approved_quantity: Float!
 }
 
 input StockIssueCreateInput {
@@ -53,7 +59,8 @@ type StockIssue {
     toWhereHouse: WhereHouse
     created_at: Date
     createdBy: User
-    # stockIssueItems: [StockIssueItem]
+    status: StatusEnum
+    stockIssueItems: [StockIssueItem]
 }
 
 type StockIssueItem {

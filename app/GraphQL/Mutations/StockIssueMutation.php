@@ -6,6 +6,7 @@ use App\Models\GoodReceiveItem;
 use App\Models\StockIssue;
 use App\Models\StockIssueItem;
 use App\Models\StockRequest;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -67,6 +68,26 @@ final class StockIssueMutation
         DB::commit();
 
         return $stockIssue;
+    }
+
+    public function approve($rootValue, array $args)
+    {
+        DB::beginTransaction();
+        $stockRequest = StockIssue::find($args['id']);
+        $stockRequest->status = "APPROVED";
+        $stockRequest->save();
+
+        foreach($args['input'] as $issuance) {
+            $stockRequestItem = StockIssueItem::find($issuance['id']);
+            $stockRequestItem->approved_at = Carbon::now();
+            $stockRequestItem->approved_by_id = Auth::Id();
+            $stockRequestItem->approved = true;
+            $stockRequest->approved_quantity = $issuance['approved_quantity'];
+            $stockRequestItem->save();
+        }
+
+        DB::commit();
+        return $stockRequest;
     }
 
 }

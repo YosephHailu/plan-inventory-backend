@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('approved_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('approved_at')->nullable();
             $table->boolean('approved')->default(false);
+            $table->double('approved_quantity', 10)->nullable();
             $table->longText('approve_remark')->nullable();
 
             $table->foreignId('stock_issue_id')->constrained()->onUpdate('restrict')->onDelete('restrict');
