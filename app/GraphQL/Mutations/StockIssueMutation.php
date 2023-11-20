@@ -78,12 +78,17 @@ final class StockIssueMutation
         $stockRequest->save();
 
         foreach($args['input'] as $issuance) {
-            $stockRequestItem = StockIssueItem::find($issuance['id']);
-            $stockRequestItem->approved_at = Carbon::now();
-            $stockRequestItem->approved_by_id = Auth::Id();
-            $stockRequestItem->approved = true;
-            $stockRequest->approved_quantity = $issuance['approved_quantity'];
-            $stockRequestItem->save();
+            $stockIssueItem = StockIssueItem::find($issuance['id']);
+            $stockIssueItem->approved_at = Carbon::now();
+            $stockIssueItem->approved_by_id = Auth::Id();
+            $stockIssueItem->approved = true;
+            $stockIssueItem->approved_quantity = $issuance['approved_quantity'];
+            $stockIssueItem->save();
+
+            $goodReceiveItem = GoodReceiveItem::find($stockIssueItem->stockRequestItem->good_receive_item_id);
+            $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due + $stockIssueItem->quantity);
+            $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due - $stockIssueItem->approved_quantity);
+            $goodReceiveItem->save();
         }
 
         DB::commit();
