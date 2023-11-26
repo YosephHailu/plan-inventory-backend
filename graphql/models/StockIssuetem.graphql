@@ -1,6 +1,7 @@
 type StockIssueItem {
     id: ID
-    quantity: String
+    quantity: Float
+    approved_quantity: Float
     description: String
     stockIssue: StockIssue
     stockRequestItem: StockRequestItem
