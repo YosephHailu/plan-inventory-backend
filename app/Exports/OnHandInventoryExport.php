@@ -19,7 +19,7 @@ class OnHandInventoryExport implements FromView
     public function view(): View
     {
         Log::alert($this->request);
-        $goodReceiveItems = GoodReceiveItem::query();
+        $goodReceiveItems = GoodReceiveItem::where('approved', true);
 
         if($this->request->search) {
             $value = $this->request->search;
@@ -28,6 +28,25 @@ class OnHandInventoryExport implements FromView
             })->orWhereHas('goodReceive', function($q) use($value) {
                 return $q->where('loading_number', 'like', "%$value%");
             })->orWhere('id', $value)->orWhere('description', 'like', "%$value%");
+        }
+
+        if($this->request->where_house_id) {
+            $value = $this->request->where_house_id;
+            $goodReceiveItems->whereHas('goodReceive', function($q) use($value) {
+                return $q->where('where_house_id', $value);
+            });
+        }
+
+        if($this->request->project_id) {
+            $goodReceiveItems->where('project_id', $this->request->project_id);
+        }
+
+        if($this->request->donor_id) {
+            $goodReceiveItems->where('donor_id', $this->request->donor_id);
+        }
+
+        if($this->request->stock_type_id) {
+            $goodReceiveItems->where('stock_type_id', $this->request->stock_type_id);
         }
 
         return view('reports.stock_on_hand', [

@@ -11,20 +11,20 @@
             </th>
         </tr>
         <tr class="blue darken-2">
-            <th style="background-color: #0072ce; color: white; width: 70px"> <b>Bin Card/Stock Card Number</b></th>
-            <th style="background-color: #0072ce; color: white; width: 150px"> <b>Lot No (Location Label)</b></th>
-            <th style="background-color: #0072ce; color: white; width: 150px"> <b>Stock Type</b></th>
-            <th style="background-color: #0072ce; color: white; width: 150px"> <b>Category</b></th>
-            <th style="background-color: #0072ce; color: white; width: 220px"> <b>Item</b></th>
-            <th style="background-color: #0072ce; color: white; width: 220px"> <b>Item Description</b></th>
-            <th style="background-color: #0072ce; color: white; width: 100px"> <b>Balance</b></th>
-            <th style="background-color: #0072ce; color: white; width: 100px"> <b>Batch Number</b></th>
-            <th style="background-color: #0072ce; color: white; width: 100px"> <b>Expiration Date</b></th>
-            <th style="background-color: #0072ce; color: white; width: 150px"> <b>Project/ Department</b></th>
-            <th style="background-color: #0072ce; color: white; width: 100px"> <b>Donor</b></th>
-            <th style="background-color: #0072ce; color: white; width: 220px"> <b>Note</b></th>
-            <th style="background-color: #0072ce; color: white; width: 50px"> <b>Verified Quantity</b></th>
-            <th style="background-color: #0072ce; color: white; width: 220px"> <b>Verification Remark</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 70px"> <b>Bin Card/Stock Card Number</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 150px"> <b>Lot No (Location Label)</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 150px"> <b>Stock Type</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 150px"> <b>Category</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 220px"> <b>Item</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 220px"> <b>Item Description</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Balance</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Batch Number</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Expiration Date</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 150px"> <b>Project/ Department</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Donor</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 220px"> <b>Note</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 50px"> <b>Verified Quantity</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 220px"> <b>Verification Remark</b></th>
         </tr>
     </thead>
     <tbody>
