@@ -13,6 +13,12 @@ class AssetPhysicalCheck extends Model
 
     protected $fillable =['remark', 'checked_by_id', 'checked_at', 'asset_id', 'condition_id'];
 
+    function ScopeProject_Id(Builder $query, $value) {
+        return $query->whereHas('asset', function($q) use($value) {        
+            return $q->where('project_id', $value);
+        });
+    }
+
     function ScopeSearch(Builder $query, $value) {
         return $query->whereHas('asset', function($q) use($value) {
             return $q->where('item_name', 'like', "%$value%")
