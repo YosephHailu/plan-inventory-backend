@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('on-hand-inventory-report', [App\Http\Controllers\ReportController::class, 'onHandInventoryReport']);
+Route::get('stock-movement-report', [App\Http\Controllers\ReportController::class, 'stockMovementReport']);
 
 Route::get('/', function () {
     return view('welcome');
