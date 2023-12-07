@@ -43,7 +43,6 @@
             <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Current Stock <br>
                     Value</b></th>
             <th style="background-color: #0072ce; color: white; text-align: center; width: 200px"> <b>Notes</b></th>
-
         </tr>
     </thead>
     <tbody>
