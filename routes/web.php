@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('on-hand-inventory-report', [App\Http\Controllers\ReportController::class, 'onHandInventoryReport']);
 Route::get('stock-movement-report', [App\Http\Controllers\ReportController::class, 'stockMovementReport']);
+Route::get('asset-report', [App\Http\Controllers\ReportController::class, 'assetReport']);
+Route::get('disposed-asset-report', [App\Http\Controllers\ReportController::class, 'disposedAssetReport']);
+Route::get('asset-physical-check-report', [App\Http\Controllers\ReportController::class, 'assetPhysicalCheckReport']);
 
 Route::get('/', function () {
     return view('welcome');

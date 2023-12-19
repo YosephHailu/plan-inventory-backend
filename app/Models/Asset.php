@@ -45,7 +45,7 @@ class Asset extends Model
 
     function ScopeStaff(Builder $query, $value) {
         return $query->whereHas('assetCustodians', function($q) use($value) {
-            return $q->where('staff_id', $value);
+            return $q->where('staff_id', $value)->where('returned', '!=', true);
         });
     }
 

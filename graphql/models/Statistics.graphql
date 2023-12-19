@@ -1,0 +1,60 @@
+extend type Query {
+    # dashboardStatistic: DashboardStatistic @field(resolver: "StatisticQuery@dashboardStatistics")
+    # siteStatistic: SiteStatistic @field(resolver: "StatisticQuery@SiteStatistics")
+    # buildingStatistic: BuildingStatistic @field(resolver: "StatisticQuery@BuildingStatistics")
+    # apartmentStatistic: ApartmentStatistic @field(resolver: "StatisticQuery@ApartmentStatistics")
+    dashboardCount: DashboardCountType @field(resolver: "StatisticQuery@dashboardCount")
+    assetCountByTypes: [AssetCountByTypeType] @field(resolver: "StatisticQuery@assetCountByTypes")
+}
+
+type DashboardCountType {
+    total_assets: Float
+    total_available_assets: Float
+    total_disposed_assets: Float
+    total_items: Float
+    total_stock_request_items: Float
+    total_stock_issue_items: Float
+}
+
+type AssetCountByTypeType {
+    asset_type: String
+    count: Float
+}
+
+# type ApartmentStatistic {
+#     total_available_apartments: Float
+#     total_on_hold_apartments: Float
+#     total_soled_apartments: Float
+#     total_apartments: Float
+# }
+
+# type BuildingStatistic {
+#     total_buildings: Float
+#     total_apartments: Float
+# }
+
+# type SiteStatistic {
+#     total_sites: Float
+#     total_buildings: Float
+#     total_area_sqm: Float
+#     total_built_up_area_sqm: Float
+# } 
+
+# type DashboardStatistic {
+#     total_sites: Float!
+#     total_apartments: Float!
+#     total_collected_amount: Float!
+#     total_outstanding_amount: Float!
+#     barChartData: [BarChartData]
+# }
+
+# type BarChartData {
+#     label: String,
+#     backgroundColor: String,
+#     barChartDatasets: [BarChartDataset]
+# }
+
+# type BarChartDataset {
+#     label: String!,
+#     value: Float!
+# }
