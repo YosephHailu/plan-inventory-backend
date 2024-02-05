@@ -35,6 +35,8 @@ type StockRequestItem {
     description: String
     contact_detail: String
     destination_contact: String
+    checked: Boolean
+    approved: Boolean
     goodReceiveItem: GoodReceiveItem
     stockRequest: StockRequest
 }

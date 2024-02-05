@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\GoodReceive;
 use App\Models\GoodReceiveItem;
 use App\Models\StockIssue;
 use App\Models\StockIssueItem;
@@ -65,6 +66,53 @@ final class StockIssueMutation
             $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due - $stockRequestItem->quantity);
             $goodReceiveItem->save();
         }
+
+        if($goodReceiveItem ?? false) {
+            $new_goodReceive = $goodReceiveItem->goodReceive->only([
+                'received_date',
+                'remark',
+                'received_by',
+                'vendor_name',
+                'vendor_id',
+                'purchase_order_no',
+                'invoice_no',
+                'project',
+                'item_category_id',
+                'batch_number',
+                'project_id',
+                'loading_number'
+            ]);
+            $new_goodReceive['created_by_id'] = Auth::Id();
+            $new_goodReceive['where_house_id'] = $stockIssue->to_where_house_id;
+            $new_goodReceive['reference_number'] =  Str::random(10);
+            $goodReceive = GoodReceive::create($new_goodReceive);
+
+            foreach($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {    
+                $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
+
+                $new_goodReceiveItem = $goodReceiveItem->only([
+                    "unit_price",
+                    "description",
+                    "condition",
+                    "expiry_date",
+                    "comment",
+                    "donor_id",
+                    "item_id",
+                    "condition_id",
+                    "project_id",
+                    "stock_type_id",
+                    "unit_of_measurement_id"
+                ]);
+                
+                $new_goodReceiveItem['ordered_quantity'] = $stockRequestItem->quantity;
+                $new_goodReceiveItem['received_quantity'] = $stockRequestItem->quantity;
+                $new_goodReceiveItem['balance_due'] = $stockRequestItem->quantity;
+                $new_goodReceiveItem['good_receive_id'] = $goodReceive->id;
+
+                GoodReceiveItem::create($new_goodReceiveItem);
+            }
+        }
+
         DB::commit();
 
         return $stockIssue;
