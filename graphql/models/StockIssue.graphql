@@ -1,6 +1,7 @@
 extend type Query {
     stockIssues(name: String @like, status: StatusEnum @eq, waybill: Boolean @eq): [StockIssue] @paginate
     stockIssue(id: ID! @eq): StockIssue @find
+    stockIssueByRequestId(stock_request_id: ID! @eq): StockIssue @find
 }
 
 extend type Mutation {
