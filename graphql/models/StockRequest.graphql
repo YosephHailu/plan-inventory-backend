@@ -11,7 +11,7 @@ extend type Mutation {
     approveStockRequest(id: ID! @eq, input: [ID]!): StockRequest @field(resolver: "StockRequestMutation@approve")
     rejectStockRequest(id: ID! @eq): StockRequest @field(resolver: "StockRequestMutation@reject")
 
-    deleteStockRequest(id: ID! @eq): StockRequest @delete
+    deleteStockRequest(id: ID! @eq): StockRequest @field(resolver: "StockRequestMutation@delete")
 }
 
 input StockRequestCreateInput {

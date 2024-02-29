@@ -1,5 +1,5 @@
 extend type Query {
-    stockIssues(name: String @like, status: StatusEnum @eq, waybill: Boolean @eq): [StockIssue] @paginate
+    stockIssues(name: String @like, status: StatusEnum @eq, waybill: Boolean @eq): [StockIssue] @orderBy(column: "created_at", direction: DESC) @paginate
     stockIssue(id: ID! @eq): StockIssue @find
     stockIssueByRequestId(stock_request_id: ID! @eq): StockIssue @find
 }

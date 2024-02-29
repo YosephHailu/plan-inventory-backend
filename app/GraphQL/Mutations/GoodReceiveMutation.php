@@ -5,7 +5,9 @@ namespace App\GraphQL\Mutations;
 use App\Models\GoodReceive;
 use App\Models\GoodReceiveItem;
 use App\Models\Item;
+use App\Models\StockRequestItem;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -96,6 +98,25 @@ final class GoodReceiveMutation
             $goodReceiveItem->save();
         }
 
+        DB::commit();
+        return $goodReceive;
+    }
+
+    public function delete($rootValue, array $args)
+    {
+        $goodReceive = GoodReceive::find($args['id']);
+        DB::beginTransaction();
+            try {
+                if(StockRequestItem::whereHas('goodReceiveItem', function($query) use ($goodReceive) {
+                    return $query->where('good_receive_id', $goodReceive->id);
+                })->exists()) {
+                    throw new Exception("CAN'T DELETE RESOURCE!");
+                }
+                $goodReceive->goodReceiveItems()->delete();
+                $goodReceive->delete();
+            }catch(Exception $e) {
+                throw new Exception("CAN'T DELETE RESOURCE!");
+            }
         DB::commit();
         return $goodReceive;
     }

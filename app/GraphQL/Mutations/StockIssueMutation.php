@@ -67,6 +67,32 @@ final class StockIssueMutation
             $goodReceiveItem->save();
         }
 
+        DB::commit();
+
+        return $stockIssue;
+    }
+
+    public function approve($rootValue, array $args)
+    {
+        DB::beginTransaction();
+        $stockIssue = StockIssue::find($args['id']);
+        $stockIssue->status = "APPROVED";
+        $stockIssue->save();
+
+        foreach($args['input'] as $issuance) {
+            $stockIssueItem = StockIssueItem::find($issuance['id']);
+            $stockIssueItem->approved_at = Carbon::now();
+            $stockIssueItem->approved_by_id = Auth::Id();
+            $stockIssueItem->approved = true;
+            $stockIssueItem->approved_quantity = $issuance['approved_quantity'];
+            $stockIssueItem->save();
+
+            $goodReceiveItem = GoodReceiveItem::find($stockIssueItem->stockRequestItem->good_receive_item_id);
+            $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due + $stockIssueItem->quantity);
+            $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due - $stockIssueItem->approved_quantity);
+            $goodReceiveItem->save();
+        }
+
         if($goodReceiveItem ?? false) {
             $new_goodReceive = $goodReceiveItem->goodReceive->only([
                 'received_date',
@@ -86,6 +112,8 @@ final class StockIssueMutation
             $new_goodReceive['where_house_id'] = $stockIssue->to_where_house_id;
             $new_goodReceive['reference_number'] =  Str::random(10);
             $goodReceive = GoodReceive::create($new_goodReceive);
+
+            $stockRequest = StockRequest::find($stockIssue->stock_request_id);
 
             foreach($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {    
                 $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
@@ -111,32 +139,6 @@ final class StockIssueMutation
 
                 GoodReceiveItem::create($new_goodReceiveItem);
             }
-        }
-
-        DB::commit();
-
-        return $stockIssue;
-    }
-
-    public function approve($rootValue, array $args)
-    {
-        DB::beginTransaction();
-        $stockRequest = StockIssue::find($args['id']);
-        $stockRequest->status = "APPROVED";
-        $stockRequest->save();
-
-        foreach($args['input'] as $issuance) {
-            $stockIssueItem = StockIssueItem::find($issuance['id']);
-            $stockIssueItem->approved_at = Carbon::now();
-            $stockIssueItem->approved_by_id = Auth::Id();
-            $stockIssueItem->approved = true;
-            $stockIssueItem->approved_quantity = $issuance['approved_quantity'];
-            $stockIssueItem->save();
-
-            $goodReceiveItem = GoodReceiveItem::find($stockIssueItem->stockRequestItem->good_receive_item_id);
-            $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due + $stockIssueItem->quantity);
-            $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due - $stockIssueItem->approved_quantity);
-            $goodReceiveItem->save();
         }
 
         DB::commit();

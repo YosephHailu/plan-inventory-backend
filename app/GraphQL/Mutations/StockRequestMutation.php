@@ -3,12 +3,14 @@
 namespace App\GraphQL\Mutations;
 
 use App\Models\Item;
+use App\Models\StockIssue;
 use App\Models\StockRequest;
 use App\Models\StockRequestItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Exception;
 
 final class StockRequestMutation
 {
@@ -102,4 +104,22 @@ final class StockRequestMutation
         DB::commit();
         return $stockRequest;
     }
+
+    public function delete($rootValue, array $args)
+    {
+        $stockRequest = StockRequest::find($args['id']);
+        DB::beginTransaction();
+            try {
+                if(StockIssue::where('stock_request_id', $stockRequest->id)->exists()) {
+                    throw new Exception("CAN'T DELETE RESOURCE!");
+                }
+                $stockRequest->stockRequestItems()->delete();
+                $stockRequest->delete();
+            }catch(Exception $e) {
+                throw new Exception("CAN'T DELETE RESOURCE!");
+            }
+        DB::commit();
+        return $stockRequest;
+    }
+
 }
