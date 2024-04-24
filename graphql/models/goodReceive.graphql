@@ -1,7 +1,9 @@
 extend type Query {
-    goodReceives(name: String @like, status: StatusEnum @eq, where_house_id: ID @eq): [GoodReceive]
-        @orderBy(column: "created_at", direction: DESC)
-        @paginate
+    goodReceives(
+        name: String @like
+        status: StatusEnum @eq
+        where_house_id: ID @eq
+    ): [GoodReceive] @orderBy(column: "created_at", direction: DESC) @paginate
     goodReceive(id: ID! @eq): GoodReceive @find
 }
 
@@ -10,13 +12,23 @@ extend type Mutation {
         @field(resolver: "GoodReceiveMutation@store")
     updateGoodReceive(input: GoodReceiveUpdateInput! @spread): GoodReceive
         @update
-    deleteGoodReceive(id: ID! @eq): GoodReceive @field(resolver: "GoodReceiveMutation@delete")
+    deleteGoodReceive(id: ID! @eq): GoodReceive
+        @field(resolver: "GoodReceiveMutation@delete")
     checkGoodReceive(id: ID! @eq, input: [GoodReceiveCheckInput]!): GoodReceive
         @field(resolver: "GoodReceiveMutation@check")
     approveGoodReceive(
         id: ID! @eq
         input: [GoodReceiveApproveInput]!
     ): GoodReceive @field(resolver: "GoodReceiveMutation@approve")
+
+    importInventory(input: ImportInventoryInput!): GoodReceive
+        @guard
+        @field(resolver: "GoodReceiveMutation@import")
+}
+
+input ImportInventoryInput {
+    attachment: Upload!
+    grn: String!
 }
 
 input GoodReceiveCheckInput {

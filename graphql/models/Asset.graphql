@@ -19,6 +19,9 @@ extend type Mutation {
         @field(resolver: "AssetMutation@store")
     updateAsset(input: AssetUpdateInput! @spread): Asset @update
     deleteAsset(id: ID! @eq): Asset @delete
+    importAsset(file: Upload!): Asset
+        @guard
+        @field(resolver: "AssetMutation@import")
 }
 
 input AssetCreateInput {

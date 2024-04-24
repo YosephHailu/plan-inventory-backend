@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Imports\GoodReceiveImport;
 use App\Models\GoodReceive;
 use App\Models\GoodReceiveItem;
 use App\Models\Item;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 final class GoodReceiveMutation
 {
@@ -119,6 +122,24 @@ final class GoodReceiveMutation
             }
         DB::commit();
         return $goodReceive;
+    }
+
+    public function import($rootValue, array $args)
+    {
+        if(GoodReceive::where('reference_number', $args['input']['grn'])->exists())
+            throw new Exception("Already Imported!");
+        $attachment = $args['input']['attachment'];
+
+        $attachmentName = now().'good-receive.xlsx';
+
+        // Store the attachment with the static name and return the path
+        $path = $attachment->storeAs('public', $attachmentName);
+        
+        Session::put('reference_number', $args['input']['grn']);
+
+        Excel::import(new GoodReceiveImport(), $path);
+
+        return null;
     }
 
 }

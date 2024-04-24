@@ -2,9 +2,13 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Imports\AssetImport;
 use App\Models\Asset;
 use App\Models\ProgramArea;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 final class AssetMutation
 {
@@ -81,5 +85,18 @@ final class AssetMutation
         $asset->update($data->toArray());
 
         return $asset;
+    }
+
+    public function import($rootValue, array $args)
+    {
+        $file = $args['file'];
+
+        // Define the static file name and extension
+        $fileName = 'asset.xlsx';
+
+        // Store the file with the static name and return the path
+        $path = $file->storeAs('public', $fileName);
+        
+        return Excel::import(new AssetImport(), $path);
     }
 }
