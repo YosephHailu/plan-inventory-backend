@@ -40,7 +40,6 @@ class GoodReceiveImport implements ToModel
         }
 
         try {
-
         DB::beginTransaction();
         $whereHouse = WhereHouse::firstOrCreate(['name' => $row[8]], ['address' => $row[8], 'name' => $row[8], 'description' => $row[8], 'capacity' => 0]);
         $itemCategory = ItemCategory::firstOrCreate(['name' => $row[9]], ['name' => $row[9], 'description' => $row[9]]);
@@ -71,6 +70,7 @@ class GoodReceiveImport implements ToModel
         $donor = Donor::firstOrCreate(['name' => $row[15]], ['name' => $row[15], 'description' => $row[15], 'fad_number' => $row[15]]);
         $stockType = StockType::firstOrCreate(['name' => $row[17]], ['name' => $row[17], 'description' => $row[17]]);
         $project = Project::firstOrCreate(['name' => $row[19]], ['name' => $row[19], 'outline_no' => $row[19]]);
+        $unitOfMeasurement = UnitOfMeasurement::firstOrCreate(['name' => $row[10]], ['name' => $row[10], 'abbreviation' => $row[10], 'description' => $row[10]]);
 
         $goodReceive = GoodReceiveItem::create([
             'ordered_quantity' => $row[14],
@@ -83,7 +83,7 @@ class GoodReceiveImport implements ToModel
             'comment' => $row[20],
             'donor_id' => $donor->id,
             'project_id' => $project->id,
-            'unit_of_measurement_id' => UnitOfMeasurement::first()->id,
+            'unit_of_measurement_id' => $unitOfMeasurement->id,
             'unit_price' => $row[13],
         ]);
         DB::commit();
