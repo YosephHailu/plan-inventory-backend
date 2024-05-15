@@ -38,6 +38,8 @@
             <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Ending Balance
                     <br>
                     (Quantity)</b></th>
+            <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Total In <br>
+                    (Value)</b></th>
             <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Total Out <br>
                     (Value)</b></th>
             <th style="background-color: #0072ce; color: white; text-align: center; width: 100px"> <b>Current Stock <br>
@@ -63,12 +65,15 @@
             <td style="text-align: center"> {{ $goodReceiveItem->balance_due }} {{
                 $goodReceiveItem->unitOfMeasurement->abbreviation ?? "" }}</td>
             <td style="text-align: center">{{ $goodReceiveItem->unit_price ?? "" }}</td>
-            <td style="text-align: center"> {{ $goodReceiveItem->issued_quantity }} {{
-                $goodReceiveItem->unitOfMeasurement->abbreviation ?? "" }}</td>
             <td style="text-align: center"> {{ $goodReceiveItem->approved_quantity }} {{
+                $goodReceiveItem->unitOfMeasurement->abbreviation ?? "" }}</td>
+            <td style="text-align: center"> {{ $goodReceiveItem->issued_quantity }} {{
                 $goodReceiveItem->unitOfMeasurement->abbreviation ?? "" }}</td>
             <td style="text-align: center">{{ $goodReceiveItem->approved_quantity - $goodReceiveItem->issued_quantity ??
                 "" }}</td>
+            <td style="text-align: center">{{ $goodReceiveItem->approved_quantity * $goodReceiveItem->unit_price ?? ""
+                }}
+            </td>
             <td style="text-align: center">{{ $goodReceiveItem->issued_quantity * $goodReceiveItem->unit_price ?? "" }}
             </td>
             <td style="text-align: center">{{ ($goodReceiveItem->approved_quantity - $goodReceiveItem->issued_quantity)
