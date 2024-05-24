@@ -35,7 +35,7 @@ return new class extends Migration
             $table->foreignId('donor_id')->nullable()->constrained()->onUpdate('restrict')->onDelete('restrict');
 
             $table->foreignId('created_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreignId('project_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreignId('project_id')->nullable()->constrained('projects', 'id')->onUpdate('cascade')->onDelete('restrict');
 
             $table->foreignId('disposed_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('disposed_at')->nullable();
