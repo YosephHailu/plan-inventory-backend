@@ -54,7 +54,7 @@ class LoginMutation
         }
 
         return [
-            'token' => $user->createToken('default')->plainTextToken,
+            'token' => $user->createToken('default', ['*'], now()->addMinutes(1))->plainTextToken,
             'user' => $user
         ];
     }
