@@ -7,6 +7,7 @@ extend type Query {
 extend type Mutation {
     updateUser(input: UserUpdateInput! @spread): User  @field(resolver: "RegistrationMutation@update")
     assignRole(input: UserRoleInput! @spread): User  @field(resolver: "RegistrationMutation@assignRole")
+    backupDatabase: User  @field(resolver: "RegistrationMutation@backupDatabase")
     updateActiveStatus(input: UserActiveStatusInput! @spread): User  @update
     deleteUser(id: ID! @eq): User @delete
 }

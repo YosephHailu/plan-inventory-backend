@@ -18,6 +18,7 @@ use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\Contracts\HasApiTokens;
@@ -31,7 +32,13 @@ class RegistrationMutation
         protected Config $config,
         protected Hasher $hash,
         protected EmailVerificationServiceInterface $emailVerificationService,
-    ) {
+    ) {}
+
+    public function backupDatabase($rootValue, array $args)
+    {
+        Artisan::call('backup:run');
+
+        return null;
     }
 
     /**
