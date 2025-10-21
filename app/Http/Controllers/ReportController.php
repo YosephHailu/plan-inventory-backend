@@ -8,13 +8,15 @@ use App\Exports\DisposedAssetExport;
 use App\Exports\StockMovementExport;
 use App\Exports\AssetPhysicalCheckExport;
 use App\Exports\AssetExport;
+use App\Exports\AssetImportTemplateExport;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
-    public function __construct() {
-        ob_end_clean(); 
+    public function __construct()
+    {
+        ob_end_clean();
         ob_start();
     }
 
@@ -56,5 +58,13 @@ class ReportController extends Controller
     public function assetPhysicalCheckReport(Request $request)
     {
         return Excel::download(new AssetPhysicalCheckExport($request), 'asset-physical-check-report.xlsx');
+    }
+
+    /**
+     * Download asset import template.
+     */
+    public function assetImportTemplate()
+    {
+        return Excel::download(new AssetImportTemplateExport(), 'asset-import-template.xlsx');
     }
 }

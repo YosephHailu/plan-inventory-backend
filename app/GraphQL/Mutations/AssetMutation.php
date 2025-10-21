@@ -52,7 +52,7 @@ final class AssetMutation
         $data['created_by_id'] = Auth::Id();
 
         $asset = Asset::create($data->toArray());
-        
+
         return $asset;
     }
 
@@ -89,14 +89,49 @@ final class AssetMutation
 
     public function import($rootValue, array $args)
     {
-        $file = $args['file'];
+        try {
+            $file = $args['file'];
 
-        // Define the static file name and extension
-        $fileName = 'asset.xlsx';
+            // Define the static file name and extension
+            $fileName = 'asset_import_' . time() . '.xlsx';
 
-        // Store the file with the static name and return the path
-        $path = $file->storeAs('public', $fileName);
-        
-        return Excel::import(new AssetImport(), $path);
+            // Store the file with the static name and return the path
+            $path = $file->storeAs('imports', $fileName);
+
+            // Create import instance to track statistics
+            $import = new AssetImport();
+
+            // Perform the import (only processes first sheet due to WithMultipleSheets)
+            Excel::import($import, $path);
+
+            $totalRows = $import->imported + $import->failed;
+            $message = $import->failed > 0
+                ? "Import completed with {$import->failed} errors. {$import->imported} assets imported successfully."
+                : "All assets imported successfully! Total: {$import->imported}";
+
+            return [
+                'success' => $import->failed == 0,
+                'message' => $message,
+                'stats' => [
+                    'total_rows' => $totalRows,
+                    'imported' => $import->imported,
+                    'failed' => $import->failed,
+                    'errors' => $import->errors
+                ]
+            ];
+        } catch (\Exception $e) {
+            Log::error('Asset import failed: ' . $e->getMessage());
+
+            return [
+                'success' => false,
+                'message' => 'Failed to import assets: ' . $e->getMessage(),
+                'stats' => [
+                    'total_rows' => 0,
+                    'imported' => 0,
+                    'failed' => 0,
+                    'errors' => [$e->getMessage()]
+                ]
+            ];
+        }
     }
 }

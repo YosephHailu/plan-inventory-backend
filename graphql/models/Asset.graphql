@@ -19,7 +19,7 @@ extend type Mutation {
         @field(resolver: "AssetMutation@store")
     updateAsset(input: AssetUpdateInput! @spread): Asset @update
     deleteAsset(id: ID! @eq): Asset @delete
-    importAsset(file: Upload!): Asset
+    importAsset(file: Upload!): AssetImportResponse
         @guard
         @field(resolver: "AssetMutation@import")
 }
@@ -119,4 +119,17 @@ enum AssetTypeEnum {
     LOW_VALUE @enum(value: "Low Value")
     GRANT_FUND @enum(value: "Grant Fund")
     FURNITURE_FITTING_FIXTURE @enum(value: "Furniture, Fittings, And Fixtures")
+}
+
+type AssetImportResponse {
+    success: Boolean!
+    message: String!
+    stats: AssetImportStats
+}
+
+type AssetImportStats {
+    total_rows: Int
+    imported: Int
+    failed: Int
+    errors: [String]
 }
