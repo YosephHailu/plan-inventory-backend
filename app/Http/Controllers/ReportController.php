@@ -24,7 +24,8 @@ class ReportController extends Controller
      */
     public function onHandInventoryReport(Request $request)
     {
-        return Excel::download(new OnHandInventoryExport($request), 'on-hand-items.xlsx');
+        $filename = 'on-hand-items_' . date('Ymd_His') . '.xlsx';
+        return Excel::download(new OnHandInventoryExport($request), $filename);
     }
 
     /**
@@ -32,7 +33,8 @@ class ReportController extends Controller
      */
     public function stockMovementReport(Request $request)
     {
-        return Excel::download(new StockMovementExport($request), 'movement-report.xlsx');
+        $filename = 'stock-movement-report_' . date('Ymd_His') . '.xlsx';
+        return Excel::download(new StockMovementExport($request), $filename);
     }
 
     /**
@@ -40,7 +42,8 @@ class ReportController extends Controller
      */
     public function assetReport(Request $request)
     {
-        return Excel::download(new AssetExport($request), 'asset-report.xlsx');
+        $filename = 'asset-report_' . date('Ymd_His') . '.xlsx';
+        return Excel::download(new AssetExport($request), $filename);
     }
 
     /**
@@ -48,7 +51,8 @@ class ReportController extends Controller
      */
     public function disposedAssetReport(Request $request)
     {
-        return Excel::download(new DisposedAssetExport($request), 'disposed-asset-report.xlsx');
+        $filename = 'disposed-asset-report_' . date('Ymd_His') . '.xlsx';
+        return Excel::download(new DisposedAssetExport($request), $filename);
     }
 
     /**
@@ -56,7 +60,8 @@ class ReportController extends Controller
      */
     public function assetPhysicalCheckReport(Request $request)
     {
-        return Excel::download(new AssetPhysicalCheckExport($request), 'asset-physical-check-report.xlsx');
+        $filename = 'asset-physical-check-report_' . date('Ymd_His') . '.xlsx';
+        return Excel::download(new AssetPhysicalCheckExport($request), $filename);
     }
 
     /**
@@ -64,6 +69,7 @@ class ReportController extends Controller
      */
     public function assetImportTemplate()
     {
-        return Excel::download(new AssetImportTemplateExport(), 'asset-import-template.xlsx');
+        $filename = 'asset-import-template_' . date('Ymd_His') . '.xlsx';
+        return Excel::download(new AssetImportTemplateExport(), $filename);
     }
 }

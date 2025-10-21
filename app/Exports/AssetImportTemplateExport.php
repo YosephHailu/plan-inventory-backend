@@ -14,19 +14,17 @@ class AssetImportTemplateExport implements WithMultipleSheets
 {
     public function sheets(): array
     {
-        $sheets = [];
+        // Fetch reference data for inline dropdowns
+        $currencies = Currency::all()->pluck('name')->toArray();
+        $acquisitionTypes = AcquisitionType::all()->pluck('name')->toArray();
+        $projects = Project::all()->pluck('name')->toArray();
+        $donors = Donor::all()->pluck('name')->toArray();
+        $programAreas = ProgramArea::all()->pluck('name')->toArray();
+        $costCenters = CostCenter::all()->pluck('name')->toArray();
 
-        // Main data entry sheet
-        $sheets[] = new AssetImportTemplateMainSheet();
-
-        // Reference data sheets
-        $sheets[] = new ReferenceSheet('Currencies', Currency::all()->pluck('name')->toArray());
-        $sheets[] = new ReferenceSheet('Acquisition Types', AcquisitionType::all()->pluck('name')->toArray());
-        $sheets[] = new ReferenceSheet('Projects', Project::all()->pluck('name')->toArray());
-        $sheets[] = new ReferenceSheet('Donors', Donor::all()->pluck('name')->toArray());
-        $sheets[] = new ReferenceSheet('Program Areas', ProgramArea::all()->pluck('name')->toArray());
-        $sheets[] = new ReferenceSheet('Cost Centers', CostCenter::all()->pluck('name')->toArray());
-
-        return $sheets;
+        // Return only the main sheet with reference data
+        return [
+            new AssetImportTemplateMainSheet($currencies, $acquisitionTypes, $projects, $donors, $programAreas, $costCenters)
+        ];
     }
 }

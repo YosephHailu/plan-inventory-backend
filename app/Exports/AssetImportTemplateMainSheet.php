@@ -14,6 +14,23 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class AssetImportTemplateMainSheet implements FromArray, WithHeadings, WithStyles, WithTitle, WithColumnWidths, WithEvents
 {
+    private $currencies;
+    private $acquisitionTypes;
+    private $projects;
+    private $donors;
+    private $programAreas;
+    private $costCenters;
+
+    public function __construct(array $currencies, array $acquisitionTypes, array $projects, array $donors, array $programAreas, array $costCenters)
+    {
+        $this->currencies = $currencies;
+        $this->acquisitionTypes = $acquisitionTypes;
+        $this->projects = $projects;
+        $this->donors = $donors;
+        $this->programAreas = $programAreas;
+        $this->costCenters = $costCenters;
+    }
+
     public function array(): array
     {
         // Return empty rows for data entry (50 rows)
@@ -94,29 +111,34 @@ class AssetImportTemplateMainSheet implements FromArray, WithHeadings, WithStyle
                 $assetTypes = ['Capital', 'Low Value', 'Grant Fund', 'Furniture Fittings Fixtures'];
                 $this->addDropdown($sheet, 'B2:B1000', $assetTypes);
 
-                // Currency dropdown (Column H) - from Currencies sheet
-                $this->addDropdownFromSheet($sheet, 'H2:H1000', 'Currencies');
+                // Currency dropdown (Column H)
+                $this->addDropdown($sheet, 'H2:H1000', $this->currencies);
 
-                // Acquisition Type dropdown (Column J) - from Acquisition Types sheet
-                $this->addDropdownFromSheet($sheet, 'J2:J1000', 'Acquisition Types');
+                // Acquisition Type dropdown (Column J)
+                $this->addDropdown($sheet, 'J2:J1000', $this->acquisitionTypes);
 
-                // Project dropdown (Column L) - from Projects sheet
-                $this->addDropdownFromSheet($sheet, 'L2:L1000', 'Projects');
+                // Project dropdown (Column L)
+                $this->addDropdown($sheet, 'L2:L1000', $this->projects);
 
-                // Donor dropdown (Column O) - from Donors sheet
-                $this->addDropdownFromSheet($sheet, 'O2:O1000', 'Donors');
+                // Donor dropdown (Column O)
+                $this->addDropdown($sheet, 'O2:O1000', $this->donors);
 
-                // Program Area dropdown (Column P) - from Program Areas sheet
-                $this->addDropdownFromSheet($sheet, 'P2:P1000', 'Program Areas');
+                // Program Area dropdown (Column P)
+                $this->addDropdown($sheet, 'P2:P1000', $this->programAreas);
 
-                // Cost Center dropdown (Column Q) - from Cost Centers sheet
-                $this->addDropdownFromSheet($sheet, 'Q2:Q1000', 'Cost Centers');
+                // Cost Center dropdown (Column Q)
+                $this->addDropdown($sheet, 'Q2:Q1000', $this->costCenters);
             },
         ];
     }
 
     private function addDropdown(Worksheet $sheet, string $range, array $options)
     {
+        // Skip if no options available
+        if (empty($options)) {
+            return;
+        }
+
         $validation = $sheet->getCell(explode(':', $range)[0])->getDataValidation();
         $validation->setType(DataValidation::TYPE_LIST);
         $validation->setErrorStyle(DataValidation::STYLE_INFORMATION);
@@ -128,29 +150,7 @@ class AssetImportTemplateMainSheet implements FromArray, WithHeadings, WithStyle
         $validation->setError('Please select a value from the dropdown list.');
         $validation->setPromptTitle('Select Value');
         $validation->setPrompt('Choose from the dropdown list.');
-        $validation->setFormula1('"'.implode(',', $options).'"');
-
-        // Apply to entire range
-        $sheet->setDataValidation($range, $validation);
-    }
-
-    private function addDropdownFromSheet(Worksheet $sheet, string $range, string $sheetName)
-    {
-        $validation = $sheet->getCell(explode(':', $range)[0])->getDataValidation();
-        $validation->setType(DataValidation::TYPE_LIST);
-        $validation->setErrorStyle(DataValidation::STYLE_INFORMATION);
-        $validation->setAllowBlank(true);
-        $validation->setShowInputMessage(true);
-        $validation->setShowErrorMessage(true);
-        $validation->setShowDropDown(true);
-        $validation->setErrorTitle('Invalid Selection');
-        $validation->setError('Please select a value from the dropdown list.');
-        $validation->setPromptTitle('Select '.$sheetName);
-        $validation->setPrompt('Choose from the dropdown list.');
-
-        // Reference the other sheet - assuming max 1000 rows of reference data
-        $formula = "'".$sheetName."'!\$A\$2:\$A\$1000";
-        $validation->setFormula1($formula);
+        $validation->setFormula1('"' . implode(',', $options) . '"');
 
         // Apply to entire range
         $sheet->setDataValidation($range, $validation);
