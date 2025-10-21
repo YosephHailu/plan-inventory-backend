@@ -6,7 +6,6 @@ use App\Models\Asset;
 use App\Models\AssetCustodian;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 final class AssetCustodianMutation
 {
@@ -31,7 +30,7 @@ final class AssetCustodianMutation
         $data['assigned_at'] = Carbon::now();
 
         $assetDisposal = AssetCustodian::create($data->toArray());
-        
+
         return $assetDisposal;
     }
 
@@ -45,7 +44,7 @@ final class AssetCustodianMutation
         $data['returned'] = true;
 
         $assetCustodian->update($data->toArray());
-        
+
         return Asset::find($args['id']);
     }
 
@@ -59,7 +58,7 @@ final class AssetCustodianMutation
         $data['approved'] = true;
 
         $assetCustodian->update($data->toArray());
-        
+
         return $assetCustodian;
     }
 }

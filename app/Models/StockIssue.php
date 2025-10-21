@@ -25,13 +25,11 @@ class StockIssue extends Model
         'stock_request_id',
         'created_by_id',
         'from_where_house_id',
-        'to_where_house_id'
+        'to_where_house_id',
     ];
 
     /**
      * Get the stockRequest that owns the StockIssue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function stockRequest(): BelongsTo
     {
@@ -40,8 +38,6 @@ class StockIssue extends Model
 
     /**
      * Get the createdBy that owns the StockIssue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function createdBy(): BelongsTo
     {
@@ -50,8 +46,6 @@ class StockIssue extends Model
 
     /**
      * Get the fromWhereHouse that owns the StockIssue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function fromWhereHouse(): BelongsTo
     {
@@ -60,8 +54,6 @@ class StockIssue extends Model
 
     /**
      * Get the toWhereHouse that owns the StockIssue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function toWhereHouse(): BelongsTo
     {
@@ -70,8 +62,6 @@ class StockIssue extends Model
 
     /**
      * Get all of the stockIssueItems for the StockIssue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stockIssueItems(): HasMany
     {

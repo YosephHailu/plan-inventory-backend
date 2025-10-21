@@ -35,7 +35,7 @@ return new class extends Migration
             $table->date('canceled_at')->nullable();
             $table->boolean('canceled')->default(false);
             $table->longText('cancellation_reason')->nullable();
-            
+
             $table->boolean('waybill')->default(false);
 
             $table->timestamps();

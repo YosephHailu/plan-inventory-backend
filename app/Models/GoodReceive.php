@@ -28,24 +28,19 @@ class GoodReceive extends Model
         'project',
         'where_house_id',
         'loading_number',
-        'project_id'
+        'project_id',
     ];
 
     /**
      * Get the createdBy that owns the GoodReceive
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by_id', 'id');
     }
 
-
     /**
      * Get all of the goodReceiveItems for the 2023_07_31_170846_create_good_receives_table
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function goodReceiveItems(): HasMany
     {
@@ -54,8 +49,6 @@ class GoodReceive extends Model
 
     /**
      * Get the project that owns the GoodReceive
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function projectObject(): BelongsTo
     {
@@ -64,8 +57,6 @@ class GoodReceive extends Model
 
     /**
      * Get the itemCategory that owns the GoodReceive
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function itemCategory(): BelongsTo
     {
@@ -74,12 +65,9 @@ class GoodReceive extends Model
 
     /**
      * Get the whereHouse that owns the GoodReceive
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function whereHouse(): BelongsTo
     {
         return $this->belongsTo(WhereHouse::class);
     }
-
 }

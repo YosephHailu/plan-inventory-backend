@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\Contracts\HasApiTokens as HasApiTokensContract;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Log;
+use Laravel\Sanctum\Contracts\HasApiTokens as HasApiTokensContract;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -40,7 +40,7 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
         'email_verified_at',
         'role',
         'project_id',
-        'where_house_id'
+        'where_house_id',
     ];
 
     /**
@@ -65,16 +65,15 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
     public function scopeSearch($query, $search)
     {
         Log::debug($search);
-        return $query->where('name', "LIKE", "$search")
-            ->orWhere('phone_number', "LIKE", "$search")
-            ->orWhere('username', "LIKE", "$search")
-            ->orWhere('email', "LIKE", "$search");
+
+        return $query->where('name', 'LIKE', "$search")
+            ->orWhere('phone_number', 'LIKE', "$search")
+            ->orWhere('username', 'LIKE', "$search")
+            ->orWhere('email', 'LIKE', "$search");
     }
 
     /**
      * Get the createdBy that owns the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function createdBy(): BelongsTo
     {
@@ -83,8 +82,6 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
 
     /**
      * The roles that belong to the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles(): BelongsToMany
     {
@@ -93,8 +90,6 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
 
     /**
      * Get all of the stockRequests for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stockRequests(): HasMany
     {
@@ -103,8 +98,6 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
 
     /**
      * Get the project that owns the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function project(): BelongsTo
     {
@@ -113,8 +106,6 @@ class User extends Authenticatable implements HasApiTokensContract, HasMedia
 
     /**
      * Get the whereHouse that owns the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function whereHouse(): BelongsTo
     {

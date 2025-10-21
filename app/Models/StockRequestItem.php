@@ -12,19 +12,17 @@ class StockRequestItem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'designation_contact', 
+        'designation_contact',
         'quantity',
         'description',
         'contact_detail',
         'good_receive_item_id',
         'stock_request_id',
-        'destination_contact'
+        'destination_contact',
     ];
 
     /**
      * Get the stockRequest that owns the StockRequestItem
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function stockRequest(): BelongsTo
     {
@@ -33,8 +31,6 @@ class StockRequestItem extends Model
 
     /**
      * Get the goodReceiveItem that owns the StockRequestItem
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function goodReceiveItem(): BelongsTo
     {
@@ -43,8 +39,6 @@ class StockRequestItem extends Model
 
     /**
      * Get the stockIssueItems for the StockRequestItem
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stockIssueItems(): HasMany
     {

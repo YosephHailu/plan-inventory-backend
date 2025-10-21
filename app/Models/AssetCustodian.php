@@ -21,13 +21,11 @@ class AssetCustodian extends Model
         'returned_by_id',
         'approved',
         'approved_at',
-        'approved_by_id'
+        'approved_by_id',
     ];
 
     /**
      * Get the assignedBy that owns the AssetCustodian
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function assignedBy(): BelongsTo
     {
@@ -36,8 +34,6 @@ class AssetCustodian extends Model
 
     /**
      * Get the asset that owns the AssetCustodian
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function asset(): BelongsTo
     {
@@ -46,8 +42,6 @@ class AssetCustodian extends Model
 
     /**
      * Get the staff that owns the AssetCustodian
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function staff(): BelongsTo
     {

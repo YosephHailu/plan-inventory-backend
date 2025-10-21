@@ -38,7 +38,7 @@ class LoginMutation
 
         $user = $userProvider->retrieveByCredentials([
             $identificationKey => $args[$identificationKey],
-            'password'         => $args['password'],
+            'password' => $args['password'],
         ]);
 
         if (! $user || ! $userProvider->validateCredentials($user, $args)) {
@@ -55,7 +55,7 @@ class LoginMutation
 
         return [
             'token' => $user->createToken('default', ['*'], now()->addMinutes(60))->plainTextToken,
-            'user' => $user
+            'user' => $user,
         ];
     }
 
@@ -69,4 +69,3 @@ class LoginMutation
         return $this->config;
     }
 }
-

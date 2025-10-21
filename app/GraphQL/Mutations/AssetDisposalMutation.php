@@ -43,8 +43,7 @@ final class AssetDisposalMutation
         $asset->disposed_at = Carbon::now();
         $asset->disposed = true;
         $asset->save();
-        
+
         return $assetDisposal;
     }
-
 }

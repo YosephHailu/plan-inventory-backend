@@ -20,10 +20,10 @@ final class MeasurementUnitMutation
     {
         $measurementUnit = UnitOfMeasurement::find($args['id']);
 
-        if($measurementUnit->items()->exists()) {
+        if ($measurementUnit->items()->exists()) {
             throw new ValidationException([
-               '404' => __('Related resource exists!'),
-           ], __('Related resource exists'));
+                '404' => __('Related resource exists!'),
+            ], __('Related resource exists'));
         } else {
             $measurementUnit->delete();
         }

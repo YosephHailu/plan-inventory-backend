@@ -7,7 +7,6 @@ use App\Models\PermissionType;
 use App\Models\Role;
 use App\Models\RolePermission;
 use App\Models\RolePermissionType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -19,7 +18,7 @@ class RoleSeeder extends Seeder
     {
         $role = Role::firstOrCreate([
             'name' => 'admin',
-        ],[
+        ], [
             'name' => 'admin',
             'code' => 'admin',
             'description' => 'admin',
@@ -28,12 +27,12 @@ class RoleSeeder extends Seeder
         $permissions = Permission::all();
         $permissionTypes = PermissionType::all();
 
-        foreach($permissions as $permission) {
+        foreach ($permissions as $permission) {
             $rolePermission = RolePermission::firstOrCreate([
                 'role_id' => $role->id,
                 'permission_id' => $permission->id,
             ]);
-            foreach($permissionTypes as $permissionType) {
+            foreach ($permissionTypes as $permissionType) {
                 RolePermissionType::firstOrCreate([
                     'role_permission_id' => $rolePermission->id,
                     'permission_type_id' => $permissionType->id,

@@ -4,9 +4,8 @@ namespace App\GraphQL\Queries;
 
 use App\Models\Asset;
 use App\Models\GoodReceive;
-use App\Models\StockRequestItem;
 use App\Models\StockIssueItem;
-use Illuminate\Support\Facades\Log;
+use App\Models\StockRequestItem;
 use Illuminate\Support\Facades\DB;
 
 final class StatisticQuery
@@ -23,17 +22,17 @@ final class StatisticQuery
     public function dashboardCount($_, array $args)
     {
         $response = collect([
-            "total_assets" => 0,
-            "total_available_assets" => 0,
-            "total_disposed_assets" => 0,
+            'total_assets' => 0,
+            'total_available_assets' => 0,
+            'total_disposed_assets' => 0,
 
-            "total_items" => 0,
-            "total_stock_request_items" => 0,
-            "total_stock_issue_items" => 0,
+            'total_items' => 0,
+            'total_stock_request_items' => 0,
+            'total_stock_issue_items' => 0,
         ]);
 
         $response['total_assets'] = Asset::count();
-        $response['total_available_assets'] = Asset::where('disposed', '!=', true)->whereDoesntHave('assetCustodians', function($q) {
+        $response['total_available_assets'] = Asset::where('disposed', '!=', true)->whereDoesntHave('assetCustodians', function ($q) {
             return $q->where('returned', false);
         })->count();
         $response['total_disposed_assets'] = Asset::where('disposed', true)->count();
@@ -45,12 +44,12 @@ final class StatisticQuery
         return $response;
     }
 
-
     public function assetCountByTypes($_, array $args)
     {
         $assets = Asset::select('asset_type', DB::raw('COUNT(*) as count'))
             ->groupBy('asset_type')
             ->get();
+
         return $assets;
     }
 

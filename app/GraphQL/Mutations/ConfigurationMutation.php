@@ -2,9 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Constants\FileFolders;
 use App\Models\Configuration;
-use Exception;
 
 final class ConfigurationMutation
 {

@@ -24,13 +24,11 @@ class StockRequest extends Model
         'approved_by_id',
         'rejected_by_id',
         'created_by_id',
-        'status'
+        'status',
     ];
 
     /**
      * Get the rejectedBy that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function rejectedBy(): BelongsTo
     {
@@ -39,8 +37,6 @@ class StockRequest extends Model
 
     /**
      * Get the approvedBy that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function approvedBy(): BelongsTo
     {
@@ -49,8 +45,6 @@ class StockRequest extends Model
 
     /**
      * Get the checkedBy that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function checkedBy(): BelongsTo
     {
@@ -59,8 +53,6 @@ class StockRequest extends Model
 
     /**
      * Get the department that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function department(): BelongsTo
     {
@@ -69,8 +61,6 @@ class StockRequest extends Model
 
     /**
      * Get the whereHouse that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function whereHouse(): BelongsTo
     {
@@ -79,8 +69,6 @@ class StockRequest extends Model
 
     /**
      * Get the officeLocation that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function officeLocation(): BelongsTo
     {
@@ -89,8 +77,6 @@ class StockRequest extends Model
 
     /**
      * Get all of the stockRequestItems for the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stockRequestItems(): HasMany
     {
@@ -99,8 +85,6 @@ class StockRequest extends Model
 
     /**
      * Get the stockIssue associated with the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function stockIssue(): HasOne
     {

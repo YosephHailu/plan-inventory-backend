@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('abbreviation')->unique();
             $table->longText('description')->nullable();
-            
+
             $table->timestamps();
         });
     }

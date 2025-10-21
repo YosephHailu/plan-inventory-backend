@@ -14,8 +14,6 @@ class RolePermissionType extends Model
 
     /**
      * Get the rolePermission that owns the RolePermissionType
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function rolePermission(): BelongsTo
     {
@@ -24,8 +22,6 @@ class RolePermissionType extends Model
 
     /**
      * Get the permissionType that owns the RolePermissionType
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function permissionType(): BelongsTo
     {

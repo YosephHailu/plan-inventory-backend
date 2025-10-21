@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Exports\OnHandInventoryExport;
-use App\Exports\DisposedAssetExport;
-use App\Exports\StockMovementExport;
-use App\Exports\AssetPhysicalCheckExport;
 use App\Exports\AssetExport;
 use App\Exports\AssetImportTemplateExport;
-use Illuminate\Support\Facades\Log;
+use App\Exports\AssetPhysicalCheckExport;
+use App\Exports\DisposedAssetExport;
+use App\Exports\OnHandInventoryExport;
+use App\Exports\StockMovementExport;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller

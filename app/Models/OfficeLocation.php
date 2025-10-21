@@ -17,6 +17,6 @@ class OfficeLocation extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'lat_lng' => 'object'
+        'lat_lng' => 'object',
     ];
 }

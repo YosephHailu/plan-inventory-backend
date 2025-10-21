@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('outline_no');
             $table->longText('description')->nullable();
-            
+
             $table->timestamps();
         });
     }

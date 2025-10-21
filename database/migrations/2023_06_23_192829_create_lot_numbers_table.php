@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('lot_number')->unique();
             $table->longText('description')->nullable();
-            
+
             $table->timestamps();
         });
     }

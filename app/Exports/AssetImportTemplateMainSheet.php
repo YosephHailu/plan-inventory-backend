@@ -3,14 +3,14 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
-use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class AssetImportTemplateMainSheet implements FromArray, WithHeadings, WithStyles, WithTitle, WithColumnWidths, WithEvents
 {
@@ -128,7 +128,7 @@ class AssetImportTemplateMainSheet implements FromArray, WithHeadings, WithStyle
         $validation->setError('Please select a value from the dropdown list.');
         $validation->setPromptTitle('Select Value');
         $validation->setPrompt('Choose from the dropdown list.');
-        $validation->setFormula1('"' . implode(',', $options) . '"');
+        $validation->setFormula1('"'.implode(',', $options).'"');
 
         // Apply to entire range
         $sheet->setDataValidation($range, $validation);
@@ -145,11 +145,11 @@ class AssetImportTemplateMainSheet implements FromArray, WithHeadings, WithStyle
         $validation->setShowDropDown(true);
         $validation->setErrorTitle('Invalid Selection');
         $validation->setError('Please select a value from the dropdown list.');
-        $validation->setPromptTitle('Select ' . $sheetName);
+        $validation->setPromptTitle('Select '.$sheetName);
         $validation->setPrompt('Choose from the dropdown list.');
 
         // Reference the other sheet - assuming max 1000 rows of reference data
-        $formula = "'" . $sheetName . "'!\$A\$2:\$A\$1000";
+        $formula = "'".$sheetName."'!\$A\$2:\$A\$1000";
         $validation->setFormula1($formula);
 
         // Apply to entire range

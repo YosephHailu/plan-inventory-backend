@@ -21,6 +21,7 @@ final class StockRequestQuery
     {
         $requests = StockRequest::where('created_by_id', Auth::id())->get();
         Log::debug($requests);
+
         return $requests;
     }
 }

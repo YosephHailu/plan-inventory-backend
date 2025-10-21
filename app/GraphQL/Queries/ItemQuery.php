@@ -3,10 +3,8 @@
 namespace App\GraphQL\Queries;
 
 use App\Models\GoodReceiveItem;
-use App\Models\Item;
 use App\Models\StockIssueItem;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 
 final class ItemQuery
 {
@@ -22,20 +20,20 @@ final class ItemQuery
     public function binCard($_, array $args)
     {
         $goodReceiveItem = GoodReceiveItem::find($args['id']);
-        $stockIssueItems = StockIssueItem::whereHas('stockRequestItem', function($query) use ($goodReceiveItem) {
+        $stockIssueItems = StockIssueItem::whereHas('stockRequestItem', function ($query) use ($goodReceiveItem) {
             $query->where('good_receive_item_id', $goodReceiveItem->id);
         });
 
-        if( ($args['date_from'] ?? false) && ($args['date_to'] ?? false) ) {
+        if (($args['date_from'] ?? false) && ($args['date_to'] ?? false)) {
             $stockIssueItems->whereBetween('created_at', [
                 Carbon::parse($args['date_from'])->startOfDay(),
-                Carbon::parse($args['date_to'])->endOfDay()
+                Carbon::parse($args['date_to'])->endOfDay(),
             ]);
         }
 
         return [
             'stockIssueItems' => $stockIssueItems->get()->sortByDesc('created_at'),
-            'goodReceiveItem' => $goodReceiveItem
+            'goodReceiveItem' => $goodReceiveItem,
         ];
     }
 }

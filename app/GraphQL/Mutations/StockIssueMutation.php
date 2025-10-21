@@ -28,7 +28,7 @@ final class StockIssueMutation
     public function store($rootValue, array $args)
     {
         Log::debug($args);
-        
+
         $data = collect($args)->only([
             'transport_mode',
             'date',
@@ -40,26 +40,26 @@ final class StockIssueMutation
             'waybill',
             'stock_request_id',
             'from_where_house_id',
-            'to_where_house_id'
+            'to_where_house_id',
         ]);
 
         $data['issuance_number'] = Str::upper(Str::random(5));
         $data['created_by_id'] = Auth::Id();
         DB::beginTransaction();
         $stockRequest = StockRequest::find($args['stock_request_id']);
-        $stockRequest->status = "ISSUED";
+        $stockRequest->status = 'ISSUED';
         $stockRequest->save();
-        if($stockRequest->stockIssue) {
-            throw new Exception("STOCK_ISSUANCE_ALREADY_EXISTS!");
+        if ($stockRequest->stockIssue) {
+            throw new Exception('STOCK_ISSUANCE_ALREADY_EXISTS!');
         }
         $stockIssue = StockIssue::create($data->toArray());
-        
-        foreach($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {
+
+        foreach ($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {
             $stockRequestItem['stock_request_id'] = $stockRequest->id;
             StockIssueItem::create([
                 'stock_request_item_id' => $stockRequestItem->id,
                 'stock_issue_id' => $stockIssue->id,
-                'quantity' => $stockRequestItem->quantity
+                'quantity' => $stockRequestItem->quantity,
             ]);
 
             $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
@@ -76,10 +76,10 @@ final class StockIssueMutation
     {
         DB::beginTransaction();
         $stockIssue = StockIssue::find($args['id']);
-        $stockIssue->status = "APPROVED";
+        $stockIssue->status = 'APPROVED';
         $stockIssue->save();
 
-        foreach($args['input'] as $issuance) {
+        foreach ($args['input'] as $issuance) {
             $stockIssueItem = StockIssueItem::find($issuance['id']);
             $stockIssueItem->approved_at = Carbon::now();
             $stockIssueItem->approved_by_id = Auth::Id();
@@ -93,7 +93,7 @@ final class StockIssueMutation
             $goodReceiveItem->save();
         }
 
-        if($goodReceiveItem ?? false) {
+        if ($goodReceiveItem ?? false) {
             $new_goodReceive = $goodReceiveItem->goodReceive->only([
                 'received_date',
                 'remark',
@@ -106,32 +106,32 @@ final class StockIssueMutation
                 'item_category_id',
                 'batch_number',
                 'project_id',
-                'loading_number'
+                'loading_number',
             ]);
             $new_goodReceive['created_by_id'] = Auth::Id();
             $new_goodReceive['where_house_id'] = $stockIssue->to_where_house_id;
-            $new_goodReceive['reference_number'] =  Str::random(10);
+            $new_goodReceive['reference_number'] = Str::random(10);
             $goodReceive = GoodReceive::create($new_goodReceive);
 
             $stockRequest = StockRequest::find($stockIssue->stock_request_id);
 
-            foreach($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {    
+            foreach ($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {
                 $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
 
                 $new_goodReceiveItem = $goodReceiveItem->only([
-                    "unit_price",
-                    "description",
-                    "condition",
-                    "expiry_date",
-                    "comment",
-                    "donor_id",
-                    "item_id",
-                    "condition_id",
-                    "project_id",
-                    "stock_type_id",
-                    "unit_of_measurement_id"
+                    'unit_price',
+                    'description',
+                    'condition',
+                    'expiry_date',
+                    'comment',
+                    'donor_id',
+                    'item_id',
+                    'condition_id',
+                    'project_id',
+                    'stock_type_id',
+                    'unit_of_measurement_id',
                 ]);
-                
+
                 $new_goodReceiveItem['ordered_quantity'] = $stockRequestItem->quantity;
                 $new_goodReceiveItem['received_quantity'] = $stockRequestItem->quantity;
                 $new_goodReceiveItem['balance_due'] = $stockRequestItem->quantity;
@@ -142,7 +142,7 @@ final class StockIssueMutation
         }
 
         DB::commit();
+
         return $stockRequest;
     }
-
 }

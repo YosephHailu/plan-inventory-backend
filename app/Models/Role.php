@@ -15,18 +15,14 @@ class Role extends Model
 
     /**
      * The permissions that belong to the Role
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function permissions(): BelongsToMany
     {
         return $this->belongsToMany(Permission::class, RolePermission::class, 'role_id', 'permission_id');
     }
-    
+
     /**
      * Get all of the rolePermissions   for the Role
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function rolePermissions(): HasMany
     {

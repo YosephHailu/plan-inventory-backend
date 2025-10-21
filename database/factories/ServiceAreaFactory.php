@@ -18,7 +18,7 @@ class ServiceAreaFactory extends Factory
     public function definition(): array
     {
         $city = fake()->city();
-        
+
         return [
             'name' => $city,
             'description' => $city,

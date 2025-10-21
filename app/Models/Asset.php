@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Builder;
 
 class Asset extends Model
 {
@@ -35,46 +35,50 @@ class Asset extends Model
         'donor_id',
         'created_by_id',
         'project_id',
-        'cost_center_id'
+        'cost_center_id',
     ];
-    
-    function ScopeSearch(Builder $query, $value) {
+
+    public function ScopeSearch(Builder $query, $value)
+    {
         return $query->where('item_name', 'like', "%$value%")
             ->orWhere('tag_number', 'like', "%$value%");
     }
 
-    function ScopeStaff(Builder $query, $value) {
-        return $query->whereHas('assetCustodians', function($q) use($value) {
+    public function ScopeStaff(Builder $query, $value)
+    {
+        return $query->whereHas('assetCustodians', function ($q) use ($value) {
             return $q->where('staff_id', $value)->where('returned', '!=', true);
         });
     }
 
-    function ScopeCondition(Builder $query, $value) {
-        return $query->whereHas('assetPhysicalCheck', function($q) use($value) {
+    public function ScopeCondition(Builder $query, $value)
+    {
+        return $query->whereHas('assetPhysicalCheck', function ($q) use ($value) {
             return $q->where('condition_id', $value);
         });
     }
 
-    function getAvailableAttribute() {
-        return $this->where('disposed', '!=', true)->whereDoesntHave('assetCustodians', function($q) {
+    public function getAvailableAttribute()
+    {
+        return $this->where('disposed', '!=', true)->whereDoesntHave('assetCustodians', function ($q) {
             return $q->where('returned', false)->where('approved', true);
         })->exists();
     }
 
-    function ScopeAvailable(Builder $query, $value) {
-        return $query->where('disposed', '!=', true)->whereDoesntHave('assetCustodians', function($q) {
+    public function ScopeAvailable(Builder $query, $value)
+    {
+        return $query->where('disposed', '!=', true)->whereDoesntHave('assetCustodians', function ($q) {
             return $q->where('returned', false);
         });
     }
 
-    function ScopeProject_Id(Builder $query, $value) {
+    public function ScopeProject_Id(Builder $query, $value)
+    {
         return $query->where('project_id', $value);
     }
 
     /**
      * Get the checkedBy that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function checkedBy(): BelongsTo
     {
@@ -83,17 +87,14 @@ class Asset extends Model
 
     /**
      * Get the checkedBy that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function disposedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'disposed_by_id', 'id');
     }
+
     /**
      * Get the donor that owns the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function donor(): BelongsTo
     {
@@ -102,8 +103,6 @@ class Asset extends Model
 
     /**
      * Get the programArea that owns the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function programArea(): BelongsTo
     {
@@ -112,8 +111,6 @@ class Asset extends Model
 
     /**
      * Get the acquisitionType that owns the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function acquisitionType(): BelongsTo
     {
@@ -122,8 +119,6 @@ class Asset extends Model
 
     /**
      * Get the assetCustodian associated with the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function assetCustodian(): HasOne
     {
@@ -132,8 +127,6 @@ class Asset extends Model
 
     /**
      * Get all of the assetCustodians for the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function assetCustodians(): HasMany
     {
@@ -142,8 +135,6 @@ class Asset extends Model
 
     /**
      * Get the assetDisposal associated with the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function assetDisposal(): HasOne
     {
@@ -152,8 +143,6 @@ class Asset extends Model
 
     /**
      * Get all of the assetPhysicalChecks for the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function assetPhysicalChecks(): HasMany
     {
@@ -162,8 +151,6 @@ class Asset extends Model
 
     /**
      * Get the assetPhysicalCheck associated with the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function assetPhysicalCheck(): HasOne
     {
@@ -172,8 +159,6 @@ class Asset extends Model
 
     /**
      * Get the currency that owns the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function currency(): BelongsTo
     {
@@ -182,8 +167,6 @@ class Asset extends Model
 
     /**
      * Get the project that owns the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function project(): BelongsTo
     {
@@ -192,8 +175,6 @@ class Asset extends Model
 
     /**
      * Get the costCenter that owns the Asset
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function costCenter(): BelongsTo
     {

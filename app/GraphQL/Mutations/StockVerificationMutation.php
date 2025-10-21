@@ -21,21 +21,20 @@ final class StockVerificationMutation
     public function store($rootValue, array $args)
     {
         Log::debug($args);
-        
+
         $data = collect($args)->only([
             'quantity',
             'remarks',
             'good_receive_item_id',
-            'condition_id'
+            'condition_id',
         ]);
 
         DB::beginTransaction();
         $data['verified_by_id'] = Auth::Id();
         $stockVerification = StockVerification::create($data->toArray());
-        
+
         DB::commit();
 
         return $stockVerification;
     }
-
 }

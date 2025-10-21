@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('checked_at')->nullable();
             $table->boolean('checked')->default(false);
             $table->longText('check_remark')->nullable();
-            
+
             $table->foreignId('approved_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->date('approved_at')->nullable();
             $table->boolean('approved')->default(false);

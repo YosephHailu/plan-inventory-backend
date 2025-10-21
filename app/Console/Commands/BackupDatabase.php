@@ -40,7 +40,7 @@ class BackupDatabase extends Command
         $timestamp = Carbon::now()->format('Y-m-d_H-i-s');
         $filename = "$backupPath/backup_$timestamp.sql";
 
-        if (!file_exists($backupPath)) {
+        if (! file_exists($backupPath)) {
             mkdir($backupPath, 0755, true);
         }
 
@@ -58,9 +58,9 @@ class BackupDatabase extends Command
         exec($command, $output, $result);
 
         if ($result == 0) {
-            $this->info("Backup was successful!");
+            $this->info('Backup was successful!');
         } else {
-            $this->error("Backup failed.");
+            $this->error('Backup failed.');
         }
     }
 }

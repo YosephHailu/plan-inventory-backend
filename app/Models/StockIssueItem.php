@@ -20,8 +20,6 @@ class StockIssueItem extends Model
 
     /**
      * Get the stockIssue that owns the StockIssueItem
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function stockIssue(): BelongsTo
     {
@@ -30,12 +28,9 @@ class StockIssueItem extends Model
 
     /**
      * Get the stockRequestItem that owns the StockIssueItem
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function stockRequestItem(): BelongsTo
     {
         return $this->belongsTo(StockRequestItem::class);
     }
-
 }

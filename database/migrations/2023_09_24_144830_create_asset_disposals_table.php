@@ -28,7 +28,7 @@ return new class extends Migration
             $table->date('approved_at')->nullable();
             $table->boolean('approved')->default(false);
             $table->longText('approval_remark')->nullable();
-            
+
             $table->foreignId('created_by_id')->nullable()->constrained('users', 'id')->onUpdate('cascade')->onDelete('restrict');
 
             $table->timestamps();

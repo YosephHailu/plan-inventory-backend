@@ -3,15 +3,16 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class ReferenceSheet implements FromArray, WithHeadings, WithStyles, WithTitle, WithColumnWidths
 {
     private $title;
+
     private $data;
 
     public function __construct(string $title, array $data)
@@ -40,8 +41,8 @@ class ReferenceSheet implements FromArray, WithHeadings, WithStyles, WithTitle, 
                 'font' => ['bold' => true, 'size' => 12],
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                    'startColor' => ['rgb' => 'D9E1F2']
-                ]
+                    'startColor' => ['rgb' => 'D9E1F2'],
+                ],
             ],
         ];
     }

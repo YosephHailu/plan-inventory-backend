@@ -7,10 +7,9 @@ use App\Models\StockIssue;
 use App\Models\StockRequest;
 use App\Models\StockRequestItem;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Exception;
 
 final class StockRequestMutation
 {
@@ -34,15 +33,15 @@ final class StockRequestMutation
             'where_house_id',
             'department_id',
             'checked_by_id',
-            'approved_by_id'
+            'approved_by_id',
         ]);
 
         DB::beginTransaction();
         $data['created_by_id'] = Auth::Id();
         $data['where_house_id'] = Auth::user()->where_house_id ?? $data['where_house_id'];
         $stockRequest = StockRequest::create($data->toArray());
-        
-        foreach($args['stockRequestItems'] as $stockRequestItem) {
+
+        foreach ($args['stockRequestItems'] as $stockRequestItem) {
             $stockRequestItem['stock_request_id'] = $stockRequest->id;
             $stockRequestItem = StockRequestItem::create($stockRequestItem);
             // $item = Item::find($stockRequestItem->item_id);
@@ -58,10 +57,10 @@ final class StockRequestMutation
     {
         DB::beginTransaction();
         $stockRequest = StockRequest::find($args['id']);
-        $stockRequest->status = "CHECKED";
+        $stockRequest->status = 'CHECKED';
         $stockRequest->save();
 
-        foreach($args['input'] as $stockRequestItemId) {
+        foreach ($args['input'] as $stockRequestItemId) {
             $stockRequestItem = StockRequestItem::find($stockRequestItemId);
             $stockRequestItem->checked_at = Carbon::now();
             $stockRequestItem->checked_by_id = Auth::Id();
@@ -70,6 +69,7 @@ final class StockRequestMutation
         }
 
         DB::commit();
+
         return $stockRequest;
     }
 
@@ -77,10 +77,10 @@ final class StockRequestMutation
     {
         DB::beginTransaction();
         $stockRequest = StockRequest::find($args['id']);
-        $stockRequest->status = "APPROVED";
+        $stockRequest->status = 'APPROVED';
         $stockRequest->save();
 
-        foreach($args['input'] as $stockRequestItemId) {
+        foreach ($args['input'] as $stockRequestItemId) {
             $stockRequestItem = StockRequestItem::find($stockRequestItemId);
             $stockRequestItem->approved_at = Carbon::now();
             $stockRequestItem->approved_by_id = Auth::Id();
@@ -89,6 +89,7 @@ final class StockRequestMutation
         }
 
         DB::commit();
+
         return $stockRequest;
     }
 
@@ -96,12 +97,13 @@ final class StockRequestMutation
     {
         DB::beginTransaction();
         $stockRequest = StockRequest::find($args['id']);
-        $stockRequest->status = "REJECTED";
+        $stockRequest->status = 'REJECTED';
         $stockRequest->rejected_at = Carbon::now();
         $stockRequest->rejected_by_id = Auth::Id();
         $stockRequest->rejected = true;
         $stockRequest->save();
         DB::commit();
+
         return $stockRequest;
     }
 
@@ -109,17 +111,17 @@ final class StockRequestMutation
     {
         $stockRequest = StockRequest::find($args['id']);
         DB::beginTransaction();
-            try {
-                if(StockIssue::where('stock_request_id', $stockRequest->id)->exists()) {
-                    throw new Exception("CAN'T DELETE RESOURCE!");
-                }
-                $stockRequest->stockRequestItems()->delete();
-                $stockRequest->delete();
-            }catch(Exception $e) {
+        try {
+            if (StockIssue::where('stock_request_id', $stockRequest->id)->exists()) {
                 throw new Exception("CAN'T DELETE RESOURCE!");
             }
+            $stockRequest->stockRequestItems()->delete();
+            $stockRequest->delete();
+        } catch (Exception $e) {
+            throw new Exception("CAN'T DELETE RESOURCE!");
+        }
         DB::commit();
+
         return $stockRequest;
     }
-
 }

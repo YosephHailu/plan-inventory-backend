@@ -26,8 +26,6 @@ class AssetDisposal extends Model
 
     /**
      * Get the asset that owns the AssetDisposal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function asset(): BelongsTo
     {
@@ -36,8 +34,6 @@ class AssetDisposal extends Model
 
     /**
      * Get the disposalReason that owns the AssetDisposal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function disposalReason(): BelongsTo
     {
@@ -46,8 +42,6 @@ class AssetDisposal extends Model
 
     /**
      * Get the disposalType that owns the AssetDisposal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function disposalType(): BelongsTo
     {
@@ -56,8 +50,6 @@ class AssetDisposal extends Model
 
     /**
      * Get the currency that owns the AssetDisposal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function currency(): BelongsTo
     {

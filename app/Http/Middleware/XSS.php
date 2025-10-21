@@ -10,7 +10,6 @@ class XSS
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
@@ -18,7 +17,7 @@ class XSS
     {
         $input = $request->all();
 
-        array_walk_recursive($input, function(&$input) {
+        array_walk_recursive($input, function (&$input) {
             $input = strip_tags($input);
         });
 

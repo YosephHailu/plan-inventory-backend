@@ -6,7 +6,6 @@ use App\Constants\ItemList;
 use App\Constants\StaffData;
 use App\Models\Item;
 use App\Models\Staff;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StaffSeeder extends Seeder
@@ -17,11 +16,11 @@ class StaffSeeder extends Seeder
     public function run(): void
     {
         //
-        foreach(StaffData::STAFFS as $staff) {
+        foreach (StaffData::STAFFS as $staff) {
             Staff::firstOrCreate($staff);
         }
 
-        foreach(ItemList::ITEMS as $item) {
+        foreach (ItemList::ITEMS as $item) {
             $item['created_by_id'] = 1;
             Item::firstOrCreate($item);
         }

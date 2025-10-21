@@ -10,5 +10,4 @@ class UnitOfMeasurement extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'abbreviation'];
-
 }

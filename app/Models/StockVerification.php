@@ -15,13 +15,11 @@ class StockVerification extends Model
         'remarks',
         'good_receive_item_id',
         'condition_id',
-        'verified_by_id'
+        'verified_by_id',
     ];
 
     /**
      * Get the goodReceiveItem that owns the StockVerification
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function goodReceiveItem(): BelongsTo
     {
@@ -30,8 +28,6 @@ class StockVerification extends Model
 
     /**
      * Get the verifiedBy that owns the StockRequest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function verifiedBy(): BelongsTo
     {
@@ -40,12 +36,9 @@ class StockVerification extends Model
 
     /**
      * Get the condition that owns the StockVerification
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function condition(): BelongsTo
     {
         return $this->belongsTo(Condition::class);
     }
-
 }

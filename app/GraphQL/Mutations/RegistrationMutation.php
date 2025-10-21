@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations;
 
-use App\Constants\FileFolders;
 use App\Models\User;
 use Carbon\Carbon;
 use DanielDeWit\LighthouseSanctum\Contracts\Services\EmailVerificationServiceInterface;
@@ -19,8 +18,6 @@ use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\Contracts\HasApiTokens;
 
 class RegistrationMutation
@@ -32,7 +29,8 @@ class RegistrationMutation
         protected Config $config,
         protected Hasher $hash,
         protected EmailVerificationServiceInterface $emailVerificationService,
-    ) {}
+    ) {
+    }
 
     public function backupDatabase($rootValue, array $args)
     {
@@ -56,7 +54,7 @@ class RegistrationMutation
             $userProvider->createModel(),
             $this->getPropertiesFromArgs($args),
         );
-        
+
         $user->email_verified_at = Carbon::now();
         $user->roles()->sync($args['roles']);
 
@@ -71,7 +69,7 @@ class RegistrationMutation
             $user->sendEmailVerificationNotification();
 
             return [
-                'token'  => null,
+                'token' => null,
                 'status' => 'MUST_VERIFY_EMAIL',
             ];
         }
@@ -81,7 +79,7 @@ class RegistrationMutation
         }
 
         return [
-            'token'  => $user->createToken('default')->plainTextToken,
+            'token' => $user->createToken('default')->plainTextToken,
             'status' => 'SUCCESS',
         ];
     }
@@ -127,16 +125,16 @@ class RegistrationMutation
 
     public function update(mixed $_, array $args)
     {
-        if(User::where([['id', '!=', $args['id']], ['email', $args['email']]])->exists()) {
-            throw new Exception("EMAIL_ALREADY_EXISTS!");
+        if (User::where([['id', '!=', $args['id']], ['email', $args['email']]])->exists()) {
+            throw new Exception('EMAIL_ALREADY_EXISTS!');
         }
 
-        $data = collect($args)->only([    
+        $data = collect($args)->only([
             'name',
             'email',
             'username',
             'where_house_id',
-            'project_id'
+            'project_id',
         ]);
 
         $user = User::find($args['id']);
@@ -145,7 +143,7 @@ class RegistrationMutation
 
         return $user;
     }
-    
+
     public function assignRole($rootValue, array $args)
     {
         $user = User::find($args['user_id']);

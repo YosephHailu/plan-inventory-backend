@@ -27,9 +27,9 @@ Route::get('/', function () {
 
 Route::get('/sync', function () {
     $all_users = DB::table('categories')->join('service_cities', 'service_cities.id', '=', 'users.service_city')->get();
+
     return $all_users;
     // Log::debug(DB::table('users')->get());
 });
-
 
 // "registration_id": "a2237c38-fb75-44af-b1e6-447ace2ce126"

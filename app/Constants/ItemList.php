@@ -2,1973 +2,1971 @@
 
 namespace App\Constants;
 
-
 class ItemList
 {
-    const ITEMS = [        	
+    const ITEMS = [
         [
-        "name" => "Photocopy machine	"
+            'name' => 'Photocopy machine	',
         ],
         [
-        "name" => "Box	"
+            'name' => 'Box	',
         ],
         [
-        "name" => "Toner	"
+            'name' => 'Toner	',
         ],
         [
-        "name" => "Binder	"
+            'name' => 'Binder	',
         ],
         [
-        "name" => "Paper	"
+            'name' => 'Paper	',
         ],
         [
-        "name" => "Staples	"
+            'name' => 'Staples	',
         ],
         [
-        "name" => "Stapler	"
+            'name' => 'Stapler	',
         ],
         [
-        "name" => "Chart Maker	"
+            'name' => 'Chart Maker	',
         ],
         [
-        "name" => "File Holder	"
+            'name' => 'File Holder	',
         ],
         [
-        "name" => "White	"
+            'name' => 'White	',
         ],
         [
-        "name" => "Note Book	"
+            'name' => 'Note Book	',
         ],
         [
-        "name" => "Sticky note	"
+            'name' => 'Sticky note	',
         ],
         [
-        "name" => "HighLighter	"
+            'name' => 'HighLighter	',
         ],
         [
-        "name" => "Plaster	"
+            'name' => 'Plaster	',
         ],
         [
-        "name" => "Masking Tape	"
+            'name' => 'Masking Tape	',
         ],
         [
-        "name" => "Uhu	"
+            'name' => 'Uhu	',
         ],
         [
-        "name" => "Stepler remover	"
+            'name' => 'Stepler remover	',
         ],
         [
-        "name" => "Plastic folder	"
+            'name' => 'Plastic folder	',
         ],
         [
-        "name" => "Computer cleaner	"
+            'name' => 'Computer cleaner	',
         ],
         [
-        "name" => "Binding	"
+            'name' => 'Binding	',
         ],
         [
-        "name" => "Scissor	"
+            'name' => 'Scissor	',
         ],
         [
-        "name" => "Converter/divider	"
+            'name' => 'Converter/divider	',
         ],
         [
-        "name" => "Envelope	"
+            'name' => 'Envelope	',
         ],
         [
-        "name" => "Office Furniture	"
+            'name' => 'Office Furniture	',
         ],
         [
-        "name" => "Laminating film	"
+            'name' => 'Laminating film	',
         ],
         [
-        "name" => "LCD Monitor	"
+            'name' => 'LCD Monitor	',
         ],
         [
-        "name" => "Swivel chair	"
+            'name' => 'Swivel chair	',
         ],
         [
-        "name" => "Multipurpose printer	"
+            'name' => 'Multipurpose printer	',
         ],
         [
-        "name" => "Pen Holder	"
+            'name' => 'Pen Holder	',
         ],
         [
-        "name" => "Notice board	"
+            'name' => 'Notice board	',
         ],
         [
-        "name" => "Power	"
+            'name' => 'Power	',
         ],
         [
-        "name" => "Scotch tape	"
+            'name' => 'Scotch tape	',
         ],
         [
-        "name" => "Headset	"
+            'name' => 'Headset	',
         ],
         [
-        "name" => "Wireless mouse	"
+            'name' => 'Wireless mouse	',
         ],
         [
-        "name" => "Flash	"
+            'name' => 'Flash	',
         ],
         [
-        "name" => "Software	"
+            'name' => 'Software	',
         ],
         [
-        "name" => "Scanner	"
+            'name' => 'Scanner	',
         ],
         [
-        "name" => "Printer	"
+            'name' => 'Printer	',
         ],
         [
-        "name" => "Marker	"
+            'name' => 'Marker	',
         ],
         [
-        "name" => "Map	"
+            'name' => 'Map	',
         ],
         [
-        "name" => "PIE logo	"
+            'name' => 'PIE logo	',
         ],
         [
-        "name" => "Smoke detectors	"
+            'name' => 'Smoke detectors	',
         ],
         [
-        "name" => "Fire Extingushers	"
+            'name' => 'Fire Extingushers	',
         ],
         [
-        "name" => "First aid kit	"
+            'name' => 'First aid kit	',
         ],
         [
-        "name" => "Reflective vest	"
+            'name' => 'Reflective vest	',
         ],
         [
-        "name" => "Loud speaker	"
+            'name' => 'Loud speaker	',
         ],
         [
-        "name" => "Camera	"
+            'name' => 'Camera	',
         ],
         [
-        "name" => "mobile charger	"
+            'name' => 'mobile charger	',
         ],
         [
-        "name" => "Televsion	"
+            'name' => 'Televsion	',
         ],
         [
-        "name" => "Monitor	"
+            'name' => 'Monitor	',
         ],
         [
-        "name" => "Wi-Fi modem	"
+            'name' => 'Wi-Fi modem	',
         ],
         [
-        "name" => "Meeting chair	"
+            'name' => 'Meeting chair	',
         ],
         [
-        "name" => "Hard disk	"
+            'name' => 'Hard disk	',
         ],
         [
-        "name" => "Smart UPS	"
+            'name' => 'Smart UPS	',
         ],
         [
-        "name" => "Computer	"
+            'name' => 'Computer	',
         ],
         [
-        "name" => "C-EXV for Canon	"
+            'name' => 'C-EXV for Canon	',
         ],
         [
-        "name" => "book	"
+            'name' => 'book	',
         ],
         [
-        "name" => "Laptop	"
+            'name' => 'Laptop	',
         ],
         [
-        "name" => "pointer	"
+            'name' => 'pointer	',
         ],
         [
-        "name" => "Newspaper	"
+            'name' => 'Newspaper	',
         ],
         [
-        "name" => "Banner	"
+            'name' => 'Banner	',
         ],
         [
-        "name" => "Flag	"
+            'name' => 'Flag	',
         ],
         [
-        "name" => "Copy machine	"
+            'name' => 'Copy machine	',
         ],
         [
-        "name" => "Sofa	"
+            'name' => 'Sofa	',
         ],
         [
-        "name" => "Microwave	"
+            'name' => 'Microwave	',
         ],
         [
-        "name" => "Fridge	"
+            'name' => 'Fridge	',
         ],
         [
-        "name" => "Business Card	"
+            'name' => 'Business Card	',
         ],
         [
-        "name" => "Trophy	"
+            'name' => 'Trophy	',
         ],
         [
-        "name" => "Stickers	"
+            'name' => 'Stickers	',
         ],
         [
-        "name" => "Signboard	"
+            'name' => 'Signboard	',
         ],
         [
-        "name" => "Battery 	"
+            'name' => 'Battery 	',
         ],
         [
-        "name" => "DSTV	"
+            'name' => 'DSTV	',
         ],
         [
-        "name" => "Folder	"
+            'name' => 'Folder	',
         ],
         [
-        "name" => "Montarbo	"
+            'name' => 'Montarbo	',
         ],
         [
-        "name" => "Tablet	"
+            'name' => 'Tablet	',
         ],
         [
-        "name" => "Printing paper	"
+            'name' => 'Printing paper	',
         ],
         [
-        "name" => "suspension file	"
+            'name' => 'suspension file	',
         ],
         [
-        "name" => "Puncher	"
+            'name' => 'Puncher	',
         ],
         [
-        "name" => "Dongle	"
+            'name' => 'Dongle	',
         ],
         [
-        "name" => "Staff ID Printing	"
+            'name' => 'Staff ID Printing	',
         ],
         [
-        "name" => "shredder	"
+            'name' => 'shredder	',
         ],
         [
-        "name" => "Table	"
+            'name' => 'Table	',
         ],
         [
-        "name" => "Chair	"
+            'name' => 'Chair	',
         ],
         [
-        "name" => "Heater	"
+            'name' => 'Heater	',
         ],
         [
-        "name" => "Envelop	"
+            'name' => 'Envelop	',
         ],
         [
-        "name" => "Cermaics	"
+            'name' => 'Cermaics	',
         ],
         [
-        "name" => "Exercise Book	"
+            'name' => 'Exercise Book	',
         ],
         [
-        "name" => "Sack rope	"
+            'name' => 'Sack rope	',
         ],
         [
-        "name" => "Umbrella	"
+            'name' => 'Umbrella	',
         ],
         [
-        "name" => "Gawn	"
+            'name' => 'Gawn	',
         ],
         [
-        "name" => "Safety shoes	"
+            'name' => 'Safety shoes	',
         ],
         [
-        "name" => "Tool kits	"
+            'name' => 'Tool kits	',
         ],
         [
-        "name" => "Hand Torch	"
+            'name' => 'Hand Torch	',
         ],
         [
-        "name" => "Dust bin	"
+            'name' => 'Dust bin	',
         ],
         [
-        "name" => "Pin board	"
+            'name' => 'Pin board	',
         ],
         [
-        "name" => "Bin card	"
+            'name' => 'Bin card	',
         ],
         [
-        "name" => "Drill	"
+            'name' => 'Drill	',
         ],
         [
-        "name" => "Grainder	"
+            'name' => 'Grainder	',
         ],
         [
-        "name" => "Tape Dispenser	"
+            'name' => 'Tape Dispenser	',
         ],
         [
-        "name" => "Key Holder	"
+            'name' => 'Key Holder	',
         ],
         [
-        "name" => "Glove	"
+            'name' => 'Glove	',
         ],
         [
-        "name" => "Cutter	"
+            'name' => 'Cutter	',
         ],
         [
-        "name" => "Electric cable	"
+            'name' => 'Electric cable	',
         ],
         [
-        "name" => "Coats	"
+            'name' => 'Coats	',
         ],
         [
-        "name" => "Gown	"
+            'name' => 'Gown	',
         ],
         [
-        "name" => "Neck Tie	"
+            'name' => 'Neck Tie	',
         ],
         [
-        "name" => "Rain-coat	"
+            'name' => 'Rain-coat	',
         ],
         [
-        "name" => "Shirt	"
+            'name' => 'Shirt	',
         ],
         [
-        "name" => "Short dress	"
+            'name' => 'Short dress	',
         ],
         [
-        "name" => "Trouser	"
+            'name' => 'Trouser	',
         ],
         [
-        "name" => "Socks	"
+            'name' => 'Socks	',
         ],
         [
-        "name" => "Shoes	"
+            'name' => 'Shoes	',
         ],
         [
-        "name" => "Carpet	"
+            'name' => 'Carpet	',
         ],
         [
-        "name" => "Steple	"
+            'name' => 'Steple	',
         ],
         [
-        "name" => "Filp chart	"
+            'name' => 'Filp chart	',
         ],
         [
-        "name" => "Transparent file	"
+            'name' => 'Transparent file	',
         ],
         [
-        "name" => "Disinfectant	"
+            'name' => 'Disinfectant	',
         ],
         [
-        "name" => "Alcholol	"
+            'name' => 'Alcholol	',
         ],
         [
-        "name" => "Bleach	"
+            'name' => 'Bleach	',
         ],
         [
-        "name" => "Table Spray	"
+            'name' => 'Table Spray	',
         ],
         [
-        "name" => "Liquid hand soap	"
+            'name' => 'Liquid hand soap	',
         ],
         [
-        "name" => "Air freshnsher 	"
+            'name' => 'Air freshnsher 	',
         ],
         [
-        "name" => "Tissue Paper	"
+            'name' => 'Tissue Paper	',
         ],
         [
-        "name" => "Powder Soap	"
+            'name' => 'Powder Soap	',
         ],
         [
-        "name" => "Window Spray	"
+            'name' => 'Window Spray	',
         ],
         [
-        "name" => "Water Glass	"
+            'name' => 'Water Glass	',
         ],
         [
-        "name" => "Tea Cup	"
+            'name' => 'Tea Cup	',
         ],
         [
-        "name" => "Cleaning Gloves	"
+            'name' => 'Cleaning Gloves	',
         ],
         [
-        "name" => "coffee Spoon	"
+            'name' => 'coffee Spoon	',
         ],
         [
-        "name" => "Basket	"
+            'name' => 'Basket	',
         ],
         [
-        "name" => "Disposable Garbege	"
+            'name' => 'Disposable Garbege	',
         ],
         [
-        "name" => "Kettle	"
+            'name' => 'Kettle	',
         ],
         [
-        "name" => "Stove	"
+            'name' => 'Stove	',
         ],
         [
-        "name" => "Medical Glove	"
+            'name' => 'Medical Glove	',
         ],
         [
-        "name" => "Soap Dispenser	"
+            'name' => 'Soap Dispenser	',
         ],
         [
-        "name" => "Angle Valve	"
+            'name' => 'Angle Valve	',
         ],
         [
-        "name" => "Toilet seat cover	"
+            'name' => 'Toilet seat cover	',
         ],
         [
-        "name" => "Ladder	"
+            'name' => 'Ladder	',
         ],
         [
-        "name" => "kids hand ball	"
+            'name' => 'kids hand ball	',
         ],
         [
-        "name" => "children foot ball	"
+            'name' => 'children foot ball	',
         ],
         [
-        "name" => "jumping rope	"
+            'name' => 'jumping rope	',
         ],
         [
-        "name" => "Montessori	"
+            'name' => 'Montessori	',
         ],
         [
-        "name" => "Projector	"
+            'name' => 'Projector	',
         ],
         [
-        "name" => "Maintenance Tool Kit	"
+            'name' => 'Maintenance Tool Kit	',
         ],
         [
-        "name" => "wireles Keyboard	"
+            'name' => 'wireles Keyboard	',
         ],
         [
-        "name" => "Leather Laptop bag	"
+            'name' => 'Leather Laptop bag	',
         ],
         [
-        "name" => "Divider-Surge	"
+            'name' => 'Divider-Surge	',
         ],
         [
-        "name" => "Eraser	"
+            'name' => 'Eraser	',
         ],
         [
-        "name" => "Pencil sharpener	"
+            'name' => 'Pencil sharpener	',
         ],
         [
-        "name" => "borehole camera	"
+            'name' => 'borehole camera	',
         ],
         [
-        "name" => "permanenet marker	"
+            'name' => 'permanenet marker	',
         ],
         [
-        "name" => "Tires	"
+            'name' => 'Tires	',
         ],
         [
-        "name" => "Rim	"
+            'name' => 'Rim	',
         ],
         [
-        "name" => "Battery	"
+            'name' => 'Battery	',
         ],
         [
-        "name" => "Overall Tuta	"
+            'name' => 'Overall Tuta	',
         ],
         [
-        "name" => "Vest	"
+            'name' => 'Vest	',
         ],
         [
-        "name" => "Rechargeable Torch light	"
+            'name' => 'Rechargeable Torch light	',
         ],
         [
-        "name" => "Jumper	"
+            'name' => 'Jumper	',
         ],
         [
-        "name" => "Seat Cover	"
+            'name' => 'Seat Cover	',
         ],
         [
-        "name" => "Floor matt	"
+            'name' => 'Floor matt	',
         ],
         [
-        "name" => "Plastic File	"
+            'name' => 'Plastic File	',
         ],
         [
-        "name" => "Mouse Battery	"
+            'name' => 'Mouse Battery	',
         ],
         [
-        "name" => "Paid Stamp	"
+            'name' => 'Paid Stamp	',
         ],
         [
-        "name" => "Jar water	"
+            'name' => 'Jar water	',
         ],
         [
-        "name" => "Over coat	"
+            'name' => 'Over coat	',
         ],
         [
-        "name" => "Wall mop	"
+            'name' => 'Wall mop	',
         ],
         [
-        "name" => "Service tray	"
+            'name' => 'Service tray	',
         ],
         [
-        "name" => "Heavey duty printer	"
+            'name' => 'Heavey duty printer	',
         ],
         [
-        "name" => "Barrer	"
+            'name' => 'Barrer	',
         ],
         [
-        "name" => "Generator	"
+            'name' => 'Generator	',
         ],
         [
-        "name" => "Micro Oven	"
+            'name' => 'Micro Oven	',
         ],
         [
-        "name" => "Broom	"
+            'name' => 'Broom	',
         ],
         [
-        "name" => "Brochure	"
+            'name' => 'Brochure	',
         ],
         [
-        "name" => "Modules	"
+            'name' => 'Modules	',
         ],
         [
-        "name" => "Laptop cleaner	"
+            'name' => 'Laptop cleaner	',
         ],
         [
-        "name" => "Field bag	"
+            'name' => 'Field bag	',
         ],
         [
-        "name" => "Cup with logo	"
+            'name' => 'Cup with logo	',
         ],
         [
-        "name" => "Sharpner	"
+            'name' => 'Sharpner	',
         ],
         [
-        "name" => "external disk	"
+            'name' => 'external disk	',
         ],
         [
-        "name" => "Albendazole	"
+            'name' => 'Albendazole	',
         ],
         [
-        "name" => "Amoxicillin	"
+            'name' => 'Amoxicillin	',
         ],
         [
-        "name" => "Ampicillin	"
+            'name' => 'Ampicillin	',
         ],
         [
-        "name" => "Atenolol	"
+            'name' => 'Atenolol	',
         ],
         [
-        "name" => "Azithromycin	"
+            'name' => 'Azithromycin	',
         ],
         [
-        "name" => "Benzathine	"
+            'name' => 'Benzathine	',
         ],
         [
-        "name" => "Cefalexin	"
+            'name' => 'Cefalexin	',
         ],
         [
-        "name" => "Cefixime	"
+            'name' => 'Cefixime	',
         ],
         [
-        "name" => "Ceftriaxone	"
+            'name' => 'Ceftriaxone	',
         ],
         [
-        "name" => "Chloramphenicol	"
+            'name' => 'Chloramphenicol	',
         ],
         [
-        "name" => "Chlorpromazine	"
+            'name' => 'Chlorpromazine	',
         ],
         [
-        "name" => "Ciprofloxacin	"
+            'name' => 'Ciprofloxacin	',
         ],
         [
-        "name" => "Cloxacillin	"
+            'name' => 'Cloxacillin	',
         ],
         [
-        "name" => "Co-trimoxazole	"
+            'name' => 'Co-trimoxazole	',
         ],
         [
-        "name" => "Dextrose	"
+            'name' => 'Dextrose	',
         ],
         [
-        "name" => "Doxycycline	"
+            'name' => 'Doxycycline	',
         ],
         [
-        "name" => "Epinephrine	"
+            'name' => 'Epinephrine	',
         ],
         [
-        "name" => "Erythromycin	"
+            'name' => 'Erythromycin	',
         ],
         [
-        "name" => "Ferrous	"
+            'name' => 'Ferrous	',
         ],
         [
-        "name" => "Folic Acid	"
+            'name' => 'Folic Acid	',
         ],
         [
-        "name" => "Furosemide	"
+            'name' => 'Furosemide	',
         ],
         [
-        "name" => "Gentamicin	"
+            'name' => 'Gentamicin	',
         ],
         [
-        "name" => "Glibenclamide	"
+            'name' => 'Glibenclamide	',
         ],
         [
-        "name" => "Hydralazine	"
+            'name' => 'Hydralazine	',
         ],
         [
-        "name" => "Hydrochlorothiazide	"
+            'name' => 'Hydrochlorothiazide	',
         ],
         [
-        "name" => "Hydrocortisone	"
+            'name' => 'Hydrocortisone	',
         ],
         [
-        "name" => "Ibuprofen	"
+            'name' => 'Ibuprofen	',
         ],
         [
-        "name" => "Magnesium	"
+            'name' => 'Magnesium	',
         ],
         [
-        "name" => "Mebendazole	"
+            'name' => 'Mebendazole	',
         ],
         [
-        "name" => "Metformin	"
+            'name' => 'Metformin	',
         ],
         [
-        "name" => "Metronidazole	"
+            'name' => 'Metronidazole	',
         ],
         [
-        "name" => "Miconazole	"
+            'name' => 'Miconazole	',
         ],
         [
-        "name" => "Omeprazole	"
+            'name' => 'Omeprazole	',
         ],
         [
-        "name" => "ReSoMal	"
+            'name' => 'ReSoMal	',
         ],
         [
-        "name" => "Paracetamol	"
+            'name' => 'Paracetamol	',
         ],
         [
-        "name" => "Phenytoin	"
+            'name' => 'Phenytoin	',
         ],
         [
-        "name" => "Salbutamol	"
+            'name' => 'Salbutamol	',
         ],
         [
-        "name" => "Tetracycline	"
+            'name' => 'Tetracycline	',
         ],
         [
-        "name" => "Artemether	"
+            'name' => 'Artemether	',
         ],
         [
-        "name" => "Malaria rapid	"
+            'name' => 'Malaria rapid	',
         ],
         [
-        "name" => "Vitamin A	"
+            'name' => 'Vitamin A	',
         ],
         [
-        "name" => "Silver sulfadiazine	"
+            'name' => 'Silver sulfadiazine	',
         ],
         [
-        "name" => "Sphygmomanometer	"
+            'name' => 'Sphygmomanometer	',
         ],
         [
-        "name" => "Stethoscope	"
+            'name' => 'Stethoscope	',
         ],
         [
-        "name" => "Thermometer	"
+            'name' => 'Thermometer	',
         ],
         [
-        "name" => "Otoscope	"
+            'name' => 'Otoscope	',
         ],
         [
-        "name" => "Catheter	"
+            'name' => 'Catheter	',
         ],
         [
-        "name" => "MUAC child	"
+            'name' => 'MUAC child	',
         ],
         [
-        "name" => "Syringe	"
+            'name' => 'Syringe	',
         ],
         [
-        "name" => "Adhesive tape	"
+            'name' => 'Adhesive tape	',
         ],
         [
-        "name" => "Glucose test strips	"
+            'name' => 'Glucose test strips	',
         ],
         [
-        "name" => "Blood Lancets 	"
+            'name' => 'Blood Lancets 	',
         ],
         [
-        "name" => "Tongue DEPRESSOR	"
+            'name' => 'Tongue DEPRESSOR	',
         ],
         [
-        "name" => "RUSF	"
+            'name' => 'RUSF	',
         ],
         [
-        "name" => "Super Cereal Plus	"
+            'name' => 'Super Cereal Plus	',
         ],
         [
-        "name" => "Cabinet	"
+            'name' => 'Cabinet	',
         ],
         [
-        "name" => "High Energy biscuit	"
+            'name' => 'High Energy biscuit	',
         ],
         [
-        "name" => "T-shirt	"
+            'name' => 'T-shirt	',
         ],
         [
-        "name" => "Pot	"
+            'name' => 'Pot	',
         ],
         [
-        "name" => "Spoon	"
+            'name' => 'Spoon	',
         ],
         [
-        "name" => "Basin	"
+            'name' => 'Basin	',
         ],
         [
-        "name" => "stirng stick	"
+            'name' => 'stirng stick	',
         ],
         [
-        "name" => "choping board	"
+            'name' => 'choping board	',
         ],
         [
-        "name" => "knife	"
+            'name' => 'knife	',
         ],
         [
-        "name" => "Disposableplastic	"
+            'name' => 'Disposableplastic	',
         ],
         [
-        "name" => "Tea Spoon	"
+            'name' => 'Tea Spoon	',
         ],
         [
-        "name" => "Bucket	"
+            'name' => 'Bucket	',
         ],
         [
-        "name" => "Jerry Can	"
+            'name' => 'Jerry Can	',
         ],
         [
-        "name" => "Plastic Cup	"
+            'name' => 'Plastic Cup	',
         ],
         [
-        "name" => "Plate-Hard	"
+            'name' => 'Plate-Hard	',
         ],
         [
-        "name" => "Plastic Matt	"
+            'name' => 'Plastic Matt	',
         ],
         [
-        "name" => "Flour	"
+            'name' => 'Flour	',
         ],
         [
-        "name" => "Oil	"
+            'name' => 'Oil	',
         ],
         [
-        "name" => "Onion	"
+            'name' => 'Onion	',
         ],
         [
-        "name" => "Salt	"
+            'name' => 'Salt	',
         ],
         [
-        "name" => "Milk	"
+            'name' => 'Milk	',
         ],
         [
-        "name" => "tomato	"
+            'name' => 'tomato	',
         ],
         [
-        "name" => "Banana	"
+            'name' => 'Banana	',
         ],
         [
-        "name" => "potato	"
+            'name' => 'potato	',
         ],
         [
-        "name" => "Cabage	"
+            'name' => 'Cabage	',
         ],
         [
-        "name" => "Bottled Water	"
+            'name' => 'Bottled Water	',
         ],
         [
-        "name" => "Biscuit	"
+            'name' => 'Biscuit	',
         ],
         [
-        "name" => "Woden Shelf	"
+            'name' => 'Woden Shelf	',
         ],
         [
-        "name" => "Registraion Book	"
+            'name' => 'Registraion Book	',
         ],
         [
-        "name" => "Umbrela	"
+            'name' => 'Umbrela	',
         ],
         [
-        "name" => "Sign board	"
+            'name' => 'Sign board	',
         ],
         [
-        "name" => "Baner	"
+            'name' => 'Baner	',
         ],
         [
-        "name" => "Bed sheet	"
+            'name' => 'Bed sheet	',
         ],
         [
-        "name" => "puzzel Game	"
+            'name' => 'puzzel Game	',
         ],
         [
-        "name" => "Drawing book	"
+            'name' => 'Drawing book	',
         ],
         [
-        "name" => "Animal Toy	"
+            'name' => 'Animal Toy	',
         ],
         [
-        "name" => "care Toy	"
+            'name' => 'care Toy	',
         ],
         [
-        "name" => "Cube Game	"
+            'name' => 'Cube Game	',
         ],
         [
-        "name" => "piano Game	"
+            'name' => 'piano Game	',
         ],
         [
-        "name" => "Buket	"
+            'name' => 'Buket	',
         ],
         [
-        "name" => "Detergent	"
+            'name' => 'Detergent	',
         ],
         [
-        "name" => "long dress	"
+            'name' => 'long dress	',
         ],
         [
-        "name" => "sanitary pad	"
+            'name' => 'sanitary pad	',
         ],
         [
-        "name" => "Speaker	"
+            'name' => 'Speaker	',
         ],
         [
-        "name" => "filash disk	"
+            'name' => 'filash disk	',
         ],
         [
-        "name" => "Booklet	"
+            'name' => 'Booklet	',
         ],
         [
-        "name" => "certeficate	"
+            'name' => 'certeficate	',
         ],
         [
-        "name" => "Plumpnet	"
+            'name' => 'Plumpnet	',
         ],
         [
-        "name" => "Filip chart	"
+            'name' => 'Filip chart	',
         ],
         [
-        "name" => "Toyota-Hiace	"
+            'name' => 'Toyota-Hiace	',
         ],
         [
-        "name" => "punture	"
+            'name' => 'punture	',
         ],
         [
-        "name" => "ferous sulfate	"
+            'name' => 'ferous sulfate	',
         ],
         [
-        "name" => "Soap	"
+            'name' => 'Soap	',
         ],
         [
-        "name" => "jerican	"
+            'name' => 'jerican	',
         ],
         [
-        "name" => "sanitizer	"
+            'name' => 'sanitizer	',
         ],
         [
-        "name" => "minibus	"
+            'name' => 'minibus	',
         ],
         [
-        "name" => "ISUZI Truck	"
+            'name' => 'ISUZI Truck	',
         ],
         [
-        "name" => "Pediatric cannula	"
+            'name' => 'Pediatric cannula	',
         ],
         [
-        "name" => "Feeding syring	"
+            'name' => 'Feeding syring	',
         ],
         [
-        "name" => "Surgical glove	"
+            'name' => 'Surgical glove	',
         ],
         [
-        "name" => "Povidone iodine	"
+            'name' => 'Povidone iodine	',
         ],
         [
-        "name" => "Gauze surgical 	"
+            'name' => 'Gauze surgical 	',
         ],
         [
-        "name" => "Nasogastric tube	"
+            'name' => 'Nasogastric tube	',
         ],
         [
-        "name" => "Amoxacilline	"
+            'name' => 'Amoxacilline	',
         ],
         [
-        "name" => "Ringer lactate	"
+            'name' => 'Ringer lactate	',
         ],
         [
-        "name" => "Weighing scale	"
+            'name' => 'Weighing scale	',
         ],
         [
-        "name" => "Length/height board	"
+            'name' => 'Length/height board	',
         ],
         [
-        "name" => "Stablisation centre	"
+            'name' => 'Stablisation centre	',
         ],
         [
-        "name" => "Referral slip	"
+            'name' => 'Referral slip	',
         ],
         [
-        "name" => "Spoons	"
+            'name' => 'Spoons	',
         ],
         [
-        "name" => "mattress	"
+            'name' => 'mattress	',
         ],
         [
-        "name" => "Pillow	"
+            'name' => 'Pillow	',
         ],
         [
-        "name" => "GOWEN	"
+            'name' => 'GOWEN	',
         ],
         [
-        "name" => "Rope	"
+            'name' => 'Rope	',
         ],
         [
-        "name" => "Raw Coffee	"
+            'name' => 'Raw Coffee	',
         ],
         [
-        "name" => "Record Book	"
+            'name' => 'Record Book	',
         ],
         [
-        "name" => "Sand	"
+            'name' => 'Sand	',
         ],
         [
-        "name" => "Agreggates	"
+            'name' => 'Agreggates	',
         ],
         [
-        "name" => "Eucuyalptus	"
+            'name' => 'Eucuyalptus	',
         ],
         [
-        "name" => "Cement	"
+            'name' => 'Cement	',
         ],
         [
-        "name" => "Roofing	"
+            'name' => 'Roofing	',
         ],
         [
-        "name" => "Rubber Washer	"
+            'name' => 'Rubber Washer	',
         ],
         [
-        "name" => "Iron Bonds	"
+            'name' => 'Iron Bonds	',
         ],
         [
-        "name" => "Purlin	"
+            'name' => 'Purlin	',
         ],
         [
-        "name" => "Syntetic Paint	"
+            'name' => 'Syntetic Paint	',
         ],
         [
-        "name" => "Antirust/Gray	"
+            'name' => 'Antirust/Gray	',
         ],
         [
-        "name" => "Tyrolean	"
+            'name' => 'Tyrolean	',
         ],
         [
-        "name" => "PVC Pipe	"
+            'name' => 'PVC Pipe	',
         ],
         [
-        "name" => "Vent Pipe Screen	"
+            'name' => 'Vent Pipe Screen	',
         ],
         [
-        "name" => "Gate Valve	"
+            'name' => 'Gate Valve	',
         ],
         [
-        "name" => "Faucet	"
+            'name' => 'Faucet	',
         ],
         [
-        "name" => "Seal Tap	"
+            'name' => 'Seal Tap	',
         ],
         [
-        "name" => "Eucalyptus	"
+            'name' => 'Eucalyptus	',
         ],
         [
-        "name" => "Roto	"
+            'name' => 'Roto	',
         ],
         [
-        "name" => "Reducer	"
+            'name' => 'Reducer	',
         ],
         [
-        "name" => "Stone	"
+            'name' => 'Stone	',
         ],
         [
-        "name" => "Door	"
+            'name' => 'Door	',
         ],
         [
-        "name" => "Roof cover	"
+            'name' => 'Roof cover	',
         ],
         [
-        "name" => "Paint Brush	"
+            'name' => 'Paint Brush	',
         ],
         [
-        "name" => "Adapter	"
+            'name' => 'Adapter	',
         ],
         [
-        "name" => "GS Tee	"
+            'name' => 'GS Tee	',
         ],
         [
-        "name" => "Brass tap	"
+            'name' => 'Brass tap	',
         ],
         [
-        "name" => "Pipe wrench	"
+            'name' => 'Pipe wrench	',
         ],
         [
-        "name" => "megaphone	"
+            'name' => 'megaphone	',
         ],
         [
-        "name" => "kolo	"
+            'name' => 'kolo	',
         ],
         [
-        "name" => "Bag	"
+            'name' => 'Bag	',
         ],
         [
-        "name" => "Keypad LOCK	"
+            'name' => 'Keypad LOCK	',
         ],
         [
-        "name" => "Dress	"
+            'name' => 'Dress	',
         ],
         [
-        "name" => "Cyllinder	"
+            'name' => 'Cyllinder	',
         ],
         [
-        "name" => "Fulcrum Pin	"
+            'name' => 'Fulcrum Pin	',
         ],
         [
-        "name" => "Hanger Pin	"
+            'name' => 'Hanger Pin	',
         ],
         [
-        "name" => "bolts	"
+            'name' => 'bolts	',
         ],
         [
-        "name" => "Gravel	"
+            'name' => 'Gravel	',
         ],
         [
-        "name" => "Calcium Hypochlorite	"
+            'name' => 'Calcium Hypochlorite	',
         ],
         [
-        "name" => "T-shirts	"
+            'name' => 'T-shirts	',
         ],
         [
-        "name" => "Sticker	"
+            'name' => 'Sticker	',
         ],
         [
-        "name" => "Laminator	"
+            'name' => 'Laminator	',
         ],
         [
-        "name" => "TeaLeaf	"
+            'name' => 'TeaLeaf	',
         ],
         [
-        "name" => "Sckrach card	"
+            'name' => 'Sckrach card	',
         ],
         [
-        "name" => "Coloring Book	"
+            'name' => 'Coloring Book	',
         ],
         [
-        "name" => "Vehicle	"
+            'name' => 'Vehicle	',
         ],
         [
-        "name" => "Suger	"
+            'name' => 'Suger	',
         ],
         [
-        "name" => "Ginger	"
+            'name' => 'Ginger	',
         ],
         [
-        "name" => "Cultural cloth	"
+            'name' => 'Cultural cloth	',
         ],
         [
-        "name" => "Fluid-Pen	"
+            'name' => 'Fluid-Pen	',
         ],
         [
-        "name" => "Duster	"
+            'name' => 'Duster	',
         ],
         [
-        "name" => "Trolley	"
+            'name' => 'Trolley	',
         ],
         [
-        "name" => "Engine Oil	"
+            'name' => 'Engine Oil	',
         ],
         [
-        "name" => "Detole	"
+            'name' => 'Detole	',
         ],
         [
-        "name" => "Towel	"
+            'name' => 'Towel	',
         ],
         [
-        "name" => "Furniture Cleaner	"
+            'name' => 'Furniture Cleaner	',
         ],
         [
-        "name" => "Antirest	"
+            'name' => 'Antirest	',
         ],
         [
-        "name" => "Roller Brush	"
+            'name' => 'Roller Brush	',
         ],
         [
-        "name" => "Fisher	"
+            'name' => 'Fisher	',
         ],
         [
-        "name" => "Concrete	"
+            'name' => 'Concrete	',
         ],
         [
-        "name" => "Quartize	"
+            'name' => 'Quartize	',
         ],
         [
-        "name" => "Terazzo	"
+            'name' => 'Terazzo	',
         ],
         [
-        "name" => "Shower-try	"
+            'name' => 'Shower-try	',
         ],
         [
-        "name" => "Bath room accessories 	"
+            'name' => 'Bath room accessories 	',
         ],
         [
-        "name" => "Hand-wash basin	"
+            'name' => 'Hand-wash basin	',
         ],
         [
-        "name" => "Toilet Seat	"
+            'name' => 'Toilet Seat	',
         ],
         [
-        "name" => "Washing try	"
+            'name' => 'Washing try	',
         ],
         [
-        "name" => "HDP Pipe	"
+            'name' => 'HDP Pipe	',
         ],
         [
-        "name" => "Swallow Ball	"
+            'name' => 'Swallow Ball	',
         ],
         [
-        "name" => "Clamp	"
+            'name' => 'Clamp	',
         ],
         [
-        "name" => "Flexible Condiut	"
+            'name' => 'Flexible Condiut	',
         ],
         [
-        "name" => "feeder cable	"
+            'name' => 'feeder cable	',
         ],
         [
-        "name" => "Socket 	"
+            'name' => 'Socket 	',
         ],
         [
-        "name" => "Switches	"
+            'name' => 'Switches	',
         ],
         [
-        "name" => "Skatola rectangular	"
+            'name' => 'Skatola rectangular	',
         ],
         [
-        "name" => "Philips Classic	"
+            'name' => 'Philips Classic	',
         ],
         [
-        "name" => "Junction box	"
+            'name' => 'Junction box	',
         ],
         [
-        "name" => "Wire connector	"
+            'name' => 'Wire connector	',
         ],
         [
-        "name" => "Nastran	"
+            'name' => 'Nastran	',
         ],
         [
-        "name" => "Chip	"
+            'name' => 'Chip	',
         ],
         [
-        "name" => "Jesso	"
+            'name' => 'Jesso	',
         ],
         [
-        "name" => "Kolla	"
+            'name' => 'Kolla	',
         ],
         [
-        "name" => "Ceiling fan	"
+            'name' => 'Ceiling fan	',
         ],
         [
-        "name" => "Soft drink	"
+            'name' => 'Soft drink	',
         ],
         [
-        "name" => "Food	"
+            'name' => 'Food	',
         ],
         [
-        "name" => "Magazine	"
+            'name' => 'Magazine	',
         ],
         [
-        "name" => "Curtain	"
+            'name' => 'Curtain	',
         ],
         [
-        "name" => "Television	"
+            'name' => 'Television	',
         ],
         [
-        "name" => "Dish	"
+            'name' => 'Dish	',
         ],
         [
-        "name" => "Degital Receiver	"
+            'name' => 'Degital Receiver	',
         ],
         [
-        "name" => "Refrigerator	"
+            'name' => 'Refrigerator	',
         ],
         [
-        "name" => "Cupboard	"
+            'name' => 'Cupboard	',
         ],
         [
-        "name" => "Flipchart	"
+            'name' => 'Flipchart	',
         ],
         [
-        "name" => "Sport Wear	"
+            'name' => 'Sport Wear	',
         ],
         [
-        "name" => "Blanket	"
+            'name' => 'Blanket	',
         ],
         [
-        "name" => "Building Blocks	"
+            'name' => 'Building Blocks	',
         ],
         [
-        "name" => "Playing Card	"
+            'name' => 'Playing Card	',
         ],
         [
-        "name" => "Skipping rope	"
+            'name' => 'Skipping rope	',
         ],
         [
-        "name" => "Football net	"
+            'name' => 'Football net	',
         ],
         [
-        "name" => "Volleyball net	"
+            'name' => 'Volleyball net	',
         ],
         [
-        "name" => "Pool stick	"
+            'name' => 'Pool stick	',
         ],
         [
-        "name" => "Tenis table balls	"
+            'name' => 'Tenis table balls	',
         ],
         [
-        "name" => "Billiard balls	"
+            'name' => 'Billiard balls	',
         ],
         [
-        "name" => "Underwear	"
+            'name' => 'Underwear	',
         ],
         [
-        "name" => "Hair Oil	"
+            'name' => 'Hair Oil	',
         ],
         [
-        "name" => "Comb Plastic	"
+            'name' => 'Comb Plastic	',
         ],
         [
-        "name" => "Umberella	"
+            'name' => 'Umberella	',
         ],
         [
-        "name" => "Chalk	"
+            'name' => 'Chalk	',
         ],
         [
-        "name" => "Black-Board	"
+            'name' => 'Black-Board	',
         ],
         [
-        "name" => "Roaster cereal	"
+            'name' => 'Roaster cereal	',
         ],
         [
-        "name" => "Clip Board	"
+            'name' => 'Clip Board	',
         ],
         [
-        "name" => "Ruler	"
+            'name' => 'Ruler	',
         ],
         [
-        "name" => "Plastic ball	"
+            'name' => 'Plastic ball	',
         ],
         [
-        "name" => "Waste basket	"
+            'name' => 'Waste basket	',
         ],
         [
-        "name" => "Detol	"
+            'name' => 'Detol	',
         ],
         [
-        "name" => "Plate	"
+            'name' => 'Plate	',
         ],
         [
-        "name" => "Foot ball	"
+            'name' => 'Foot ball	',
         ],
         [
-        "name" => "Volly ball	"
+            'name' => 'Volly ball	',
         ],
         [
-        "name" => "Thoprpyh Cup	"
+            'name' => 'Thoprpyh Cup	',
         ],
         [
-        "name" => "Whistle	"
+            'name' => 'Whistle	',
         ],
         [
-        "name" => "Domino	"
+            'name' => 'Domino	',
         ],
         [
-        "name" => "Chiase	"
+            'name' => 'Chiase	',
         ],
         [
-        "name" => "Duster/wiper	"
+            'name' => 'Duster/wiper	',
         ],
         [
-        "name" => "HUU	"
+            'name' => 'HUU	',
         ],
         [
-        "name" => "Vim	"
+            'name' => 'Vim	',
         ],
         [
-        "name" => "Heavy	"
+            'name' => 'Heavy	',
         ],
         [
-        "name" => "Undear wear	"
+            'name' => 'Undear wear	',
         ],
         [
-        "name" => "Skirt	"
+            'name' => 'Skirt	',
         ],
         [
-        "name" => "Bimbalance	"
+            'name' => 'Bimbalance	',
         ],
         [
-        "name" => "USB flash	"
+            'name' => 'USB flash	',
         ],
         [
-        "name" => "Glycerine	"
+            'name' => 'Glycerine	',
         ],
         [
-        "name" => "Cape	"
+            'name' => 'Cape	',
         ],
         [
-        "name" => "Sugation box	"
+            'name' => 'Sugation box	',
         ],
         [
-        "name" => "Agenda-leather	"
+            'name' => 'Agenda-leather	',
         ],
         [
-        "name" => "Cylinder	"
+            'name' => 'Cylinder	',
         ],
         [
-        "name" => "Bush bearing	"
+            'name' => 'Bush bearing	',
         ],
         [
-        "name" => "Nylon rope	"
+            'name' => 'Nylon rope	',
         ],
         [
-        "name" => "Nuts	"
+            'name' => 'Nuts	',
         ],
         [
-        "name" => "Rod hanger	"
+            'name' => 'Rod hanger	',
         ],
         [
-        "name" => "GI Nipples	"
+            'name' => 'GI Nipples	',
         ],
         [
-        "name" => "Door bolt	"
+            'name' => 'Door bolt	',
         ],
         [
-        "name" => "Diesel fuel	"
+            'name' => 'Diesel fuel	',
         ],
         [
-        "name" => "Digging fork	"
+            'name' => 'Digging fork	',
         ],
         [
-        "name" => "Sprede	"
+            'name' => 'Sprede	',
         ],
         [
-        "name" => "Slipper	"
+            'name' => 'Slipper	',
         ],
         [
-        "name" => "Tooth paste	"
+            'name' => 'Tooth paste	',
         ],
         [
-        "name" => "Co-otrimaxazole	"
+            'name' => 'Co-otrimaxazole	',
         ],
         [
-        "name" => "Benzoic	"
+            'name' => 'Benzoic	',
         ],
         [
-        "name" => "Benzyl	"
+            'name' => 'Benzyl	',
         ],
         [
-        "name" => "Oral rehydration	"
+            'name' => 'Oral rehydration	',
         ],
         [
-        "name" => "Rice	"
+            'name' => 'Rice	',
         ],
         [
-        "name" => "Mega phone	"
+            'name' => 'Mega phone	',
         ],
         [
-        "name" => "Protective wear	"
+            'name' => 'Protective wear	',
         ],
         [
-        "name" => "Tents	"
+            'name' => 'Tents	',
         ],
         [
-        "name" => "Pencils	"
+            'name' => 'Pencils	',
         ],
         [
-        "name" => "sharpener	"
+            'name' => 'sharpener	',
         ],
         [
-        "name" => "Story Books	"
+            'name' => 'Story Books	',
         ],
         [
-        "name" => "Spray Paint	"
+            'name' => 'Spray Paint	',
         ],
         [
-        "name" => "Scissors	"
+            'name' => 'Scissors	',
         ],
         [
-        "name" => "Numbers	"
+            'name' => 'Numbers	',
         ],
         [
-        "name" => "Agenda	"
+            'name' => 'Agenda	',
         ],
         [
-        "name" => "Highlightner	"
+            'name' => 'Highlightner	',
         ],
         [
-        "name" => "Refree Whistle	"
+            'name' => 'Refree Whistle	',
         ],
         [
-        "name" => "Volley ball	"
+            'name' => 'Volley ball	',
         ],
         [
-        "name" => "Walking cane	"
+            'name' => 'Walking cane	',
         ],
         [
-        "name" => "Crucths	"
+            'name' => 'Crucths	',
         ],
         [
-        "name" => "Brail and Styles	"
+            'name' => 'Brail and Styles	',
         ],
         [
-        "name" => "Magnifier	"
+            'name' => 'Magnifier	',
         ],
         [
-        "name" => "Soccer Ball	"
+            'name' => 'Soccer Ball	',
         ],
         [
-        "name" => "Posters	"
+            'name' => 'Posters	',
         ],
         [
-        "name" => "Procher	"
+            'name' => 'Procher	',
         ],
         [
-        "name" => "Fuel	"
+            'name' => 'Fuel	',
         ],
         [
-        "name" => "Tent	"
+            'name' => 'Tent	',
         ],
         [
-        "name" => "Dictionary	"
+            'name' => 'Dictionary	',
         ],
         [
-        "name" => "Pencile	"
+            'name' => 'Pencile	',
         ],
         [
-        "name" => "Paint	"
+            'name' => 'Paint	',
         ],
         [
-        "name" => "Meter	"
+            'name' => 'Meter	',
         ],
         [
-        "name" => "Mastsh	"
+            'name' => 'Mastsh	',
         ],
         [
-        "name" => "Needle	"
+            'name' => 'Needle	',
         ],
         [
-        "name" => "Faizet	"
+            'name' => 'Faizet	',
         ],
         [
-        "name" => "Pliers	"
+            'name' => 'Pliers	',
         ],
         [
-        "name" => "Hammer	"
+            'name' => 'Hammer	',
         ],
         [
-        "name" => "Thread	"
+            'name' => 'Thread	',
         ],
         [
-        "name" => "Aquarage	"
+            'name' => 'Aquarage	',
         ],
         [
-        "name" => "Crayon	"
+            'name' => 'Crayon	',
         ],
         [
-        "name" => "Tiolet cleaner	"
+            'name' => 'Tiolet cleaner	',
         ],
         [
-        "name" => "Juice	"
+            'name' => 'Juice	',
         ],
         [
-        "name" => "Alcohol	"
+            'name' => 'Alcohol	',
         ],
         [
-        "name" => "Face Mask	"
+            'name' => 'Face Mask	',
         ],
         [
-        "name" => "Garment	"
+            'name' => 'Garment	',
         ],
         [
-        "name" => "Books	"
+            'name' => 'Books	',
         ],
         [
-        "name" => "Calculator	"
+            'name' => 'Calculator	',
         ],
         [
-        "name" => "Correction fluid	"
+            'name' => 'Correction fluid	',
         ],
         [
-        "name" => "Numbering chart	"
+            'name' => 'Numbering chart	',
         ],
         [
-        "name" => "Poweder soap	"
+            'name' => 'Poweder soap	',
         ],
         [
-        "name" => "Boiler	"
+            'name' => 'Boiler	',
         ],
         [
-        "name" => "Afrideve	"
+            'name' => 'Afrideve	',
         ],
         [
-        "name" => "Sleeping matt	"
+            'name' => 'Sleeping matt	',
         ],
         [
-        "name" => "Wheat flour	"
+            'name' => 'Wheat flour	',
         ],
         [
-        "name" => "Edible Oil	"
+            'name' => 'Edible Oil	',
         ],
         [
-        "name" => "Fruit	"
+            'name' => 'Fruit	',
         ],
         [
-        "name" => "Cooking dish	"
+            'name' => 'Cooking dish	',
         ],
         [
-        "name" => "Ladle	"
+            'name' => 'Ladle	',
         ],
         [
-        "name" => "Bowel	"
+            'name' => 'Bowel	',
         ],
         [
-        "name" => "Chopping-board	"
+            'name' => 'Chopping-board	',
         ],
         [
-        "name" => "Sugar	"
+            'name' => 'Sugar	',
         ],
         [
-        "name" => "sprayer	"
+            'name' => 'sprayer	',
         ],
         [
-        "name" => "Eye glass	"
+            'name' => 'Eye glass	',
         ],
         [
-        "name" => "ORS	"
+            'name' => 'ORS	',
         ],
         [
-        "name" => "Saucer	"
+            'name' => 'Saucer	',
         ],
         [
-        "name" => "Vaccum	"
+            'name' => 'Vaccum	',
         ],
         [
-        "name" => "Baby bath basin	"
+            'name' => 'Baby bath basin	',
         ],
         [
-        "name" => "Gust chair	"
+            'name' => 'Gust chair	',
         ],
         [
-        "name" => "Poster	"
+            'name' => 'Poster	',
         ],
         [
-        "name" => "Complete Tuta	"
+            'name' => 'Complete Tuta	',
         ],
         [
-        "name" => "Utensils	"
+            'name' => 'Utensils	',
         ],
         [
-        "name" => "Markers	"
+            'name' => 'Markers	',
         ],
         [
-        "name" => "Banners	"
+            'name' => 'Banners	',
         ],
         [
-        "name" => "Shelves	"
+            'name' => 'Shelves	',
         ],
         [
-        "name" => "Pallets	"
+            'name' => 'Pallets	',
         ],
         [
-        "name" => "AC	"
+            'name' => 'AC	',
         ],
         [
-        "name" => "Ventilator	"
+            'name' => 'Ventilator	',
         ],
         [
-        "name" => "Kerosene	"
+            'name' => 'Kerosene	',
         ],
         [
-        "name" => "Billboard	"
+            'name' => 'Billboard	',
         ],
         [
-        "name" => "pepper flour	"
+            'name' => 'pepper flour	',
         ],
         [
-        "name" => "Shiro flour	"
+            'name' => 'Shiro flour	',
         ],
         [
-        "name" => "Vacuum	"
+            'name' => 'Vacuum	',
         ],
         [
-        "name" => "Soup Spoon	"
+            'name' => 'Soup Spoon	',
         ],
         [
-        "name" => "Calibrated Measuring jar	"
+            'name' => 'Calibrated Measuring jar	',
         ],
         [
-        "name" => "Pedal	"
+            'name' => 'Pedal	',
         ],
         [
-        "name" => "Bench	"
+            'name' => 'Bench	',
         ],
         [
-        "name" => "Saddle	"
+            'name' => 'Saddle	',
         ],
         [
-        "name" => "Qacha	"
+            'name' => 'Qacha	',
         ],
         [
-        "name" => "Flanged Gatevalve	"
+            'name' => 'Flanged Gatevalve	',
         ],
         [
-        "name" => "Bolt	"
+            'name' => 'Bolt	',
         ],
         [
-        "name" => "UPV Saddle Clamp	"
+            'name' => 'UPV Saddle Clamp	',
         ],
         [
-        "name" => "Riser Pipe	"
+            'name' => 'Riser Pipe	',
         ],
         [
-        "name" => "Rods	"
+            'name' => 'Rods	',
         ],
         [
-        "name" => "Gabbion Wire	"
+            'name' => 'Gabbion Wire	',
         ],
         [
-        "name" => "Montessori Kits	"
+            'name' => 'Montessori Kits	',
         ],
         [
-        "name" => "Steel filling Cabinet	"
+            'name' => 'Steel filling Cabinet	',
         ],
         [
-        "name" => "Wilchair	"
+            'name' => 'Wilchair	',
         ],
         [
-        "name" => "pullet	"
+            'name' => 'pullet	',
         ],
         [
-        "name" => "Clothes	"
+            'name' => 'Clothes	',
         ],
         [
-        "name" => "Roasted grain	"
+            'name' => 'Roasted grain	',
         ],
         [
-        "name" => "Sponge ball	"
+            'name' => 'Sponge ball	',
         ],
         [
-        "name" => "Night clothes	"
+            'name' => 'Night clothes	',
         ],
         [
-        "name" => "Colposcopy machine	"
+            'name' => 'Colposcopy machine	',
         ],
         [
-        "name" => "Cookies	"
+            'name' => 'Cookies	',
         ],
         [
-        "name" => "Bread	"
+            'name' => 'Bread	',
         ],
         [
-        "name" => "Popcorn	"
+            'name' => 'Popcorn	',
         ],
         [
-        "name" => "Berekina	"
+            'name' => 'Berekina	',
         ],
         [
-        "name" => "Largo	"
+            'name' => 'Largo	',
         ],
         [
-        "name" => "Roch killer	"
+            'name' => 'Roch killer	',
         ],
         [
-        "name" => "Rat Glue	"
+            'name' => 'Rat Glue	',
         ],
         [
-        "name" => "Ring Bind	"
+            'name' => 'Ring Bind	',
         ],
         [
-        "name" => "Mouth Cover	"
+            'name' => 'Mouth Cover	',
         ],
         [
-        "name" => "Branded	"
+            'name' => 'Branded	',
         ],
         [
-        "name" => "Kollo	"
+            'name' => 'Kollo	',
         ],
         [
-        "name" => "Formater Board	"
+            'name' => 'Formater Board	',
         ],
         [
-        "name" => "internal HD	"
+            'name' => 'internal HD	',
         ],
         [
-        "name" => "Doxycyclin	"
+            'name' => 'Doxycyclin	',
         ],
         [
-        "name" => "Artusinate	"
+            'name' => 'Artusinate	',
         ],
         [
-        "name" => "Normal Saline	"
+            'name' => 'Normal Saline	',
         ],
         [
-        "name" => "ciproploxaciline	"
+            'name' => 'ciproploxaciline	',
         ],
         [
-        "name" => "Disposaposable glove	"
+            'name' => 'Disposaposable glove	',
         ],
         [
-        "name" => "Gawon	"
+            'name' => 'Gawon	',
         ],
         [
-        "name" => "Diclophenac	"
+            'name' => 'Diclophenac	',
         ],
         [
-        "name" => "Gentamycine	"
+            'name' => 'Gentamycine	',
         ],
         [
-        "name" => "Chlorine	"
+            'name' => 'Chlorine	',
         ],
         [
-        "name" => "boots	"
+            'name' => 'boots	',
         ],
         [
-        "name" => "alumnium sulphate	"
+            'name' => 'alumnium sulphate	',
         ],
         [
-        "name" => "Water chemical	"
+            'name' => 'Water chemical	',
         ],
         [
-        "name" => "Toys	"
+            'name' => 'Toys	',
         ],
         [
-        "name" => "Log sheet	"
+            'name' => 'Log sheet	',
         ],
         [
-        "name" => "Diaper	"
+            'name' => 'Diaper	',
         ],
         [
-        "name" => "Omo	"
+            'name' => 'Omo	',
         ],
         [
-        "name" => "Buhaka	"
+            'name' => 'Buhaka	',
         ],
         [
-        "name" => "milik	"
+            'name' => 'milik	',
         ],
         [
-        "name" => "stainless steel	"
+            'name' => 'stainless steel	',
         ],
         [
-        "name" => "Traditional Oven	"
+            'name' => 'Traditional Oven	',
         ],
         [
-        "name" => "pans	"
+            'name' => 'pans	',
         ],
         [
-        "name" => "Formula milk	"
+            'name' => 'Formula milk	',
         ],
         [
-        "name" => "Cerelac	"
+            'name' => 'Cerelac	',
         ],
         [
-        "name" => "Decoder	"
+            'name' => 'Decoder	',
         ],
         [
-        "name" => "Satellite dish	"
+            'name' => 'Satellite dish	',
         ],
         [
-        "name" => "picher	"
+            'name' => 'picher	',
         ],
         [
-        "name" => "Bill board	"
+            'name' => 'Bill board	',
         ],
         [
-        "name" => "Board game	"
+            'name' => 'Board game	',
         ],
         [
-        "name" => "Slate fiberboard	"
+            'name' => 'Slate fiberboard	',
         ],
         [
-        "name" => "Beads	"
+            'name' => 'Beads	',
         ],
         [
-        "name" => "String	"
+            'name' => 'String	',
         ],
         [
-        "name" => "Foam Mattress	"
+            'name' => 'Foam Mattress	',
         ],
         [
-        "name" => "Bisacodyl	"
+            'name' => 'Bisacodyl	',
         ],
         [
-        "name" => "Tablet bag	"
+            'name' => 'Tablet bag	',
         ],
         [
-        "name" => "Metalic stand	"
+            'name' => 'Metalic stand	',
         ],
         [
-        "name" => "Shovels	"
+            'name' => 'Shovels	',
         ],
         [
-        "name" => "Montosorrie	"
+            'name' => 'Montosorrie	',
         ],
         [
-        "name" => "Combine Disk	"
+            'name' => 'Combine Disk	',
         ],
         [
-        "name" => "Mat(Mushema)	"
+            'name' => 'Mat(Mushema)	',
         ],
         [
-        "name" => "Furnishing	"
+            'name' => 'Furnishing	',
         ],
         [
-        "name" => "Temir	"
+            'name' => 'Temir	',
         ],
         [
-        "name" => "Eating Spoon	"
+            'name' => 'Eating Spoon	',
         ],
         [
-        "name" => "steering	"
+            'name' => 'steering	',
         ],
         [
-        "name" => "Staplers	"
+            'name' => 'Staplers	',
         ],
         [
-        "name" => "steples	"
+            'name' => 'steples	',
         ],
         [
-        "name" => "Paper adhesives	"
+            'name' => 'Paper adhesives	',
         ],
         [
-        "name" => "Bags	"
+            'name' => 'Bags	',
         ],
         [
-        "name" => "Pictures	"
+            'name' => 'Pictures	',
         ],
         [
-        "name" => "Alphabet chart	"
+            'name' => 'Alphabet chart	',
         ],
         [
-        "name" => "Barell	"
+            'name' => 'Barell	',
         ],
         [
-        "name" => "Niddo milk	"
+            'name' => 'Niddo milk	',
         ],
         [
-        "name" => "Charchol stove	"
+            'name' => 'Charchol stove	',
         ],
         [
-        "name" => "Contextualization	"
+            'name' => 'Contextualization	',
         ],
         [
-        "name" => "Material Printing	"
+            'name' => 'Material Printing	',
         ],
         [
-        "name" => "Parenting PALS	"
+            'name' => 'Parenting PALS	',
         ],
         [
-        "name" => "Bluthooth speaker	"
+            'name' => 'Bluthooth speaker	',
         ],
         [
-        "name" => "Rechargable mic	"
+            'name' => 'Rechargable mic	',
         ],
         [
-        "name" => "BP-apparatus	"
+            'name' => 'BP-apparatus	',
         ],
         [
-        "name" => "Patient screen	"
+            'name' => 'Patient screen	',
         ],
         [
-        "name" => "Ajax soap	"
+            'name' => 'Ajax soap	',
         ],
         [
-        "name" => "Sponji	"
+            'name' => 'Sponji	',
         ],
         [
-        "name" => "Students bag	"
+            'name' => 'Students bag	',
         ],
         [
-        "name" => "Torch light	"
+            'name' => 'Torch light	',
         ],
         [
-        "name" => "Sleeve for drivers	"
+            'name' => 'Sleeve for drivers	',
         ],
         [
-        "name" => "Spare parts	"
+            'name' => 'Spare parts	',
         ],
         [
-        "name" => "motorcycle	"
+            'name' => 'motorcycle	',
         ],
         [
-        "name" => "Stapler-Medium	"
+            'name' => 'Stapler-Medium	',
         ],
         [
-        "name" => "Stapler-Heavy	"
+            'name' => 'Stapler-Heavy	',
         ],
         [
-        "name" => "Puncher-heavy	"
+            'name' => 'Puncher-heavy	',
         ],
         [
-        "name" => "Carbon-Blue	"
+            'name' => 'Carbon-Blue	',
         ],
         [
-        "name" => "Document clipper	"
+            'name' => 'Document clipper	',
         ],
         [
-        "name" => "Barbed wire	"
+            'name' => 'Barbed wire	',
         ],
         [
-        "name" => "UPS	"
+            'name' => 'UPS	',
         ],
         [
-        "name" => "Temporary Marker	"
+            'name' => 'Temporary Marker	',
         ],
         [
-        "name" => "Shirt/Skirt	"
+            'name' => 'Shirt/Skirt	',
         ],
         [
-        "name" => "Jacket	"
+            'name' => 'Jacket	',
         ],
         [
-        "name" => "Bucket-10	"
+            'name' => 'Bucket-10	',
         ],
         [
-        "name" => "Window Cleaner	"
+            'name' => 'Window Cleaner	',
         ],
         [
-        "name" => "Liquide	"
+            'name' => 'Liquide	',
         ],
         [
-        "name" => "Ajacks	"
+            'name' => 'Ajacks	',
         ],
         [
-        "name" => "Powedr	"
+            'name' => 'Powedr	',
         ],
         [
-        "name" => "Mug	"
+            'name' => 'Mug	',
         ],
         [
-        "name" => "Badge	"
+            'name' => 'Badge	',
         ],
         [
-        "name" => "Break pad	"
+            'name' => 'Break pad	',
         ],
-        
-    ];
 
+    ];
 }

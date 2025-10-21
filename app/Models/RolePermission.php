@@ -13,10 +13,9 @@ class RolePermission extends Model
     use HasFactory;
 
     protected $fillable = ['role_id', 'permission_id'];
+
     /**
      * The permissionTypes that belong to the Role
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function permissionTypes(): BelongsToMany
     {
@@ -25,8 +24,6 @@ class RolePermission extends Model
 
     /**
      * Get the role that owns the RolePermission
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function role(): BelongsTo
     {
@@ -35,8 +32,6 @@ class RolePermission extends Model
 
     /**
      * Get the permission that owns the RolePermission
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function permission(): BelongsTo
     {
@@ -45,8 +40,6 @@ class RolePermission extends Model
 
     /**
      * Get all of the rolePermissionTypes for the RolePermission
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function rolePermissionTypes(): HasMany
     {

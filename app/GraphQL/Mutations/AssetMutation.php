@@ -7,7 +7,6 @@ use App\Models\Asset;
 use App\Models\ProgramArea;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 final class AssetMutation
@@ -43,12 +42,12 @@ final class AssetMutation
             'program_area_id',
             'donor_id',
             'project_id',
-            'cost_center_id'
+            'cost_center_id',
         ]);
 
         $lastAsset = Asset::query()->orderBy('created_at', 'desc')->first();
         $programArea = ProgramArea::find($args['program_area_id']);
-        $data['tag_number'] = "ETH1-" . $programArea->four_digit_code . "-" . sprintf('%03d', ($lastAsset->id ?? 0) + 1);
+        $data['tag_number'] = 'ETH1-'.$programArea->four_digit_code.'-'.sprintf('%03d', ($lastAsset->id ?? 0) + 1);
         $data['created_by_id'] = Auth::Id();
 
         $asset = Asset::create($data->toArray());
@@ -78,7 +77,7 @@ final class AssetMutation
             'program_area_id',
             'donor_id',
             'project_id',
-            'cost_center_id'
+            'cost_center_id',
         ]);
 
         $asset = Asset::find($args['id']);
@@ -93,7 +92,7 @@ final class AssetMutation
             $file = $args['file'];
 
             // Define the static file name and extension
-            $fileName = 'asset_import_' . time() . '.xlsx';
+            $fileName = 'asset_import_'.time().'.xlsx';
 
             // Store the file with the static name and return the path
             $path = $file->storeAs('imports', $fileName);
@@ -116,21 +115,21 @@ final class AssetMutation
                     'total_rows' => $totalRows,
                     'imported' => $import->imported,
                     'failed' => $import->failed,
-                    'errors' => $import->errors
-                ]
+                    'errors' => $import->errors,
+                ],
             ];
         } catch (\Exception $e) {
-            Log::error('Asset import failed: ' . $e->getMessage());
+            Log::error('Asset import failed: '.$e->getMessage());
 
             return [
                 'success' => false,
-                'message' => 'Failed to import assets: ' . $e->getMessage(),
+                'message' => 'Failed to import assets: '.$e->getMessage(),
                 'stats' => [
                     'total_rows' => 0,
                     'imported' => 0,
                     'failed' => 0,
-                    'errors' => [$e->getMessage()]
-                ]
+                    'errors' => [$e->getMessage()],
+                ],
             ];
         }
     }

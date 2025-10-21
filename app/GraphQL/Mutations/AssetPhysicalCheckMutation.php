@@ -19,14 +19,13 @@ final class AssetPhysicalCheckMutation
     public function store($rootValue, array $args)
     {
         $data = collect($args)->only([
-            'remark', 'asset_id', 'condition_id', 'checked_at'
+            'remark', 'asset_id', 'condition_id', 'checked_at',
         ]);
 
         $data['checked_by_id'] = Auth::Id();
 
         $assetPhysicalCheck = AssetPhysicalCheck::create($data->toArray());
-        
+
         return $assetPhysicalCheck;
     }
-
 }
