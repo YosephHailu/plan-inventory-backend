@@ -7,6 +7,9 @@ extend type Mutation {
     createItem(input: ItemCreateInput! @spread): Item @guard @field(resolver: "ItemMutation@store")
     updateItem(input: ItemUpdateInput! @spread): Item @update
     deleteItem(id: ID! @eq): Item @delete
+    importItem(file: Upload!): ItemImportResponse
+        @guard
+        @field(resolver: "ItemMutation@import")
 }
 
 input ItemCreateInput {
@@ -27,4 +30,17 @@ type Item {
     name: String
     description: String
     item_code: String
+}
+
+type ItemImportResponse {
+    success: Boolean!
+    message: String!
+    stats: ItemImportStats
+}
+
+type ItemImportStats {
+    total_rows: Int
+    imported: Int
+    failed: Int
+    errors: [String]
 }

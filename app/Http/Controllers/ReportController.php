@@ -6,6 +6,7 @@ use App\Exports\AssetExport;
 use App\Exports\AssetImportTemplateExport;
 use App\Exports\AssetPhysicalCheckExport;
 use App\Exports\DisposedAssetExport;
+use App\Exports\ItemImportTemplateExport;
 use App\Exports\OnHandInventoryExport;
 use App\Exports\StockMovementExport;
 use Illuminate\Http\Request;
@@ -71,5 +72,14 @@ class ReportController extends Controller
     {
         $filename = 'asset-import-template_' . date('Ymd_His') . '.xlsx';
         return Excel::download(new AssetImportTemplateExport(), $filename);
+    }
+
+    /**
+     * Download item import template.
+     */
+    public function itemImportTemplate()
+    {
+        $filename = 'item-import-template_' . date('Ymd_His') . '.xlsx';
+        return Excel::download(new ItemImportTemplateExport(), $filename);
     }
 }

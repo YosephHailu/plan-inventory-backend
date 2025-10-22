@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('asset-import-template', [App\Http\Controllers\ReportController::class, 'assetImportTemplate']);
+Route::get('item-import-template', [App\Http\Controllers\ReportController::class, 'itemImportTemplate']);
