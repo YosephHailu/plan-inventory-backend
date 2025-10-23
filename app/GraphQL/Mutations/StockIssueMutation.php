@@ -47,11 +47,35 @@ final class StockIssueMutation
         $data['created_by_id'] = Auth::Id();
         DB::beginTransaction();
         $stockRequest = StockRequest::find($args['stock_request_id']);
-        $stockRequest->status = 'ISSUED';
-        $stockRequest->save();
+
         if ($stockRequest->stockIssue) {
+            DB::rollBack();
             throw new Exception('STOCK_ISSUANCE_ALREADY_EXISTS!');
         }
+
+        // VALIDATE INVENTORY AVAILABILITY BEFORE ISSUING
+        foreach ($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {
+            if ($stockRequestItem->good_receive_item_id) {
+                $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
+
+                if (!$goodReceiveItem) {
+                    DB::rollBack();
+                    throw new Exception("INVALID_ITEM: The inventory item no longer exists.");
+                }
+
+                // Check if sufficient inventory exists to prevent negative balance
+                if ($goodReceiveItem->balance_due < $stockRequestItem->quantity) {
+                    DB::rollBack();
+                    $itemName = $goodReceiveItem->item->name ?? 'Unknown Item';
+                    throw new Exception(
+                        "INSUFFICIENT_INVENTORY: Cannot issue stock. Item '{$itemName}' has only {$goodReceiveItem->balance_due} available, but {$stockRequestItem->quantity} requested."
+                    );
+                }
+            }
+        }
+
+        $stockRequest->status = 'ISSUED';
+        $stockRequest->save();
         $stockIssue = StockIssue::create($data->toArray());
 
         foreach ($stockRequest->stockRequestItems()->where('approved', true)->get() as $stockRequestItem) {
@@ -63,6 +87,7 @@ final class StockIssueMutation
             ]);
 
             $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
+            // Safe to deduct now after validation
             $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due - $stockRequestItem->quantity);
             $goodReceiveItem->save();
         }
@@ -75,6 +100,31 @@ final class StockIssueMutation
     public function approve($rootValue, array $args)
     {
         DB::beginTransaction();
+
+        // VALIDATE INVENTORY ADJUSTMENTS TO PREVENT NEGATIVE BALANCE
+        foreach ($args['input'] as $issuance) {
+            $stockIssueItem = StockIssueItem::find($issuance['id']);
+            $goodReceiveItem = GoodReceiveItem::find($stockIssueItem->stockRequestItem->good_receive_item_id);
+
+            if (!$goodReceiveItem) {
+                DB::rollBack();
+                throw new Exception("INVALID_ITEM: The inventory item no longer exists.");
+            }
+
+            // Calculate the net change (adding back original quantity, then deducting approved quantity)
+            $netChange = $stockIssueItem->quantity - $issuance['approved_quantity'];
+            $newBalance = $goodReceiveItem->balance_due + $netChange;
+
+            // Check if the new balance would be negative
+            if ($newBalance < 0) {
+                DB::rollBack();
+                $itemName = $goodReceiveItem->item->name ?? 'Unknown Item';
+                throw new Exception(
+                    "INSUFFICIENT_INVENTORY: Cannot approve. Item '{$itemName}' would have negative balance. Current balance: {$goodReceiveItem->balance_due}, Approved quantity: {$issuance['approved_quantity']}"
+                );
+            }
+        }
+
         $stockIssue = StockIssue::find($args['id']);
         $stockIssue->status = 'APPROVED';
         $stockIssue->save();
@@ -88,7 +138,9 @@ final class StockIssueMutation
             $stockIssueItem->save();
 
             $goodReceiveItem = GoodReceiveItem::find($stockIssueItem->stockRequestItem->good_receive_item_id);
+            // Add back the originally deducted quantity
             $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due + $stockIssueItem->quantity);
+            // Deduct the approved quantity
             $goodReceiveItem->balance_due = ($goodReceiveItem->balance_due - $stockIssueItem->approved_quantity);
             $goodReceiveItem->save();
         }

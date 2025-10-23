@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\GoodReceiveItem;
 use App\Models\Item;
 use App\Models\StockIssue;
 use App\Models\StockRequest;
@@ -37,6 +38,28 @@ final class StockRequestMutation
         ]);
 
         DB::beginTransaction();
+
+        // VALIDATE INVENTORY AVAILABILITY BEFORE CREATING REQUEST
+        foreach ($args['stockRequestItems'] as $stockRequestItemData) {
+            if (isset($stockRequestItemData['good_receive_item_id'])) {
+                $goodReceiveItem = GoodReceiveItem::find($stockRequestItemData['good_receive_item_id']);
+
+                if (!$goodReceiveItem) {
+                    DB::rollBack();
+                    throw new Exception("INVALID_ITEM: The selected inventory item does not exist.");
+                }
+
+                // Check if sufficient inventory exists
+                if ($goodReceiveItem->balance_due < $stockRequestItemData['quantity']) {
+                    DB::rollBack();
+                    $itemName = $goodReceiveItem->item->name ?? 'Unknown Item';
+                    throw new Exception(
+                        "INSUFFICIENT_INVENTORY: Item '{$itemName}' has only {$goodReceiveItem->balance_due} available, but {$stockRequestItemData['quantity']} requested."
+                    );
+                }
+            }
+        }
+
         $data['created_by_id'] = Auth::Id();
         $data['where_house_id'] = Auth::user()->where_house_id ?? $data['where_house_id'];
         $stockRequest = StockRequest::create($data->toArray());
@@ -44,9 +67,6 @@ final class StockRequestMutation
         foreach ($args['stockRequestItems'] as $stockRequestItem) {
             $stockRequestItem['stock_request_id'] = $stockRequest->id;
             $stockRequestItem = StockRequestItem::create($stockRequestItem);
-            // $item = Item::find($stockRequestItem->item_id);
-            // $item->balance += $stockRequestItem->amount;
-            // $item->save();
         }
         DB::commit();
 
@@ -56,6 +76,30 @@ final class StockRequestMutation
     public function check($rootValue, array $args)
     {
         DB::beginTransaction();
+
+        // VALIDATE INVENTORY AVAILABILITY BEFORE CHECKING
+        foreach ($args['input'] as $stockRequestItemId) {
+            $stockRequestItem = StockRequestItem::find($stockRequestItemId);
+
+            if ($stockRequestItem && $stockRequestItem->good_receive_item_id) {
+                $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
+
+                if (!$goodReceiveItem) {
+                    DB::rollBack();
+                    throw new Exception("INVALID_ITEM: The inventory item no longer exists.");
+                }
+
+                // Check if sufficient inventory exists
+                if ($goodReceiveItem->balance_due < $stockRequestItem->quantity) {
+                    DB::rollBack();
+                    $itemName = $goodReceiveItem->item->name ?? 'Unknown Item';
+                    throw new Exception(
+                        "INSUFFICIENT_INVENTORY: Item '{$itemName}' has only {$goodReceiveItem->balance_due} available, but {$stockRequestItem->quantity} requested. Cannot check this request."
+                    );
+                }
+            }
+        }
+
         $stockRequest = StockRequest::find($args['id']);
         $stockRequest->status = 'CHECKED';
         $stockRequest->save();
@@ -76,6 +120,30 @@ final class StockRequestMutation
     public function approve($rootValue, array $args)
     {
         DB::beginTransaction();
+
+        // VALIDATE INVENTORY AVAILABILITY BEFORE APPROVAL
+        foreach ($args['input'] as $stockRequestItemId) {
+            $stockRequestItem = StockRequestItem::find($stockRequestItemId);
+
+            if ($stockRequestItem && $stockRequestItem->good_receive_item_id) {
+                $goodReceiveItem = GoodReceiveItem::find($stockRequestItem->good_receive_item_id);
+
+                if (!$goodReceiveItem) {
+                    DB::rollBack();
+                    throw new Exception("INVALID_ITEM: The inventory item no longer exists.");
+                }
+
+                // Check if sufficient inventory exists
+                if ($goodReceiveItem->balance_due < $stockRequestItem->quantity) {
+                    DB::rollBack();
+                    $itemName = $goodReceiveItem->item->name ?? 'Unknown Item';
+                    throw new Exception(
+                        "INSUFFICIENT_INVENTORY: Item '{$itemName}' has only {$goodReceiveItem->balance_due} available, but {$stockRequestItem->quantity} requested. Cannot approve this request."
+                    );
+                }
+            }
+        }
+
         $stockRequest = StockRequest::find($args['id']);
         $stockRequest->status = 'APPROVED';
         $stockRequest->save();
