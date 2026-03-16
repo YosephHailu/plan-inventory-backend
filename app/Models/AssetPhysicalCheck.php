@@ -24,8 +24,9 @@ class AssetPhysicalCheck extends Model
     {
         return $query->whereHas('asset', function ($q) use ($value) {
             return $q->where('item_name', 'like', "%$value%")
-                ->orWhere('tag_number', 'like', "%$value%");
-        })->orWHere('id', "$value");
+                ->orWhere('tag_number', 'like', "%$value%")
+                ->orWhere('serial_no', 'like', "%$value%");
+        })->orWhere('id', "$value");
     }
 
     /**

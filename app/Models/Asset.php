@@ -41,7 +41,8 @@ class Asset extends Model
     public function ScopeSearch(Builder $query, $value)
     {
         return $query->where('item_name', 'like', "%$value%")
-            ->orWhere('tag_number', 'like', "%$value%");
+            ->orWhere('tag_number', 'like', "%$value%")
+            ->orWhere('serial_no', 'like', "%$value%");
     }
 
     public function ScopeStaff(Builder $query, $value)

@@ -24,8 +24,11 @@ class AssetExport implements FromView
 
         if ($this->request->search) {
             $value = $this->request->search;
-            $assets->where('item_name', 'like', "%$value%")
-                ->orWhere('tag_number', 'like', "%$value%");
+            $assets->where(function ($q) use ($value) {
+                $q->where('item_name', 'like', "%$value%")
+                    ->orWhere('tag_number', 'like', "%$value%")
+                    ->orWhere('serial_no', 'like', "%$value%");
+            });
         }
 
         if ($this->request->available) {

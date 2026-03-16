@@ -160,7 +160,9 @@ class AssetImportSheet implements ToModel, WithHeadingRow, SkipsEmptyRows, Skips
             }
 
             // Auto-generate unique tag number (same format as AssetMutation)
-            $lastAsset = Asset::query()->orderBy('created_at', 'desc')->first();
+            // Use orderBy('id', 'desc') instead of orderBy('created_at', 'desc')
+            // to avoid duplicate tag numbers when multiple assets are created in the same second during bulk import
+            $lastAsset = Asset::query()->orderBy('id', 'desc')->first();
             $tagNumber = 'ETH1-'.$programArea->four_digit_code.'-'.sprintf('%03d', ($lastAsset->id ?? 0) + 1);
 
             // Convert Excel date serial numbers to proper dates

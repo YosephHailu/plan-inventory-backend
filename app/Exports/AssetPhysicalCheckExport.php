@@ -22,8 +22,11 @@ class AssetPhysicalCheckExport implements FromView
 
         if ($this->request->search) {
             $value = $this->request->search;
-            $physicalChecks->where('item_name', 'like', "%$value%")
-                ->orWhere('tag_number', 'like', "%$value%");
+            $physicalChecks->whereHas('asset', function ($q) use ($value) {
+                $q->where('item_name', 'like', "%$value%")
+                    ->orWhere('tag_number', 'like', "%$value%")
+                    ->orWhere('serial_no', 'like', "%$value%");
+            });
         }
 
         if ($this->request->available) {
