@@ -1,58 +1,64 @@
-version: "3.8"
 services:
-  main:
-    build:
-        context: .
-        dockerfile: Dockerfile
-    command: "php artisan serve --host=0.0.0.0 --port=8000"
-    volumes:
-        - .:/app
-    ports:
-        - 8085:8000
-    depends_on:
-        db:
-            condition: service_healthy
-    environment:
-        DB_HOST: db
-        DB_PORT: 3306
-        DB_DATABASE: main
-        DB_USERNAME: admin
-        DB_PASSWORD: admin
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: inventory-app
+        ports:
+            - 8085:8000
+        depends_on:
+            db:
+                condition: service_healthy
+        environment:
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_DATABASE: main
+            DB_USERNAME: admin
+            DB_PASSWORD: admin
 
-  queue:
-    build:
-        context: .
-        dockerfile: Dockerfile
-    command: "php artisan queue:work"
-    volumes:
-        - .:/app
-    depends_on:
-        db:
-            condition: service_healthy
-    environment:
-        DB_HOST: db
-        DB_PORT: 3306
-        DB_DATABASE: main
-        DB_USERNAME: admin
-        DB_PASSWORD: admin
+    queue:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        command: "php artisan queue:work"
+        container_name: inventory-queue
+        depends_on:
+            db:
+                condition: service_healthy
+        environment:
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_DATABASE: main
+            DB_USERNAME: admin
+            DB_PASSWORD: admin
 
-  db:
-    platform: linux/x86_64
-    image: mysql:8.0
-    environment:
-        MYSQL_DATABASE: main
-        MYSQL_USER: admin
-        MYSQL_PASSWORD: admin
-        MYSQL_ROOT_PASSWORD: root
-    volumes:
-        - plan_inventory_dbdata:/var/lib/mysql
-    ports:
-        - 3309:3306
-    healthcheck:
-        test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
-        interval: 5s
-        timeout: 5s
-        retries: 10
+    db:
+        platform: linux/x86_64
+        image: mysql:8.0
+        container_name: inventory-db
+        environment:
+            MYSQL_DATABASE: main
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: admin
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - plan_inventory_dbdata:/var/lib/mysql
+        ports:
+            - 3309:3306
+        healthcheck:
+            test:
+                [
+                    "CMD",
+                    "mysqladmin",
+                    "ping",
+                    "-h",
+                    "localhost",
+                    "-uroot",
+                    "-proot",
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 10
 
 volumes:
     plan_inventory_dbdata:
