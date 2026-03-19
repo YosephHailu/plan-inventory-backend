@@ -32,4 +32,7 @@ Route::get('/sync', function () {
     // Log::debug(DB::table('users')->get());
 });
 
-// "registration_id": "a2237c38-fb75-44af-b1e6-447ace2ce126"
+Route::fallback(function () {
+    $path = request()->path();
+    return redirect('/#' . ($path ? '/' . $path : ''));
+});
